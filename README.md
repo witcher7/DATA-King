@@ -1,65 +1,49 @@
-# 🦁 BACKEND KING 👑
+# DATA-KING  
+> Data Engineering. ETL. Big Data. Cloud Pipelines.
 
-> Microservices. Madness. Mastery.  
-> Node.js ⚔️ React 🔥 Vue.js 💚 NestJS 🛡️ Python 🐍 Golang 🦍 Kafka ⚡ — All Hail the Backend King!
+Welcome to **DATA-KING** — the Data Engineering version of “Backend-King”.  
+This repository is not about APIs, microservices, or backend frameworks.  
+This is about **data pipelines, transformations, analytics platforms, and cloud-scale ETL systems**.
 
-![backend king banner](https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif)
-
-## 👑 What is this repo?
-
-This is not your average backend codebase.  
-This is a **multi-language, microservice-fueled, event-driven, full-stack monster** designed to crush latency, scale like a beast, and make DevOps cry tears of joy.
-
-> 💥 From REST to gRPC.  
-> 🔊 From Kafka to Kingdom.  
-> 💻 From HTTP to Holy-heck-this-is-good.  
+Think of this as a hands-on lab for mastering **modern Data Engineering** using Python, Spark, Snowflake, Databricks, Alteryx, Talend, and all major cloud providers.
 
 ---
 
-## 🧩 Tech Stack Supreme
+## 🔥 What is DATA-KING?
 
-| Tech         | Description                                |
-|--------------|--------------------------------------------|
-| **Node.js**  | API wizardry and fast backend spells       |
-| **React**    | Frontend sorcery from the future           |
-| **Vue.js**   | Simplicity meets elegance in UI            |
-| **NestJS**   | Backend structured like a Roman legion     |
-| **Python**   | Data-fu, APIs, and ML flavor 🍜            |
-| **Golang**   | Blazing fast services written in Go-fu 🥋  |
-| **Kafka**    | Async communication, real-time domination  |
+DATA-KING is a collection of real-world examples for:
+
+- Building batch & streaming pipelines  
+- Performing large-scale transformations  
+- Working with data warehouses and lakehouses  
+- Using cloud-native ETL tools  
+- Designing production-grade data architectures  
+
+It’s designed for:
+- Data Engineers  
+- Analytics Engineers  
+- Cloud Data Engineers  
+- ML Engineers who want strong data foundations  
 
 ---
 
-## 🏗️ Architecture Overview
+## 🧠 Core Stack
 
-> A **distributed architecture** that looks like it was built by a team of caffeinated monks in a high-tech monastery.
+| Area | Tools |
+|------|------|
+| Programming | Python, PySpark |
+| Big Data | Apache Spark |
+| Data Warehousing | Snowflake |
+| Lakehouse | Databricks + Delta Lake |
+| Cloud ETL | AWS Glue, Azure Data Factory, GCP Dataflow |
+| Low-Code ETL | Alteryx, Talend |
+| Orchestration | Airflow / Prefect |
+| Storage | S3, GCS, Azure Blob |
+| Compute | EMR, Dataproc, Synapse |
 
-## 🚀 Features
+---
 
-- ⚔️ REST + gRPC + WebSocket APIs
-- 🛠️ Dockerized + Kubernetes Ready
-- 📡 Kafka Pub/Sub microservices
-- 🧠 Auth, JWT, RBAC & OAuth2 built-in
-- 📈 Prometheus + Grafana dashboards
-- 🔐 Vault & sealed secrets (Kubeseal ready)
-- 🧪 GitHub Actions + CI/CD pipelines
-- 🔭 OpenTelemetry + Jaeger tracing
-- 📦 Monorepo-friendly or polyrepo compatible
-- 💣 Chaos-ready. Battle-tested. 🔥
+## 🏗 Architecture Overview
 
-# 🧠 Why This Repo?
+Typical pipeline flow:
 
-Because you’re tired of boring code.
-🚀This repo is built for:
-
-⚙️ Backend Wizards
-🔬 Full-stack Innovators
-🎓 Curious Devs
-🧪 Startup Hustlers
-
-# 🌍 Deployment Targets
-
- AWS (EKS, ECS, Lambda)
- Azure (AKS, Functions)
- GCP (Cloud Run, GKE)
- On-Prem? We love ya too ❤️
