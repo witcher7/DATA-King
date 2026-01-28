@@ -33,3 +33,36 @@ squares = [x**2 for x in range(10)]  # creates a list of squares of numbers from
 print(squares)  # Output: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 newlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 squares_even = [x**2 for x in newlist if x % 2 == 0]  # squares of even numbers only
+
+
+### WHILE LOOP
+## We dont need to know the number of iterations in advance > no need of collection to iterate over
+count = 0
+while count < 5:
+    print(count)
+    count += 1  # increment count by 1
+# Output:
+# 0
+# 1     
+# 2
+# 3
+# 4
+# Infinite loop example (commented out to prevent execution)
+# while True:
+#     print("This will run forever")
+# Output:
+# This will run forever
+# This will run forever
+# This will run forever
+# This will run forever
+
+count = 0
+while count <= 10:
+      guess = int(input(" Enter a number: "))
+      if guess == 0:
+          break  # exit the loop if guess is 0
+      elif guess < 0:
+          print(" Negative number, try again.")
+          continue  # skip the rest of the loop and start from the beginning
+      else:
+            print(f" You entered: {guess}")
