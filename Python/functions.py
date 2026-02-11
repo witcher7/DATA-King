@@ -98,3 +98,35 @@ initial_post = {
 }
 post_with_weekday = create_new_port(initial_post)
 print(post_with_weekday) # 
+
+
+
+## Callback function is a function that is passed as an argument to another function and is called inside that function
+
+def print_number_info(num):
+    if (num % 2 == 0):
+        print(f"{num} is even")
+    else:
+        print("Entered number is odd ")
+
+def process_numbers(numbers, callback):
+    callback(numbers) # calling the callback function with the numbers as argument
+
+entered_num = int(input("Enter any number: "))
+process_numbers(entered_num, print_number_info)
+
+
+a = 10 
+def myfunc():
+    a = True 
+    global b  # global keyword is used to declare that a variable is global and can be accessed and modified inside the function.
+    b = 15 
+    print(a) 
+    print(b) 
+
+myfunc ()
+print(a) # 10 # because a is defined in the global scope and is not modified by the function, it retains its value of 10 outside the function.
+print(b) # 15 # because b is declared as global inside the function, it can be accessed and modified outside the function, and retains its value of 15.
+
+
+## 
