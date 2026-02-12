@@ -129,4 +129,6 @@ print(a) # 10 # because a is defined in the global scope and is not modified by 
 print(b) # 15 # because b is declared as global inside the function, it can be accessed and modified outside the function, and retains its value of 15.
 
 
-## 
+## to import from other file
+from main import my_function # importing the function my_function from the file main.py
+import main # just to show that we can import the whole file and then use the function from it
