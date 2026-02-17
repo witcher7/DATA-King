@@ -16,6 +16,25 @@ except TypeError as e:
 
 
 try:
-    print('10'/0)
+    print(10/10)
 except (TypeError, ValueError) as e:
     print(e)
+else:
+    print("There was no error!")
+finally: 
+    print("Continue") # This block will be executed in any case 
+
+
+# Catching any error in the except block
+try: 
+    print(10/0)
+except Exception as e: 
+    print(e)
+
+
+
+## error generation 
+def divide_nums(a,b): 
+    if b == 0:
+        raise TypeError("Second argument cant be 0")
+    return a / b 
