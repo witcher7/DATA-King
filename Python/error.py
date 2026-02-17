@@ -15,3 +15,7 @@ except TypeError as e:
     print(e)
 
 
+try:
+    print('10'/0)
+except (TypeError, ValueError) as e:
+    print(e)
