@@ -99,3 +99,29 @@ copied_cars.sort(reverse=True)
 print(copied_cars) # ['Tesla', 'BMW', 'Audi']
 print(my_cars) # ['BMW', 'Audi', 'Tesla'] 
 # to create deep copy we can use copy module
+
+
+## Unpacking Lists 
+
+myfruits = ["Apple","Banana","Lime"]
+myapple , mybanana , mylime = myfruits
+print(myapple)
+
+
+user_credentials = [
+   ("user1","password_one"),
+   ("user2","password_two"),
+   ("user3","password_three")
+]
+user1,user2, user3 = user_credentials
+user1_username, user1_password = user1 
+print(user1_username,user1_password)
+
+
+## 
+school_grades = (80,75,35,20,90)
+first, *middle , last = school_grades
+print(first)
+print(middle)
+print(last)
+

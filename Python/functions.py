@@ -132,3 +132,7 @@ print(b) # 15 # because b is declared as global inside the function, it can be a
 ## to import from other file
 from main import my_function # importing the function my_function from the file main.py
 import main # just to show that we can import the whole file and then use the function from it
+
+def calculate_area(length:int , width:int) -> int:
+  return a+b 
+
