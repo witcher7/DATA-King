@@ -141,6 +141,13 @@ positive_nums = [num for num in all_nums if num >0]
 print(positive_nums)
 print(all_nums)
 
+## nums = [10,2,5,100] squared_nums = [num*num for num in nums]
+
+## Tuple comprehension
+names = ["Alice","Rish","Bob"]
+names_length = tuple(len(name)for name in names)
+print(names_length)
+
 
 ## SET comprehension 
 myset = {1,2,3,4,20,0,15}
@@ -162,3 +169,16 @@ my_scores = {
 scores = {k: v*10 for k, v in my_scores.items()}
 print(scores)
 print(my_scores) 
+
+
+## Generator
+def fun(m):
+    for i in range(m):
+        yield i  
+
+# call the generator function
+for n in fun(5):
+    print(n)
+
+# This example demonstrates a simple generator function that yields numbers from 0 up to 4. It shows 
+# how yield can be used to produce a sequence one value at a time using a loop.
