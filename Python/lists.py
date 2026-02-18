@@ -125,3 +125,29 @@ print(first)
 print(middle)
 print(last)
 
+
+
+## List comprehension
+
+all_nums = [1,2,3,4,20]
+absolute_nums = [abs(num) for num in all_nums]
+
+print(absolute_nums)
+print(all_nums)
+
+
+all_nums = [1,2,3,10,-3,-20,30,-100]
+positive_nums = [num for num in all_nums if num >0]
+print(positive_nums)
+print(all_nums)
+
+
+myset = {1,2,3,4,20,0,15}
+new_set = set()
+for i in myset:
+    new_set.add(i**i)
+print(new_set)
+print(myset)
+
+my_set = {1,10,15}
+new_set = {val*val for val in myset}
