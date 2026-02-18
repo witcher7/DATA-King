@@ -142,6 +142,7 @@ print(positive_nums)
 print(all_nums)
 
 
+## SET comprehension 
 myset = {1,2,3,4,20,0,15}
 new_set = set()
 for i in myset:
@@ -151,3 +152,13 @@ print(myset)
 
 my_set = {1,10,15}
 new_set = {val*val for val in myset}
+
+## Dictionary Comprehension 
+my_scores = {
+    'a': 10,
+    'b': 7,
+    "c": 8,
+}
+scores = {k: v*10 for k, v in my_scores.items()}
+print(scores)
+print(my_scores) 
