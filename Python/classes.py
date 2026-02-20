@@ -76,6 +76,8 @@ class Comment:
         self.text = text 
         self.votes_qty = 0
         Comment.total_comments +=1 
+   
+
 
 first_comment  = Comment("Balley")
 print(first_comment.votes_qty)
@@ -83,3 +85,21 @@ print(first_comment.total_comments)
 second_comment = Comment("Yoyo")
 print(second_comment.votes_qty)
 print(second_comment.total_comments)
+
+
+## MAGIC METHOD 
+class Comment: 
+    total_comments = 0 
+
+    def __init__(self,text): 
+        self.text = text 
+        self.votes_qty = 0
+        Comment.total_comments +=1 
+    def upvote(self):
+        self.votes_qty += 1
+    def __add__(self, other):  # Magic methods in classes
+        return (f"{self.text} {other.text}")
+
+
+
+## Inheritence from the other classes 
