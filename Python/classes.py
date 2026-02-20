@@ -217,3 +217,44 @@ process_payment(CreditCard(), 1000)
 process_payment(BankTransfer(), 2000)
 # Same function → different payment flows.
 # This is exactly how real systems (banking, fintech, APIs) are designed
+
+
+## Showing only the essential details and hiding the complex internal logic.
+
+#It lets you focus on what something does, not how it does it.
+#In Python, abstraction is mainly achieved using:
+#- Abstract classes
+#- Abstract methods
+# - The abc module (ABC, @abstractmethod)
+
+#- Hides unnecessary complexity
+# - Forces subclasses to implement required methods
+#- Creates a clean, consistent interface
+#- Makes large systems easier to maintain
+
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+
+    @abstractmethod
+    def start_engine(self):
+        pass
+
+    @abstractmethod
+    def stop_engine(self):
+        pass
+
+
+class Car(Vehicle):
+    def start_engine(self):
+        print("Car engine started")
+
+    def stop_engine(self):
+        print("Car engine stopped")
+
+class Bike(Vehicle):
+    def start_engine(self):
+        print("Bike engine started")
+
+    def stop_engine(self):
+        print("Bike engine stopped")
