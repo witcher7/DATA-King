@@ -103,3 +103,117 @@ class Comment:
 
 
 ## Inheritence from the other classes 
+class ExtendedList(list): # WE ARE EXTENDING our list 
+    def print_list_info(self): 
+        print(f"List has {len(self)} elements")
+
+custom_list = ExtendedList([3,5,2])
+custom_list.print_list_info()
+
+
+
+class User: 
+    def __init__(self,username,email): 
+        self.username = username 
+        self.email = email 
+
+class AdminUser(User):
+    def __init__(self, username, email,role):
+        super().__init__(username, email) # super is to call parent class objects
+        self.role = role
+
+
+
+## ENCAPSULATION 
+# Its purpose is to hide internal data and protect it from accidental modification, while exposing only what is necessary.
+
+
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner          # public attribute
+        self._balance = balance     # protected attribute
+        self.__pin = 1234           # private attribute
+
+    def deposit(self, amount):
+        self._balance += amount
+        print(f"Deposited {amount}. New balance: {self._balance}")
+
+    def withdraw(self, amount, pin):
+        if pin == self.__pin:
+            if amount <= self._balance:
+                self._balance -= amount
+                print(f"Withdrawn {amount}. Remaining balance: {self._balance}")
+            else:
+                print("Insufficient funds")
+        else:
+            print("Incorrect PIN")
+
+    def get_balance(self):
+        return self._balance
+    
+
+## POLYMORPHISM through method overriding (RUNTIME POLYMORPHISM)
+# different classes implement the same method in their own way 
+class Bird:
+    def make_sound(self):
+        return "Some generic bird sound"
+
+class Sparrow(Bird):
+    def make_sound(self):
+        return "Chirp chirp"
+
+class Eagle(Bird):
+    def make_sound(self):
+        return "Screech!"
+    
+birds = [Sparrow(), Eagle(), Bird()]
+
+for b in birds:
+    print(b.make_sound())
+
+# Polymorphism Through Duck Typing
+# Any object with the required method works — no need for inheritance
+class Dog:
+    def speak(self):
+        return "Woof!"
+
+class Cat:
+    def speak(self):
+        return "Meow!"
+
+class Human:
+    def speak(self):
+        return "Hello!"
+    
+for obj in [Dog(), Cat(), Human()]:
+    print(obj.speak())
+
+
+
+### A REAL BACKEND
+
+class Payment:
+    def pay(self, amount):
+        raise NotImplementedError
+
+class CreditCard(Payment):
+    def pay(self, amount):
+        print(f"Paid {amount} using Credit Card")
+
+class UPI(Payment):
+    def pay(self, amount):
+        print(f"Paid {amount} using UPI")
+
+class BankTransfer(Payment):
+    def pay(self, amount):
+        print(f"Paid {amount} using Bank Transfer")
+
+
+def process_payment(payment_method, amount):
+    payment_method.pay(amount)
+
+process_payment(UPI(), 500)
+process_payment(CreditCard(), 1000)
+process_payment(BankTransfer(), 2000)
+# Same function → different payment flows.
+# This is exactly how real systems (banking, fintech, APIs) are designed
