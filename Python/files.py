@@ -128,3 +128,30 @@ print(path.absolute())
 
 # File name 
 print(path.name)
+
+
+# Reading and writing to files
+with open('example.txt') as file:
+   print(file.read())
+# this will read the content and readlines will read the content line by line and return a list of lines.
+
+with open("example.txt") as file: 
+    print(file.readlines()) 
+
+# Writing to a file
+with open("example.txt", "w") as file:
+    file.write("Hello, World!\n")
+    file.write("This is a new line.\n")
+# this will overwrite the existing data 
+
+# after writing to the file, we can read it again to see the changes but close the file first and then open it again to read the content.
+file.close()
+file = open("example.txt")
+print(file.read())
+
+with open("example.txt", "a") as file:
+  file.write("This line will be appended to the file.\n")
+# this will append the new data to the existing data in the file.
+
+path('example.txt').unlink()
+# this will delete the file example.txt from the current directory.
