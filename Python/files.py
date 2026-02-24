@@ -149,9 +149,43 @@ file.close()
 file = open("example.txt")
 print(file.read())
 
+
+# dont need to close if the file is opened using with statement as it will automatically close the file after the block of code is executed.
 with open("example.txt", "a") as file:
   file.write("This line will be appended to the file.\n")
 # this will append the new data to the existing data in the file.
 
 path('example.txt').unlink()
 # this will delete the file example.txt from the current directory.
+
+with open("example.txt", "w") as file:
+    # w --> write mode, this will overwrite the existing data in the file.
+    # a --> append mode, this will append the new data to the existing data in the file.
+    # r --> read mode, this will read the content of the file. 
+    # x --> exclusive creation, this will create a new file and open it for writing. If the file already exists, it will raise a FileExistsError.
+    # b --> binary mode, this will open the file in binary mode. This is used for non-text files like images, videos, etc.
+    # t --> text mode, this will open the file in text mode. This is the default mode for text files.
+
+# ZIP FILE 
+from zipfile import ZipFile
+
+with open("example.txt", "w") as file:
+    file.write("This is an example file to be zipped.\n")
+
+with ZipFile("example.zip", "w") as zip_file:
+    zip_file.write("example.txt")
+
+    # this will create a zip file named example.zip and add the example.txt file to it.
+    #  The "w" mode is used to write to the zip file. If the zip file already exists, it will be overwritten.
+
+with ZipFile("example.zip", "r") as zip_file:
+    zip_file.extractall("extracted_files")
+    # this will extract the contents of the example.zip file to a directory named extracted_files. If the directory does not exist, it will be created.
+
+with ZipFile("example.zip", mode="w") as zip_file:
+    for file in files_to_zip.iterdir(): # we are iterating through the files in the directory and adding them to the zip file.
+        zip_file.write(file)
+
+
+
+## CSV 
