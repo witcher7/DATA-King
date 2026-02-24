@@ -189,3 +189,15 @@ with ZipFile("example.zip", mode="w") as zip_file:
 
 
 ## CSV 
+import csv 
+with open('example.csv', mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Name', 'Age', 'City'])
+    writer.writerow(['Alice', 30, 'New York'])
+    writer.writerow(['Bob', 25, 'Los Angeles'])
+    writer.writerow(['Charlie', 35, 'Chicago'])
+
+with open('test.csv', mode='r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
