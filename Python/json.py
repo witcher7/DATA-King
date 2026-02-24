@@ -1,17 +1,3 @@
-import json
-json_data = '''
-{
-    "id": 235,
-    "brand": "Nike",
-    "qty": 84,
-    "Status": {
-        "isForSale": true
-    }
-}
-'''
-sneakers = json.loads(json_data)
-print(type(sneakers))
-
 
 
 
@@ -28,6 +14,32 @@ print(type(sneakers))
 
 # CONVERTING JSON to dictionary in Python
 
+# import json
+# json_data = '''
+# {
+#     "id": 235,
+#     "brand": "Nike",
+#     "qty": 84,
+#     "Status": {
+#         "isForSale": true
+#     }
+# }
+# '''
+# sneakers = json.loads(json_data)
+# print(type(sneakers))
 
+
+# CONVERTING DICTIONARY to JSON in Python
+# import json
+# sneakers = {
+#     "id": 235,
+#     "brand": "Nike",
+#     "qty": 84,
+#     "Status": {
+#         "isForSale": True
+#     }
+# }
+# json_data = json.dumps(sneakers)
+# print(type(json_data))
 
 
