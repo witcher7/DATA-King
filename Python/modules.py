@@ -96,3 +96,21 @@ print(''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', k=12)))
                              # randomly selects 5 characters from the uppercase alphabet with replacement
 
 # Import Secrets
+import secrets 
+import string 
+print(string.digits)
+print(string.ascii_letters)
+print(string.ascii_uppercase)
+print(string.ascii_lowercase)
+print(string.punctuation)
+
+
+# math library 
+import math 
+print(math.pi)
+print(math.log(2))
+print(math.sqrt(16))
+print(math.factorial(5))
+print(math.pow(5,2))
+print(math.floor(3.7))
+print(math.ceil(3.2))
