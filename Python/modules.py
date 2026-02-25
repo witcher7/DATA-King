@@ -82,3 +82,17 @@ print(random.choice(['apple', 'banana', 'cherry'])) # randomly selects an elemen
 # Shuffle 
 mylist = [1,2,3,4,5,6,7]
 random.shuffle(mylist)
+ 
+ #
+ # print(random.choice("bodgan"))
+ # print(random.choice((1,3,4,10)))
+ # print(random.choice({'a': 10,'b':True}))
+
+ #   Choices
+print(random.choices(['apple', 'banana', 'cherry'], k=3)) # randomly selects 3 elements from a list with replacement
+# choices can select the same element multiple times, while choice will select only one element.
+print(''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', k=12)))
+
+                             # randomly selects 5 characters from the uppercase alphabet with replacement
+
+# Import Secrets
