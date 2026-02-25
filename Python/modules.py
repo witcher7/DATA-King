@@ -66,3 +66,19 @@ if __name__ == "__main__":
     initialise()
     main()
     print("This code is running directly and not imported as a module")
+
+
+
+
+# Random module example
+import random
+# Generate a random integer between 1 and 10
+random_integer = random.randint(1, 10)
+random_float = random.random() # generates a random float between 0 and 1
+print(random_integer)
+print(random_float)
+print(random.choice(['apple', 'banana', 'cherry'])) # randomly selects an element from a list
+
+# Shuffle 
+mylist = [1,2,3,4,5,6,7]
+random.shuffle(mylist)
