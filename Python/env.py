@@ -14,3 +14,6 @@
 ## Python virtual environments are a way to create isolated environments for your Python projects. This allows you to manage dependencies 
 # and avoid conflicts between different projects.
 
+# python3 -m venv myenv # to create a virtual environment named myenv
+# source myenv/bin/activate # to activate the virtual environment
+# deactivate # to deactivate the virtual environment
