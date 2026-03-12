@@ -17,3 +17,11 @@
 # python3 -m venv myenv # to create a virtual environment named myenv
 # source myenv/bin/activate # to activate the virtual environment
 # deactivate # to deactivate the virtual environment
+
+
+# pip3 install pipenv # to install pipenv, a tool for managing virtual environments and dependencies
+# pipenv install package_name # to install a package in the virtual environment
+# pipenv shell # to activate the virtual environment created by pipenv
+# pipenv lock # to create a Pipfile.lock file with the exact versions of the installed packages
+# pipenv --venv # to show the path to the virtual environment created by pipenv
+# pipenv shell # to activate the virtual environment created by pipenv
