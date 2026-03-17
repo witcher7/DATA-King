@@ -35,6 +35,11 @@ two_dim_array.itemsize
 # Output: 4 # size of each element in bytes
 two_dim_array[0][1]
 # Output: 2 # access the element at row 0, column 1
+arr = np.linspace(5, 50, 10)
+print(arr)
+# evenly spaced
+
+
 
 first = np.array([[1, 2, 3], [4, 5, 6]])
 second = np.array([[7, 8, 9], [10, 11, 12]])
@@ -74,7 +79,7 @@ np.arrange(20).reshape([2,2,5])
 
 ## CALCULATING TOTAL REVENUE
 prices = np.array([19.99,29.99,14.99,9.99,24.99])
-quantities = np.array([10,5,8,12,3])
+quantities = np.array([10,5,8,12,3])  
 prices * quantities
 total_revenue = np.sum(prices*quantities,axis=0)
 
