@@ -22,3 +22,11 @@ df.select_dtypes(include='int64') #this will include only those columns which ha
 df.select_dtypes(exclude='int64') #this will include only those columns which has column object
 df['username'].value_counts() # count total columns times 
 df['reputation'].unique() 
+df['username'].sort_values(by="ascending")
+
+# LOCATION 
+df.loc[2] # label
+df.loc[1:3] # from row 1 to row 3 
+df.loc[2:3,['Age',"Total Posts"]]
+df.iloc[3] # index of row 
+df.iloc[4:5]
