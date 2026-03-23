@@ -7,4 +7,8 @@ forum_usesr = {
 }
 
 df = pd.DataFrame(forum_usesr)
-df 
+df.shape  # gives shape 
+df.columns  # gives columns 
+df.dtypes # to check data types 
+df.values 
+df.head(N) # first 5 rows
