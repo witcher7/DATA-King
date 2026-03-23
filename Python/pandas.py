@@ -12,3 +12,13 @@ df.columns  # gives columns
 df.dtypes # to check data types 
 df.values 
 df.head(N) # first 5 rows
+df.tail(N) # last N rows
+df.columns.tolist() # to convert into list
+df.describe()
+df.isna() # where values not available or None gives true
+df.isna().sum() # to sum NA values 
+df.select_dtypes(include='object') #this will include only those columns which has column object
+df.select_dtypes(include='int64') #this will include only those columns which has column object
+df.select_dtypes(exclude='int64') #this will include only those columns which has column object
+df['username'].value_counts() # count total columns times 
+df['reputation'].unique() 
