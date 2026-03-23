@@ -50,4 +50,31 @@ df['language'] = 'English' # su
 df['Active'] = [True,False,False] 
 # concatenate 
 # pd.concat([df,df2],axis=1) # will add horizontaly
-df.drop(['language'])
+df.drop(['language']) 
+
+
+
+import pandas as pd 
+import numpy as np 
+np.random.seed(1)
+n = 1000
+dates = pd.date_range(start="2045-01-01",periods=n,freq="D")
+products = ['tablet','camera','Phone']
+prices = np.round(np.random.uniform(1000,2000,n),2) # n size values 
+quantities = np.random.randint(1,15,n)
+data = {
+    'Date': dates  ,
+    'Product': np.random.choice(products, n),
+    'Price': prices , 
+    'Quantity': quantities
+}
+df = pd.DataFrame(data) 
+df.to_csv("random_sales.csv", index=False)
+
+# To read data from csv 
+df = pd.read_csv('random_sales.csv',parse_dates=['Date'],date_format='%Y-%m-%d')
+
+
+# product_sales 
+df.groupby('Product')['Quantity'].sum()
+# Average_price = df.groupby('Product')['Price'].mean()
