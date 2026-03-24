@@ -78,3 +78,23 @@ plt.pie(Share, labels = Investors,explode=[0,0,0,0,0.2], normalize=True)
 
 
 plt.show()
+
+
+data = {
+    'Year': [2001,2002,2003,2004,2005],
+    'Sales': [100,150,130,180,200,210]
+}
+df= pd.DataFrame(data)
+df.plot(x="Year",y = "Sales",Kind = 'line')
+df.title('Yearly Sales')
+
+df= pd.DataFrame(data)
+df.plot(x="Year",y = "Sales",Kind = 'Bar')
+df.title('Yearly Sales')
+
+data = {
+    'Age': [10,20,30,40]
+}
+df = pd.DataFrame(data) 
+df.plt(y="age",kind = 'hist')
+plt.title('Age Distribution')
