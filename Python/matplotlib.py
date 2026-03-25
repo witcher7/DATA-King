@@ -122,3 +122,4 @@ df.drop(columns=['YearTotalmm'].plot())
 plt.show()
 
 df.T.plot(y=[1901,1902],kind ='area')
+
