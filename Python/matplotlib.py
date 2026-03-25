@@ -104,13 +104,13 @@ df.plt(y="age",kind = 'hist')
 plt.title('Age Distribution')
 
 
-data = {
-    'Category': ['First','First','Second','Third','Third'],
-    'Value': [10,20,30,25,45,50]
-}
-df = pd.DataFrame(data) 
-df.boxplot(by='Category',column='Value')
-plt.title('Values Distribution by category')
+# data = {
+#     'Category': ['First','First','Second','Third','Third'],
+#     'Value': [10,20,30,25,45,50]
+# }
+# df = pd.DataFrame(data) 
+# df.boxplot(by='Category',column='Value')
+# plt.title('Values Distribution by category')
 
 
 # import pandas as pd
