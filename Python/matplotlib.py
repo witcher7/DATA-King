@@ -94,7 +94,7 @@ df.title('Yearly Sales')
 
 df= pd.DataFrame(data)
 df.plot(y = "Sales",Kind = 'pie',labels=df['Year'])
-df.title('Yearly Sales')
+plt.title('Yearly Sales')
 
 data = {
     'Age': [10,20,30,40]
