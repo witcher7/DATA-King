@@ -1,0 +1,7 @@
+# first change Headers -> Use First Row as Headers in the HOME SECTIOn
+
+# convert the AGE --> YEARS total 
+# TRANSFORM 
+# ADD prefix --> 1/1/
+# Data Type --> Date
+# Change Date , Time , Duration --> YEARS and Change again to whole number
