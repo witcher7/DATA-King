@@ -32,3 +32,28 @@ Problem --> Your client is a small company and they are still learning their mar
 ## RENAME NUM to PURCHASED - Deal
 
 ## Caimpaigns to Accepted Campaings
+
+
+
+
+
+### CREATE A REFERNCE FOR TABLE campaing
+## DELETE ALL COLUMNS USING HOLD SHIFT and keep id and campaign
+## UNPIVOT THE CAMPAIGNS
+Campaign  Accepted_ind
+||ROW|| 
+
+# REPLACE THE ACCEPTED from Campaign
+because we have reference from main table that is why ID will have relationship for 1 to many 
+
+# CTRL --> ALL AMOUNT COLUMNS 
+DATA type fixed decimal
+Format currency 
+
+
+### CREATE A REFERENCE FOR TABLE Amount Products
+Isolate ID and amount
+# UNPIVOT THE AMOUNTS 
+# Remove Amount prefix and suffix _products
+# Value --> Total_Sales
+
