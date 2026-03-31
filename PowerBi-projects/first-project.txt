@@ -1,3 +1,17 @@
+Scenario --> You work for a market research firm called MarketMindz that is collaborating with a retail vendor that 
+specializes in food and beverage products
+
+Problem --> Your client is a small company and they are still learning their market and evaluating their customers 
+--> How are our 6 recent marketing Campaigns performing 
+--> How are our Products performing 
+--> Who are our customers
+--> WHat is driving campaign performance and buyer decision making ?
+
+
+
+
+
+
 # first change Headers -> Use First Row as Headers in the HOME SECTIOn
 
 # convert the AGE --> YEARS total 
@@ -16,3 +30,5 @@
 ## THEN RENAME the columns of MNT to AMOUNT 
 
 ## RENAME NUM to PURCHASED - Deal
+
+## Caimpaigns to Accepted Campaings
