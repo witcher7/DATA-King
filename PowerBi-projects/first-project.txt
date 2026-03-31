@@ -10,7 +10,7 @@ Problem --> Your client is a small company and they are still learning their mar
 
 
 
-
+!!!!!!!!!! CAMPAIGN PERFORMANCE !!!!!!!!
 
 # first change Headers -> Use First Row as Headers in the HOME SECTIOn
 
@@ -61,6 +61,39 @@ Isolate ID and amount
 
 
 # BAR GRAPH OF TOTAL SALES AND CAMPAIGN WITH CURRENCY
+>>> MANAGE THE RELATIONSHIP --> from campaign both direction
+> APPLY filter Accepted indicators
+> Advanced filtering is 1
+
+## THEN NEW STACKED AREA 
+Campaign  Y axis
+Total Sales X axis
+Legend Product
+
+ADVANCE FILTER Accepted indicator is -1
+
+# Then also wants to see Product and its total sales
+
+##### NOW CREATE UNPIVOT TABLE FOR PLATOFORMS AND ID and create relationship
+< Sum of Qty from platform X -axis
+Legend - Platform
+Campaign --> Y axis
 
 
+
+## BUYER COMPOSITION
+
+
+# COUNT OF ID by EDUCATION 
+> COunt of ID by Marital Status
+> Count of ID kids 
+> Count of ID by Teens at Home
+
+
+# CAMPAIGN Average of income 
+X axis campaign 
+Y axis Average of Income 
+Advanced Filter Accepted_ind - is 1 
+ > edit the analytics 
+  ----> BAR MIN AND MAX OF INCOME 
 
