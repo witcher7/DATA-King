@@ -57,3 +57,5 @@ Isolate ID and amount
 # Remove Amount prefix and suffix _products
 # Value --> Total_Sales
 
+# MANAGE RELATIONSHIP
+
