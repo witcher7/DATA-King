@@ -10,3 +10,9 @@
 ## CHANGE EDUCATION 2n cycle to 2nd cycle   
 
 ## SECOND CHANGE MARITAL STATUS
+
+## THEN CHANGE THE PRICE to Fixed decimal number 
+
+## THEN RENAME the columns of MNT to AMOUNT 
+
+## RENAME NUM to PURCHASED - Deal
