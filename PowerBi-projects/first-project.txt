@@ -97,3 +97,9 @@ Advanced Filter Accepted_ind - is 1
  > edit the analytics 
   ----> BAR MIN AND MAX OF INCOME 
 
+
+## USE POWERPOINT TO REPRESENT YOUR BACKGROUND ANALYTICS AND TEMPLATE
+## USE THEME related settings for theme color
+ 
+
+
