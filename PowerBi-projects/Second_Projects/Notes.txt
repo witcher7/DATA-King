@@ -1,0 +1,45 @@
+### LOAD Sales CSV
+# Uncheck right click and disable the enable load  
+# help me in building data model
+
+
+# reference a table kraken koffee fact(fact table)
+# remove store location
+# only store id with other columns   
+
+
+StoreDIM
+# reference table again store dim (dimensional table) stored_id , store_location , remove other columns 
+# remove duplicates from left corner
+
+Products dim
+# reference table again products (all products this time and remove other columns)
+# remove duplicates 
+
+ # go again to kraken fact table to keep product it to model with dimensional table of products
+    
+
+## Add new columns to kraken koffee fact 
+
+transactionqty unitprice add column standard  (X multiply) === Rename Total Sales
+
+
+transform will replace 
+Add column will add 
+> transaction Time --> Time add column hour 
+
+
+DATE
+# Reference again 
+select transactionate only other remove
+> remove duplicates
+> Add column Date , Month (numeric _) , Month Name , Add column Extract First 3 Character of Month Name (Month Name Short)
+
+# Add column Day of the week 
+
+# Add column Date --> Add Day Name , Extract first 3 Characters Day Name Short
+
+Close and Apply
+
+
+
