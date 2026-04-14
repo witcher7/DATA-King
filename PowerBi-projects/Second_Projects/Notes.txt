@@ -42,4 +42,24 @@ select transactionate only other remove
 Close and Apply
 
 
+########### MODELLING 
 
+Product_Dim  (1 to many ) kraken koffee fact
+Store_Dim (1 to many) kraken koffee Fact
+Date transaction date to transaction date of kraken koffee fact
+
+###  DAX -> Data analysis expression
+
+Go to power Query Enter 
+New table create _01_Core_Measures(Basic Dax)
+
+> Create reference table 
+_02_Nested_Measures                  ]  DISABLE report refresh
+
+> _03_Formatting_and_Text
+  
+
+
+
+## SUMMARY DATA new Page
+01_Core_measures --> Total Transaction = distinctcount(kraken_koffee_fact[transaction_id])  > display units None
