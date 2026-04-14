@@ -48,7 +48,7 @@ Product_Dim  (1 to many ) kraken koffee fact
 Store_Dim (1 to many) kraken koffee Fact
 Date transaction date to transaction date of kraken koffee fact
 
-###  DAX -> Data analysis expression
+###  DAX -> Data analysis expression 
 
 Go to power Query Enter 
 New table create _01_Core_Measures(Basic Dax)
@@ -63,3 +63,16 @@ _02_Nested_Measures                  ]  DISABLE report refresh
 
 ## SUMMARY DATA new Page
 01_Core_measures --> Total Transaction = distinctcount(kraken_koffee_fact[transaction_id])  > display units None
+
+Total Transaction = distinctcount(kraken_koffee_fact[transaction_id])  UNIQUE
+Total Transaction = count(kraken_koffee_fact[transaction_id])  NOT UNIQUE
+# Hide column1 
+
+new measures --> total Sales = SUM(Kraken_Koffee_Fact[Total Sales]) format currency and 0 round 
+Average Order Size = Average(kraken_koffee_Fact(Total Sales]) average order size 
+    | | SAME
+Average Order Size = DIVIDE([Total Sales],[Total Transactions])
+
+Total Stores = DISTINCTCOUNT(Store_Dim[store_id])
+
+Total Products = Count(product_Dim[product_id])
