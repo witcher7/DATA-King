@@ -76,3 +76,24 @@ Average Order Size = DIVIDE([Total Sales],[Total Transactions])
 Total Stores = DISTINCTCOUNT(Store_Dim[store_id])
 
 Total Products = Count(product_Dim[product_id])
+
+
+## More complex measures
+
+product detail  Total Sales , Total Transaction
+product id 
+
+
+Product Sales Rank = RANKX(values(Product_Dim[Product_detail]),[Total Sales],,desc,  Dense)
+Product Sales Rank = RANKX(ALLSELECTED(Product_Dim[Product_detail]),[Total Sales],,desc,  Dense)
+Product Sales Rank = RANKX(ALLSELECTED(Product_Dim),[Total Sales],,desc,  Dense) # rank everything from any column if you have product id
+All selected we are trying to rank all the values each other
+
+rankx resutrns the rank of an expression evaluated in the current context in the list of values for the expression evaluated for each row
+in the specified table
+
+Product Transactions Rank = RANKX(ALLSELECTED(Product_Dim[Product_detail]),[Total Sales],,desc,  Dense)
+Total sales Total transactions Product Sales Rank Product detail Product Transaction Rank
+
+Top Earner = CALCULATE(min(Product_Dim[product_detail]),filter(Product_Dim,[Product Sales Rank]=1))
+Most Popular Seller = CALCULATE(min(Product_Dim[product_detail]),filter(Product_Dim,[Product Transactions Rank]=1))
