@@ -97,3 +97,9 @@ Total sales Total transactions Product Sales Rank Product detail Product Transac
 
 Top Earner = CALCULATE(min(Product_Dim[product_detail]),filter(Product_Dim,[Product Sales Rank]=1))
 Most Popular Seller = CALCULATE(min(Product_Dim[product_detail]),filter(Product_Dim,[Product Transactions Rank]=1))
+
+
+## Reporting 
+Columns  Product Detail, total Sales
+Prodcut details advance filtering Top N Top 10 TOTAL sALES
+
