@@ -99,7 +99,55 @@ Top Earner = CALCULATE(min(Product_Dim[product_detail]),filter(Product_Dim,[Prod
 Most Popular Seller = CALCULATE(min(Product_Dim[product_detail]),filter(Product_Dim,[Product Transactions Rank]=1))
 
 
-## Reporting 
+## Reporting  
+bar chart
 Columns  Product Detail, total Sales
 Prodcut details advance filtering Top N Top 10 TOTAL sALES
 
+## Product Category , Total Sales 
+
+
+# Nested Measure --> 
+Bar Char Label (Product Category)  = FORMAT([Total Sales]/1000, "$###,##0K") # to format 
+
+Add into ToolTip 
+# % Of Sales = DIVIDE([Total Sales], CALCULATE([Total Sales],ALLSELECTED(Product_Dim))) # Returns all the rows in a table or all the values in a column ignoring any filters
+
+EDIT Formatting
+Bar Char Label (Product Category)  = FORMAT([Total Sales]/1000, "$###,##0K") & "  (" & FORMAT([% of Sales], "###,##0.0%" & ")"
+
+CALCULATE([Total Sales],ALLSELECTED(Product_Dim))) ### SHOW THEM EXAMPLE as allselected does not affect the each value
+ 
+
+
+# NEW CHART 
+Product Catogry X axis 
+Product Type X axis
+
+Y axis Total Sales
+
+
+# Store location } Information
+# Total Sales1   } 
+# Average Order Size Line Y Axis 
+
+
+### NXT CHAPTER WHEN DO WE MORE CASH FLOW IN WEEKDAYS 
+
+Day Name Short 
+Total Sales [Values]
+Columns -- HOUR
+
+
+# Total Sales by Hour
+# Edit
+
+# New Measure in custom measure
+Max Avg Order Size (Hour) = MAXX(ALLSELECTED(KrakenKoffe(fact[hour])),[Average Order Size])
+
+# New Measure
+
+Time of Day = IF (Kraken_Koffee_Fact[Hour] < 12 , "Morning" ,
+                      IF( kraken_Koffee_Fact[Hour] < 18, "Afternoon",
+                      "Evening"))
+DONUT CHART
