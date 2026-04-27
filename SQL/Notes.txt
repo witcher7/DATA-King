@@ -1,0 +1,20 @@
+SQL --> Structured query Language 
+Database --> the place where we store our data
+It is an organized collection of structured information (data) 
+
+Database systems / Engines ==> MS SQL server (SSMS) , MySQL Workbench, Oracle SQL
+DBMS (Database management systems ) --> It is a software that provides an interface between users and databases 
+
+Functions of DBMS
+Data Storage
+Data retrival
+Data Security
+Data Integrity --> accuracy and consistency
+Concurrent Access
+Backup and Recovery
+
+Types Of DBMS
+RDBMS * Relational Database management System  ===> Uses tables with rows and columns
+NOSQL DBMS --> Unstructured Data
+Object Oriented DBMS --> Store data as objects
+Hierarchical DBMS -> tree like structure
