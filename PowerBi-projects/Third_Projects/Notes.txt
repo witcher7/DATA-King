@@ -1,0 +1,30 @@
+first do data modelling 
+> Two csv files 
+Transform data --> new csv files 
+> people data 
+> people employment history 
+
+Turn off enable load 
+@ SOURCE TABLE
+ > SOURCE
+ > people_data_source
+ > People_employment
+
+@Production Tables
+> People Fact
+
+# Change active status --> Text
+Transform
+Replace 1 --> yes
+        0 --> no
+
+# Take reference from people-employment 
+Department Dim 
+Department and sub-department only
+Remove duplicates
+Add column 
+Index Column From 1 =  Department Key 
+
+> People Fact ===> Merge Query ===> Hold departmentDim and all department
+  
+  
