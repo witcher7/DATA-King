@@ -25,3 +25,26 @@ Atomicity ====== All Operations in a transaction succeed or fail together
 Consistency ==== Database remains in a valid state
 Isolation ====== concurrent dont interfere with each other	 
 Durability ===== Committed transactions are permanently saved 
+
+
+# Database files --> 
+1. Data files .mdf (primary data file ) -->
+2. Transaction log files (.ldf) Records all transactions and data modification 
+ ## DATABASE HEIRARCHY
+
+Database
+  -- Schemas
+    ---Tables
+    ------Columns
+    ------Indexes
+    ------Constraints
+    
+    ---Views
+     --stored Procedures
+     --Functions
+     --Triggers
+  
+  -- Security
+    --Users
+    --Roles
+ --Service Broker
