@@ -18,3 +18,10 @@ RDBMS * Relational Database management System  ===> Uses tables with rows and co
 NOSQL DBMS --> Unstructured Data
 Object Oriented DBMS --> Store data as objects
 Hierarchical DBMS -> tree like structure
+
+
+Relational Databases have to maintain ACID Properties 
+Atomicity ====== All Operations in a transaction succeed or fail together 
+Consistency ==== Database remains in a valid state
+Isolation ====== concurrent dont interfere with each other	 
+Durability ===== Committed transactions are permanently saved 
