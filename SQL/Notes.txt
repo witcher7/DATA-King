@@ -14,7 +14,7 @@ Concurrent Access
 Backup and Recovery
 
 Types Of DBMS
-RDBMS * Relational Database management System  ===> Uses tables with rows and columns
+RDBMS * Relational Database management System  ===> Uses tables with rows and columns (structured data)
 NOSQL DBMS --> Unstructured Data
 Object Oriented DBMS --> Store data as objects
 Hierarchical DBMS -> tree like structure
