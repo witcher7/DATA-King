@@ -77,6 +77,55 @@ Database
 ### CREATE TABLE
 CREATE Table table1 (name char(255),class INT)
 
+## DATA TYPES 
+Tiny INT --> 0 to 255 byte
+SmallINT  -32768 to 32767 2 bytes 
+Int --> -2,147,483,648 to 2,147,483,647 4 bytes 
+Big Int --> more big 8 bytes
+Float, Decimal (decimal(P,S) 
+Date --> DEFAULT FORMAT OF DATA is yyyy/MM/dd
+DateTime --> hh:mm:ss
+Char(max char) --> if entered char is short then automatically fill with blank rest of char
+Varchar(max char) --> it is fixed even if we enter short characters then as well not fill up rest blocks
+nchar(max char) -->if going to use unicode
+
+
+
+
+## CONSTRAINTS --> rules that restrict data in a column 
+1. not null --> ensures that a column cannot have a null value 
+2. Unique --> ensures that all values in a column are different
+3. primary Key --> a column which is unique and not null ( helps to identify the unique element )
+4. Check --> ensures that a value in column satisfies a given condition
+
+CREATE TABLE salesTable(productid int default 001, product_name VARCHAR(255) unique, REGION VARCHAR(255) PRIMARY KEY, price INT CHECK (price<1000))
+
+
+5. Foreign Key --> It is a column in one table that refers to the primary key in another table
+
+Person Table                 Orders Table
+id   name   Age              Orderid    Name   Pid
+1                                               3
+2                                               2 ---> Foreign Key
+3                                               |
+------------------------------------------------|
+
+CREATE TABLE orders (ordered int PRIMARY KEY, orderNo int , pid INT foreign Key references person(id))
+
+6. index --> retrieves data from databases faster
+
+CREATE index firstindex on salestables(product_name)
+Indexes in SQL are special database structures that speed up data retrieval by allowing quick access to records instead of scanning the entire table. They act like a lookup system and play an important role in improving query performance and database efficiency.
+
+It speed up queries (SELECT, JOIN, WHERE, ORDER BY).
+Reduce disk I/O and improve efficiency in large tables.
+Ensure data integrity with unique indexes.
+
+Slower Writes: Every time you INSERT, UPDATE, or DELETE data, the database must also update the corresponding indexes.Storage Space:
+Indexes take up additional disk space because they store a copy of the indexed data
+
+Create: CREATE INDEX idx_name ON table_name (column_name);Remove: DROP INDEX idx_name; (Syntax varies by database, e.g., DROP INDEX idx_name ON table_name;
+
 ### ALTER TABLE
 ALTER table1 ADD COLUMN subjects VARCHAR(255)
 ALTER table student ADD COLUMN hobby VARCHAR(255)
