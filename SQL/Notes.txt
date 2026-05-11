@@ -33,7 +33,7 @@ Durability ===== Committed transactions are permanently saved
  ## DATABASE HEIRARCHY
 
 Database
-  -- Schemas
+  -- Schemas  ==> Logical Structure that organizes and defines how data is stored 
     ---Tables
     ------Columns
     ------Indexes
@@ -48,3 +48,12 @@ Database
     --Users
     --Roles
  --Service Broker
+
+
+
+--> SQL Commands --> DDL , DML , DQL , TCL , DCL
+==> DDL >> Data Definition Language
+
+Create Database sampled
+
+
