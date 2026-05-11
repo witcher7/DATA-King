@@ -52,8 +52,14 @@ Database
 
 
 --> SQL Commands --> DDL , DML , DQL , TCL , DCL
-==> DDL >> Data Definition Language
 
-Create Database sampled
+==> DDL >> Data Definition Language --> CREATE, ALTER(Modify database objects), DROP --> Remove database objects
 
+. Create Database sampledb
+. USE sampledb
+. Create schema schema1 
+. drop database sampledb
 
+==> DML >> Data Manipulation Language -->  INSERT --> add new data , UPDATE --> modify existing data , DELETE --> remove data (table/views level)
+==> DQL >> Data Query Language --> SELECT 
+==> DCL >> Data Control Language --> GRANT-  Give the permission, Revoke:/ Deny 
