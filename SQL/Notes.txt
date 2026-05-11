@@ -63,3 +63,87 @@ Database
 ==> DML >> Data Manipulation Language -->  INSERT --> add new data , UPDATE --> modify existing data , DELETE --> remove data (table/views level)
 ==> DQL >> Data Query Language --> SELECT 
 ==> DCL >> Data Control Language --> GRANT-  Give the permission, Revoke:/ Deny 
+==> TCL >> Transaction Control Language --> begin transaction , commit , rollback , savepoint
+
+> Begin Transaction
+  ==> DO COMMANDS                 ] T-SQL Transaction SQL - variables , control flow statement, error handling
+> rollback to previous state
+> Commit to save permanent
+> savepoint to save data at that point 
+
+
+
+
+### CREATE TABLE
+CREATE Table table1 (name char(255),class INT)
+
+### ALTER TABLE
+ALTER table1 ADD COLUMN subjects VARCHAR(255)
+ALTER table student ADD COLUMN hobby VARCHAR(255)
+ALTER table student DROP COLUMN hobby
+ALTER table student RENAME COLUMN oldname TO newname
+ALTER table student MODIFY/ALTER COLUMN name VARCHAR(25)
+ALTER table student RENAME TO studentNew
+ALTER table table_name ADD PRIMARY KEY studentID
+ALTER table student ADD CONSTRAINT fk_name  FOREIGN KEY age REFERENCES olderTable(AgeID)
+ALTER table student ADD CONSTRAINT NOT NULL salary 
+ALTER table student ALTER column salary SET DEFAULT 0;
+
+
+### Alter Table1 drop name 
+
+### DROP table table1
+
+
+`````
+
+CREATE TABLE student(id int,name varchar(255)), class int,marks int)
+
+INSERT INTO student(## SPECIFY COLUMNS) VALUES(101,'Ram',2,80),(102,'Donald',4,78)
+INSERT INTO student(name,class,marks) VALUES('Jack miller',7.99)
+
+UPDATE student set name = 'Biden' WHERE name = 'Donald'
+UPDATE student set id = 0 WHERE id is null
+UPDATE student set marks = null WHERE marks = 80 and name = 'Ram'
+
+DELETE student where name= 101
+DELETE student where name='Ram'
+
+DELETE student --> delete one by one row 
+TRUNCATE table student --> delete all table 
+delete could also use rollback , where condition , truncate once done is done
+
+
+SELECT * FROM student  
+
+``````
+
+
+TSQL
+
+````
+BEGIN TRANSACTION 
+INSERT INTO STUDENT VALUES(101,'Ram',2,80)
+COMMIT --> normal and do it 
+
+BEGIN TRANSACTION 
+INSERT INTO STUDENT VALUES(101,'Ram',2,80)
+SAVEPOINT example --> save a point of time to rollback if needed
+ 
+
+BEGIN TRANSACTION 
+INSERT INTO STUDENT VALUES(101,'Ram',2,80)
+ROLLBACK TO SAVEPOINT --> UNDO CHANGES IF SOMETHING GOES WRONG 
+
+`````
+
+
+GRANT SELECT ON STUDENT TO RISHABH_USERNAME
+GRANT CREATE,ALTER,SELECT ON STUDENT TO Jaanvi
+
+REVOKE SELECT ON STUDENT FROM RISHABH
+
+DENY ALL ON STUDENT 
+
+ 
+
