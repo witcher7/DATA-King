@@ -216,14 +216,43 @@ SELECT customer_name,max(sales),Order_date FROM [dbo].[Superstore] WHERE Order_d
 1. ARITHMETIC OPERATORS= = +,-,/,*,%
 2. Comparison Operators = < , > , = >= , <=
 3. Logical Operators -=> they are used to combine two or more conditions (and, or , not)
-4. Special Operators => IN , BETWEEN Operator used only in integers, exists check for values , LIKE (wildcard search)
+4. Special Operators => IN , BETWEEN Operator used only in integers, exists check for values , LIKE (wildcard search) -> _ represents a Character
 
 
 SELECT Customer_name,SUM(sales) FROM superstore
-WHERE region= 'South' or region = 'WEST' or region = 'Central' GROUP BY customer_name
+WHERE region= 'South' or region = 'WEST' or region = 'Central' GROUP BY customer name
 
-
-
-
+SELECT Customer_name, SUM(sales) FROM superstore WHERE customer_name LIKE 'A%' (Checkfing for Capital A)
  
+SELECT Customer_name,SUM(sales) FROM superstore WHERE customer_name LIKE '[AEIOU]%' # MEans could be anything FROM range
+
+
+## SQL command Structure
+SELECT FROM WHERE GROUP BY ORDER BY
+
+---- Order of operation / Execution
+
+SELECT --> 5
+customer_name, SUM(sales) 
+FROM superstore  ----> 1
+WHERE region = 'West' ---> 2
+GROUP BY customer_name  --> 3
+HAVING sum(sales)>100 ---> 4
+ORDER BY customer_naem DESC --> 6
+
+1. FROM
+2. WHERE
+3. GROUP BY
+4. AGGREGATION
+4. HAVING
+5. SELECT
+6. ORDER BY
+
+
+SELECT customer_name, SUM(sales) as TotalSales FROM superstore GROUP BY Customer_name ORDER BY SUM(sales) DESC LIMIT 5
+
+LIMIT ---> limit the number of results
+OFFSET --> SKIPS the number of results and show the next one
+
+
 
