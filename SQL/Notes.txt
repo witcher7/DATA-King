@@ -194,5 +194,36 @@ REVOKE SELECT ON STUDENT FROM RISHABH
 
 DENY ALL ON STUDENT 
 
+`````
+
+
+```
+SELECT * FROM [dbo] [superstore] WHERE state='Florida'
+
+SELECT distinct order_date FROM [dbo].[superstore] WHERE order_date='2017-04-15'
+> Distinct helps to search for unique records
+
+# If I want to aggregate then have to use group by to separate column wise
+
+SELECT oder_date.sum(sales) FROM [dbo].[superstore] group by Order_date
+
+SELECT customer_name,max(sales),Order_date FROM [dbo].[Superstore] WHERE Order_date>'2017-04-15' GROUP BY customer_name,order_date ASC,DESC
+# Ascending , Descending
+
+## HAVING is USED after GROUP BY 
+
+##> OPERATORS
+1. ARITHMETIC OPERATORS= = +,-,/,*,%
+2. Comparison Operators = < , > , = >= , <=
+3. Logical Operators -=> they are used to combine two or more conditions (and, or , not)
+4. Special Operators => IN , BETWEEN Operator used only in integers, exists check for values , LIKE (wildcard search)
+
+
+SELECT Customer_name,SUM(sales) FROM superstore
+WHERE region= 'South' or region = 'WEST' or region = 'Central' GROUP BY customer_name
+
+
+
+
  
 
