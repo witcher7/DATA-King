@@ -254,5 +254,50 @@ SELECT customer_name, SUM(sales) as TotalSales FROM superstore GROUP BY Customer
 LIMIT ---> limit the number of results
 OFFSET --> SKIPS the number of results and show the next one
 
+### CASE STATEMENTS
+
+IF Customer_name LIKE 'S%' then ' name starting with s' else name starting with something else
+
+> Case is followed by atleast one pair of when and then statements
+> A statement will always end with end statement
+
+SELECT customer_name,
+CASE 
+ WHEN customer_name LIKE 'S%' THEN 'Name Starting with s'
+ ELSE 'Name Starting with Elese' 
+END AS nameflag
+FROM superstore
+  
+
+# SELECT profit, CASE WHEN profit > 0 then 'Profit' else 'Loss' END as profit_status FROM superstore
+
+# SELECT *,
+ CASE WHEN discount >0.5 THEN 'High'
+ WHEN discount BETWEEN 0.2 AND 0.5 THEN 'Medium' ELSE 'Low' 
+ END AS discount_category
+FROM superstore
 
 
+# SELECT sales, CASE WHEN sales > 500 THEN 'Large'
+                     WHEN sales BETWEEN 100 AND 500 THEN 'MEdium'
+                     ELSE 'Small' end as SALES_BUCKET
+FROM SUperstore
+
+## USING CASE in aggregate FUNCTIONS
+
+SELECT region,
+SUM(case WHEN region = 'South' THEN 1
+    WHEN region = 'West' Then 1
+    ELSE 0
+   END) as reioncount
+FROM superstore
+GROUP by region
+
+
+
+## 
+SELECT SUM(CASE WHEN region='West' THEN sales else 0 end) as WEST,
+       SUM(CASE WHEN region='East' THEN sales else 0 end) as EAST,
+       SUM(CASE WHEN region='South' THEN sales else 0 end) as SOUTH
+FROM superstore
+GROUP by CATEGORY
