@@ -301,3 +301,66 @@ SELECT SUM(CASE WHEN region='West' THEN sales else 0 end) as WEST,
        SUM(CASE WHEN region='South' THEN sales else 0 end) as SOUTH
 FROM superstore
 GROUP by CATEGORY
+
+
+
+>>>>> FUNCTIONS 
+
+SELECT SUM(sales), FROM SUPERSTORE
+SELECT COUNT(1) FROM SUPERSTORE 
+SELECT COUNT(DISTINCT 'ram') FROM SUPERSTORE
+
+SELECT ORDER_ID,LEFT(ORDER_ID,2) AS CountryCode FROM SUPERSTORE
+LEFT will retrieve leftish 2 characters from column 
+
+SELECT LEN(customer_name) FROM superstore
+will get length of the full name
+
+SELECT RIGHT(CUSTOMER_NAME,4) FROM superstore
+IT will retrieve rightish corner of data
+
+
+SELECT customer_name,CHARINDEX(' ',CUSTOMER_NAME,1)
+it will give you the position of specific character..in the above we are getting space position
+
+# SUBSTRING
+
+SELECT customer_name, SUBSTRING(CUSTOMER_NAME,CHARINDEX('',CUSTOMER_NAME,1),LEN(CUSTOMER_NAME)) FROM  SUPERSTORE
+
+
+SELECT UPPER('donald') --> UpperCase CHaracter
+SELECT LOWER('donald') --> lowercase Character
+
+
+# SQL SERVER
+SELECT year(order_date), month(order_date) from superstore
+
+# MYSQL
+SELECT EXTRACT (year FROM order_date) FROM superstore
+
+>> DATEADD
+
+SELECT dateadd(month,5,order_date)  FROM SUPERSTORE
+> I want to add 5 months to existing add 
+# interval - months
+# increment - 5 
+# to what order_date
+
+
+SELECT dateadd(year,2,order_date) FROM superstore
+IT will add 2 years to current date 
+
+>> Intervals that we can add --> year,quarter,month,day,week,hour,minute
+
+
+>> DATEDIFF 
+SELECT datediff(day,order_date,ship_date) , order_date , ship_date FROM superstore
+
+IF i want to find difference between days , year, week from one date to other date
+shipdate - order-date
+
+> IF WANT TO FIND till current today date
+
+SELECT datediff(day,order_date,current_timestamp),order_date FROM superstore
+SELECT datediff(day,order_date,getdate), order_date from superstore
+SELECT datediff(year,order_date,getdate), order_date FROM superstore
