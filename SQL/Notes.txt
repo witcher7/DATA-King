@@ -364,3 +364,39 @@ shipdate - order-date
 SELECT datediff(day,order_date,current_timestamp),order_date FROM superstore
 SELECT datediff(day,order_date,getdate), order_date from superstore
 SELECT datediff(year,order_date,getdate), order_date FROM superstore
+
+
+
+## SELECT datepart(year,order_date) , datename(year,order_date)--> returns char
+            ---> order_date FROM superstore
+
+
+## SELECT datepart(month,order_date) , datename(month,order_date)--> returns char
+            ---> order_date FROM superstore
+
+
+## CAST is used to convert datatype
+SELECT cast(order_id as int) FROM superstore
+
+>>>> USER DEFINED FUNCTION
+
+CREATE FUNCTION dbo.squareofanumber(@number int)
+returns int
+as bengin 
+return @number*@number
+end
+
+select dbo.squareofnumber(5)
+
+
+
+CREATE FUNCTION dbo.getorder_detailofCUstomer(@customerid VARCHAR(255))
+returns table
+AS
+RETURN(SELECT customer_name,ORDER_id, ORDER_DATE FROM superstore WHERE customer_id = @customer_id)
+
+
+SELECT * from dbo.getorderdetails('DV-13045')
+
+
+
