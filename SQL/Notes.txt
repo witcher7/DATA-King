@@ -155,8 +155,8 @@ UPDATE student set name = 'Biden' WHERE name = 'Donald'
 UPDATE student set id = 0 WHERE id is null
 UPDATE student set marks = null WHERE marks = 80 and name = 'Ram'
 
-DELETE student where name= 101
-DELETE student where name='Ram'
+DELETE FROM student where name= 101
+DELETE FROM student where name='Ram'
 
 DELETE student --> delete one by one row 
 TRUNCATE table student --> delete all table 
@@ -399,4 +399,23 @@ RETURN(SELECT customer_name,ORDER_id, ORDER_DATE FROM superstore WHERE customer_
 SELECT * from dbo.getorderdetails('DV-13045')
 
 
+##### WAYS TO COMBINE TABLES
 
+1. JOIN happens on same column
+--- 
+
+Inner Join --> only matching rows/records from both tables
+
+LEFT JOIN / LEFT OUTER JOIN--> only left side of the table and only matching record from right table
+
+RIGHT JOIN / RIGHT OUTER JOIN --> only RIGHT JOIN from the table with only matching records from left table
+
+FULL JOIN / FULL OUTER JOIN --> returns all rows from both tables
+ 
+````````
+ SELECT a.*, b.* FROM Customers a INNER JOIN Order2 B ON a.CustomerID = b.CustomerID
+
+ SELECT a.customer_name, b.OrderDate FROM Customers A INNER JOIN orders2 B ON a.CustomerID = b.CustomerID WHERE b.OrderDate= '2023-08-05'
+
+ SELECT a.customer_name, b.OrderDate FROM Customers A LEFT JOIN orders2 B ON a.CustomerID = b.CustomerID 
+ SELECT a.customer_name, b.OrderDate FROM Customers A RIGHT JOIN orders2 B ON a.CustomerID = b.CustomerID 
