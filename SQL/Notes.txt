@@ -439,6 +439,28 @@ e.Salary=m.Salary
 
 
 
-UNION
+UNION ==> Combine the results FROM two select queries AND removes duplicates 
+UNION ALL ==> Combines two results from two select queries but does not remove duplicates
+INTERSECT ALL --> returns only common rows from two select queries
+EXCEPT --> return rows from the first query that are not in the second query 
+
+---> RULES 
+Columns DataTypes should be Same
+Column order should be same
+column names should be same
+Same number of columns in both select statements
 
 
+
+SELECT * FROM Employees2
+UNION ALL
+SELECT emp_id AS Emp_id , emp_name AS Emp_name, department As Department FROM Employees
+
+SELECT * FROM Employees2
+INTERSECT
+SELECT emp_id as Emp_id.emp_name as EMP_name, Department FROM Employees
+
+
+SELECT emp_id as Emp_id, emp_name as Emp_name FROM employees
+EXCEPT 
+SELECT * FROM Employees2
