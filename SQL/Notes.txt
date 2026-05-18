@@ -412,6 +412,11 @@ RIGHT JOIN / RIGHT OUTER JOIN --> only RIGHT JOIN from the table with only match
 
 FULL JOIN / FULL OUTER JOIN --> returns all rows from both tables
  
+CROSS JOIN --> will multiply cartesian product where it multiplies each element of one table to other table
+
+SELF JOIN --> A table is joining on itself in self join
+
+
 ````````
  SELECT a.*, b.* FROM Customers a INNER JOIN Order2 B ON a.CustomerID = b.CustomerID
 
@@ -419,3 +424,21 @@ FULL JOIN / FULL OUTER JOIN --> returns all rows from both tables
 
  SELECT a.customer_name, b.OrderDate FROM Customers A LEFT JOIN orders2 B ON a.CustomerID = b.CustomerID 
  SELECT a.customer_name, b.OrderDate FROM Customers A RIGHT JOIN orders2 B ON a.CustomerID = b.CustomerID 
+
+SELECT p.* , od.* FROM prodcuts p FULL JOIN orders od on p.ProductID = od.ProductID
+
+SELECT top 1 p.productNaem, SUM(od.quantity) as TotalQuantity FROM Products P LEFT JOIN orderDetails2 ord on P.ProductID=od.ProductID GROUP BY P.productName ORDER BY SUM(od.quantity) DESC
+
+SELECT e.emp_name, m.emp_name FROM Employees e LEFT JOIN Employees m ON e.manager_id=M.emp_id
+
+>>>> Find the Employees WHO HAVE SALARY MORE THAN THEIR MANAGERS 
+SELECT e.emp_name , m.emp_name , e.salary as expSalary, m.salary as mgsalary FROM Employees E LEFT JOIN Employees M ON E.manager_id, emp_id WHERE
+e.Salary=m.Salary
+
+################## 
+
+
+
+UNION
+
+
