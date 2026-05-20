@@ -483,6 +483,6 @@ Based on the output of subquery
 1. Single row subquery
 2. multi-row 
 
-
+SELECT emp_name,department 
 
 
