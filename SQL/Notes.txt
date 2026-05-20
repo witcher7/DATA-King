@@ -483,6 +483,60 @@ Based on the output of subquery
 1. Single row subquery
 2. multi-row 
 
-SELECT emp_name,department 
+SELECT emp_name,department FROM Employees WHERE Department IN (SELECT department FROM Employees GROUP BY Department HAVING COUNT(*) > 1)
+
+``````
+
+## CTE == Common Table Expression 
+--> CTE IS A TEMPORARY NAME RESULT SET THAT YOU DEFINE WITHIN THE EXECUTION SCOPE OF SINGLE SELECT , INSERT , UPDATE OR DELETE
+-->  It's always written using the keyword 
+
+WITH CTE_NAME AS 
+  ( RESULT SET THAT YOU WANT TO SAVE)
+
+
+WITH AVERAGESALARY AS (SELECT AVG(SALARY) FROM Employees);
+
+SELECT * FROM AVERAGESALARY
+
+>>>> 
+WITH AVGSALARY AS ( SELECT AVG(salary) AS SALARY FROM Employees) 
+SELECT Emp_name,salary FROM Employees WHERE Salary > AVGSALARY.Salary
+ 
+### 
+WITH ITDEPARTMENT AS (SELECT * FROM Employees2 WHERE Department='IT')
+INNER JOIN ITDEPARTMENT DEPT ON E.Emp_id = DEPT.EmpID
+
+
+
+##### WINDOW FUNCTION 
+
+> CALCULATION YOU want to done by ROW BY ROW 
+> Control the data/window size
+> Perform row wise comparison 
+
+SYNTAX of WINDOW FUNCTION 
+
+FUNCTION ( COLUMN ) OVER () ==> WINDOWS SIZE IS Entire table
+
+SUM (column) OVER (PARTITION BY column) --> window size is grouped/divided/partitioned according to a column summation
+
+
+SUM * , SUM(marks) OVER (PARTITION BY subject) as TOTAL_MARKS from table1
+
+
+### SHOW EACH SALE along with total sales
+
+SELECT sales_amount , SUM(sale_amount) OVER () as totalsales FROM sales_table
+
+### SHOW 
+
+
+
+
+
+
+
+
 
 
