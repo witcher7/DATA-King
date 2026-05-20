@@ -464,3 +464,25 @@ SELECT emp_id as Emp_id.emp_name as EMP_name, Department FROM Employees
 SELECT emp_id as Emp_id, emp_name as Emp_name FROM employees
 EXCEPT 
 SELECT * FROM Employees2
+
+
+`````
+SUBQUERIES
+a query used to place inside another query
+IT is used to retrive data that will be used by main query 
+
+
+SELECT emp_name,salary FROM Employees WHERE SALARY > (SALARY AVG(Salary) FROM Employees)
+
+TWO KIND OF SUBQUERIES 
+
+1. Non-correlated --> Outer query is dependant on inner query. (always inner query will run first)
+2. Correlated --> Outer Query is independent of inner query. (Outer query will run first) 
+
+Based on the output of subquery
+1. Single row subquery
+2. multi-row 
+
+
+
+
