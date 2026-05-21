@@ -529,14 +529,22 @@ SUM * , SUM(marks) OVER (PARTITION BY subject) as TOTAL_MARKS from table1
 
 SELECT sales_amount , SUM(sale_amount) OVER () as totalsales FROM sales_table
 
-### SHOW 
+### SHOW EACH SALE along with total sales of that each employee
+
+
+SELECT emp_name, sales_amount, SUM(sales_amount) OVER ( PARTITION BY emp_name) as total_sales_each_employee FROM sales_data
+
+SELECT DISTINCT item, SUM(amount) OVER( PARTITION BY item) as Total_sales FROM Orders
+
+
+### FOR EACH REGION,give sales and average sales amount in that region 
+SELECT region, sales_amount, AVG(sales_amount) OVER(partition by region) FROM sales_data GROUP by region,sales_amount
 
 
 
+### Give me cumulative sales Orderd by sales_date( running total sum) 
+SELECT *,sum(sale_amount) OVER (order by sale_date asc) as cumlativesales FROM sales_data
 
-
-
-
-
-
+### for each employee cumulative sum
+SELECT *, SUM(sales_amount) OVER ( PARTITION BY emp_name ORDER BY sales_date ASC) as Cumlative FROM sales_data
 
