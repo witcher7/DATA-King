@@ -604,3 +604,75 @@ SELECT emp_name, DENSE_RANK() OVER(ORDER BY sales) FROM sales_data
 WITH rankstable as (SELECT emp_name,sales_amount, DENSE_RANK() OVER(ORDER BY sales_amount DESC) AS ranks FROM sales_data)
 SELECT * FROM ranktable WHERE rank =2
 
+
+### FIND top 2 SALES PER employee 
+SELECT emp_name ,sale_amount, DENSE_RANK() OVER (PARTITION BY emp_name ORDER BY sale_amount DESC) as ranks from sales_data
+
+SELECT emp_name ,sale_amount, row_number() OVER (PARTITION BY emp_name ORDER BY sale_amount DESC) as ranks from sales_data
+
+SELECT emp_name ,sale_amount, RANK() OVER (PARTITION BY emp_name ORDER BY sale_amount DESC) as ranks from sales_data
+
+
+#### Rank all sales within each product
+
+SELECT *, ROW_NUMBER() OVER (partition by product order by sales_amount DESC) as Salesrank FROM  sales_data
+
+
+
+#### ANALYTICAL FUNCTIONS 
+Lead, Lag , First , Last , n_tile
+
+
+Lag
+
+Temperature    Lag
+12.5           null
+14             12.5
+13             14
+15.2           13
+16.5           15.2
+24             16.5
+24.5           24
+25.2           24.5
+26             25.2
+25.5           26
+ 
+
+# Each day's temperature along previous day's temperature from each city
+SELECT *, lag(temperature,1,0) OVER (partition by city order by temperature) as prevtemp from DailyTemperature
+
+LAG(column,what previous value,default if not there)
+
+--> temperature difference from the previous day for each city 
+SELECT *, temperature LAG(temperature,1) OVER (partition by city ORDER by tempdate) as difference FROM DailyTemprature
+
+
+## Identify the days where the temperature dropped compared to previous day for each city
+
+WITH temp AS ( SELECT *, temperature LAG(temperature,1) OVER (partition by city ORDER by tempdate) AS difference FROM dailyTemperature) 
+SELECT * FROM temperature WHERE difference < 0
+
+
+LEAD
+NEXT VALUE 
+
+--> each day's temperature along next's temperature for each city 
+SELECT *,LEAD(temperature,1) OVER (partition by city order by tempdate) as prevtemp FROM dailyTemp
+
+
+### Temperature difference from the next dayeach city 
+SELECT *,temperature LEAD(temperature,1) OVER (PARTITION BY city ORDER by tempdate) AS differencenext from DailyTemperature
+
+## SHOW FOR EACH CITY WHETHER next day will be warmer, colder or the same COMPARED TO TODAY
+
+
+SELECT *,
+CASE 
+  WHEN lead(temperature,1) OVER (PARTITION BY city ORDER BY Tempdate) > TEMPERATURE THEN 'Colder'
+  WHEN LEAD(temperature,1) OVER (PARTITION BY City ORDER BY TempDate) < Temperature THEN 'Warmer'
+  ELSE 'Same'
+END AS nextdaytrend
+FROM DailyTemperature
+ 
+
+
