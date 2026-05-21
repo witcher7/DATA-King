@@ -548,3 +548,59 @@ SELECT *,sum(sale_amount) OVER (order by sale_date asc) as cumlativesales FROM s
 ### for each employee cumulative sum
 SELECT *, SUM(sales_amount) OVER ( PARTITION BY emp_name ORDER BY sales_date ASC) as Cumlative FROM sales_data
 
+
+
+#### For each employee give max sales amount along with its actual sales
+
+SELECT emp_name,sale_amount , max(sale_amount) OVER (partition by emp_name) as maxsales FROM sales_data
+
+
+#### SHOW percentage of total sales of each employee 
+
+SELECT emp_name, sale_amount/SUM(sale_amount) OVER (PARTITION by emp_name)*100 as percent_sales from sales_data
+   
+
+
+
+>>> RANKING FUNCTION >>>>
+
+RANK --> it will skip if duplicate rank is there
+1
+1
+3
+3
+5
+6
+7
+8
+8
+8
+11
+
+DENSE RANK --> it will not skip if duplicate is there
+1
+1
+2
+3
+4
+4
+5
+
+ROW NUMBER --> gives unique number anyhow irrespective of things
+1
+2
+3
+4
+5
+6
+7
+
+
+### ORDER BY IS COMPULSORY IN OVER in RANK FUNCTIONS
+### 2nd highest employee according sales
+
+SELECT emp_name, DENSE_RANK() OVER(ORDER BY sales) FROM sales_data
+
+WITH rankstable as (SELECT emp_name,sales_amount, DENSE_RANK() OVER(ORDER BY sales_amount DESC) AS ranks FROM sales_data)
+SELECT * FROM ranktable WHERE rank =2
+
