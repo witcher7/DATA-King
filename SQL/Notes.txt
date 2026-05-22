@@ -676,3 +676,32 @@ FROM DailyTemperature
  
 
 
+
+``````
+
+VIEWS --> Used for optimization purpose 
+virtual tables --> they dont exist physically
+# They dont store data as well
+
+
+CREATE VIEW seattle AS  SELECT * FROM Orders WHERE CITY = 'Seattle'
+it will not store data..will store as virtual view
+
+
+SELECT * FROM seattle
+
+TYPES OF VIew0
+1. Simple VIew --> Base on single table , with function or grouping
+2. Complex View --> based on multiple tables , joins , aggregation functions
+3. Materialised view --> Stores query results physically
+
+
+Complete view
+
+CREATE VIEW mansal as ( SELECT DISTINCT b.manager_name, a.salary FROM Employees A INNER JOIN Managers B ON  A.department = B.Department) 
+SELECT * FROM mansal
+
+
+
+
+
