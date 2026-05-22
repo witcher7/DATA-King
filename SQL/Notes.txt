@@ -702,6 +702,49 @@ CREATE VIEW mansal as ( SELECT DISTINCT b.manager_name, a.salary FROM Employees 
 SELECT * FROM mansal
 
 
+#### STORED PROCEDURES
+A stored procedure is a precompiled block of sql statement stored in the database
+You can call it with parameters ( inputs/outputs) instead of writing the query each time
+
+it can include logic ( IF,WHILE , LOOPS,VARIABLES, error handling) 
+
+Automate Tasks, Business Logic , Batch Operations
 
 
+CREATE PROCEDURE seattleData_sp
+AS
+BEGIN
+SELECT * FROM TABLE  WHERE city = "seattle'
+END;
 
+exec/execute/Call
+exec seattleData_sp
+
+
+--- SP with input paramets
+CREATE PROCEDURE
+SEATTLEDATA_sp @entercity VARCHAR(255)
+AS
+BEGIN
+SELECT * FROM TABLE
+WHERE CITY=@entercity
+END;
+
+>> This stored as sql object 
+
+
+exec citydata_sp @entercity = 'Seattle'
+exec citydata_sp @entercity = 'Los Angeles'
+
+---- SP with multiple inputs
+
+
+CREATE PROCEDURE
+city_ship_sp @entercity VARCHAR(255), @entershipmode VARHCAR (255)
+AS
+BEGIN
+SELECT * FROM TABLE
+WHERE CITY=@entercity and [ship mode] = @entershipmode
+END;
+
+exec city_ship_sp @city='Seattle' and @entershipmode='Second Class'
