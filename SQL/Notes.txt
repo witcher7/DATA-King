@@ -806,3 +806,34 @@ BEGIN
 ROLLBACK;
 END
 END:
+
+
+#### PERFORMANCE QUERY OPTIMIZATION
+
+1. Index --> to navigate to specific row for speed and performance optimization
+Clustered index --> Your index is already made if you create primary key
+
+It defines the physical order of rows in a table, when we create an index on a column , sql server rearranges the actual rows
+to match the index order
+There will be only 1 cluster index per table
+It can be created on a column that contains only unique values;
+
+Non Clustered index --> it does not change the physical order of data . It creates separate structure that stored the index of column 
+
+CREATE clustered index rowid_index
+ON Order$(row_id)
+
+CREATE NONCLUSTERED index customer_name_index
+ON order$(Customer_name)
+
+2. DONT use SELECT * unneccesarily (fetch only relevant columns)
+3. USE where clause wisely WHEREVER required.
+4. Functions in WHERE caluse should be avoided (breaks index usage)
+
+ X SELECT * FROM Table WHERE year([order_date])=2016
+   SELECT * FROM Table WHERE [order_date] >= '2016-01-01' AND [order_date] <='2016-12-31'
+
+5. USE Joins Properly
+
+
+
