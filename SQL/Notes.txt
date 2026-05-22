@@ -748,3 +748,61 @@ WHERE CITY=@entercity and [ship mode] = @entershipmode
 END;
 
 exec city_ship_sp @city='Seattle' and @entershipmode='Second Class'
+
+
+
+### TRIGGER 
+
+A trigger in SQL is a special kind of stored procedure that is automatically executed (fired) in the database when
+a specified event occurs
+It can not be called explicitly by the user
+
+IT react to events lIKE INSERT,UPDATE , DELETE ,CREATE,ALTER,DROP or even LOGON events
+IT is mainly used for enforcing business rules,auditing , validation and preventing unwanted actions
+No parameters --> event driven only
+Less control as stored procedure
+Like an automatic alarm system reacting to events
+
+
+>> Different types of trigger
+DML trigger --> They are executed when we insert,update or delete
+DDL Trigger --> they are executed when make changes like CREATE , ALTER , DROP
+LOGON Trigger --> They are executed when a new user session is started
+
+
+CREATE TABLE customer2(customerid int , primary key ,name VARCHAR(100), City VARCHAR(50);
+CREATE TABLE customerlog(logid int primary key,customer id , action varchar(50), logdate datetime default getdate())
+
+
+CREATE trigger trg_aftercstomerinsert
+ON TABLE1
+AFTER INSERT 
+AS
+BEGIN
+INSERT INTO TABLE2 (customerid,action)
+SELECT customerid,'Insert' FROM inserted;
+END:
+
+
+
+CREATE TRIGGER trg_droptable
+ON DATABASE
+FRO drop_table
+AS 
+BEGIN
+INSERT INTO TABLE(event_data)
+VALUES (EVENTDATA());
+END;
+
+
+
+CREATE TRIGGER trg_blockuserlogin
+ON ALL SERVER
+FOR LOGON
+AS
+BEGIN
+IF original_login() = 'blocked_user'
+BEGIN
+ROLLBACK;
+END
+END:
