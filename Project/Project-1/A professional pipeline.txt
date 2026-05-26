@@ -1,0 +1,105 @@
+A professional pipeline
+
+RAW              Python
+Excel    ----->   +       ---> POWERBI
+CSV file            SQL
+
+Key Benefit
+
+Power#1 --> Benefit of python
+Python gives you the power to
+> Automatically clean 500+ rows of data
+> Remove duplicate entries
+> Handle missing data effectively
+> Apply business logic, like calculating Profit or extracting Year and Month
+
+
+Power#2 --> What is the benefit of SQL
+SQL becomes your
+Central data warehouse
+Secure & Fast data source
+Permanent Connection for Power BI
+
+Excel => Temporary File
+SQL => Permanent + Scalable database
+--> Even if you get 500,000 new rows tomorrow, the process stays
+exactly the same
+
+Power#3 --> PowerBI
+Data ---> insight --> Decision
+Your boss wants a dashboard, not an excel file
+
+Excel --> Operations/Sales Team
+Python --> Data Analyst
+SQL --> Data Engineer
+PowerBI --> 
+
+
+I built an end to end etl pipeline. I started with raw csv / paraquet Data getting from
+AWS / Cloud provider with ticket managed to clean the data , used python to clean and transform
+it, stored it centrally in an sql database, then connected it to power BI to create a business
+dashboard for decision-making
+
+raw xlsx file
+
+Jupyter file 
+
+# load the data
+import pandas as pd
+df = pd.read_excel("sales_raw.xlsx")
+
+## remove duplicates 
+df= df.drop_duplicates()
+
+
+## fix date column
+
+df['Order_Date'] = pd.to_datetime(df['Order_date'],errors='coerce') NaT
+# coerce aapke program ko crash hone se bachata hai
+
+
+df = df.dropna(subset=['Order_Date']
+
+# Make Profit
+# df['Profit'] = df['Sales'] -df['Cost']
+df['Year'] = df['Order_Date'].dt.year
+df['Month'] = df['Order_Date'].dt.month
+
+df.to_csv('Sales_cleaned.csv',index=False)
+
+
+<>>>> USE SQL DATABASE FOR PERMANENT connection
+
+
+CREATE DATABASE salesDB;
+
+
+
+import pandas as pd
+from sqlalchemy import create_engine
+pd.read_csv('Sales_Cleaned'.csv)
+
+engine = create_engine('mysql+pymysql://username:123456@localhost:3306/salesdb',)
+engine = create_engine('mysql+pymysql://username:admin%40123456@localhost:3306/salesdb',)
+                                           admin@123456
+
+
+df.to_sql(name='sales_data',con=engine,if_exists='replace',index=False)
+
+
+## HOW TO CONNECT TO POWERBI
+
+Get Data to SQL  MySQL Database
+
+servername
+Database SalesDB
+
+
+## Profit Percentage of Sales
+% of Profit 'SalesDb sales_data'[Profit]/'SalesDB sales_data'[Sales]
+
+
+
+
+
+
