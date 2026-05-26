@@ -1,0 +1,15 @@
+DataPlatform founded by spark creaters
+
+Data Lake + Data Warehouse
+ Gather raw data from different sources
+ Transform it into the correct formats
+ Build high quality, reliable and high performance datasets
+ Make 
+
+With Auto Loader, You can easily ingest streaming data
+With Delta Lake , You ensure data quality and reliability
+With Delta Live Tables, You manage pipelines declaratively
+With Unity Catalog , You standardize government and security
+With SQL & Dashboards, You deliver user-friendly reports to business
+teams
+
