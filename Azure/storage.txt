@@ -1,0 +1,16 @@
+Azure storage account
+---Blob Storage/ADLS == 90% of the time will be spending on blob storage
+
+---File Share == 5% of the time will be spending on file shares
+---Queue Storage == 3% of the time will be spending on queue storage
+---Table Storage == 2% of the time will be spending on table storage
+
+
+ADF
+it is a data integration service that allows you to create data-driven workflows for orchestrating and automating data movement and data transformation. 
+It can connect to various data sources, including Azure Storage Account, and perform operations such as copying data, transforming data, and loading data into other destinations.
+
+SQL SERVER -------> Azure SQL Database === ADF ===> Azure Storage Account (Blob Storage, File Share, Queue Storage, Table Storage)
+ 
+Storage account read the data ----> databricks ===>  store in different format (parquet, csv, json) ===> store in blob storage or file share
+Azure Storage Account is a cloud-based storage solution provided by Microsoft Azure. It offers various types of storage services, including Blob Storage, File Share, Queue Storage, and Table Storage.
