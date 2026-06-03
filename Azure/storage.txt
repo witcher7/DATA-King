@@ -14,3 +14,11 @@ SQL SERVER -------> Azure SQL Database === ADF ===> Azure Storage Account (Blob 
  
 Storage account read the data ----> databricks ===>  store in different format (parquet, csv, json) ===> store in blob storage or file share
 Azure Storage Account is a cloud-based storage solution provided by Microsoft Azure. It offers various types of storage services, including Blob Storage, File Share, Queue Storage, and Table Storage.
+
+ADLS (Azure Data Lake Storage) is a scalable and secure data lake solution built on top of Azure Storage Account. It provides a hierarchical namespace and is optimized for big data analytics workloads. 
+ADLS Gen2 is the latest version of Azure Data Lake Storage, which combines the capabilities of both Blob Storage and File Share, allowing you to store and analyze large volumes of data efficiently.
+
+ADLS has better performance and scalability compared to traditional Blob Storage, making it suitable for big data analytics scenarios.
+ It also supports features like hierarchical namespaces, which allow for better organization and management of data.
+
+# You have to enable ADLS Gen2 on your storage account to take advantage of its features. Heirarchical namespaces allow you to organize your data in a directory-like structure, making it easier to manage and access your data.
