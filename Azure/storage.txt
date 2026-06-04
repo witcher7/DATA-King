@@ -34,3 +34,14 @@ ACCESS TOKEN / Shared Access Signature (SAS) / Storage Account Keys: These are d
 - Storage Account Keys: These are the primary and secondary keys that are associated with your storage account. They can be used to authenticate and access your storage account resources, but it is recommended to use them with caution as they provide full access to your storage account.
 
 
+>> Access keys are not recommended for production use as they provide full access to your storage account. 
+It is better to use Access Tokens or Shared Access Signatures (SAS) for secure and controlled access to your storage resources.
+
+### ACCESS TIERS
+Azure Storage Account offers different access tiers to optimize costs based on the frequency of data access. The access tiers include:
+1. Hot Tier: This tier is designed for frequently accessed data. It provides low latency and
+high throughput, making it suitable for active data that is accessed frequently.
+2. Cool Tier: This tier is designed for infrequently accessed data. It offers lower storage costs compared to the hot tier but has higher access costs. It is suitable for data that is accessed less frequently but still needs to be readily available.
+3. Archive Tier: This tier is designed for rarely accessed data that can tolerate higher latency. It offers the lowest storage costs but has higher access costs and retrieval times. It is suitable for long-term storage of data that is not expected to be accessed frequently.
+You can choose the appropriate access tier for your data based on its access patterns and cost requirements.    
+
