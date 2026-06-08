@@ -45,3 +45,8 @@ high throughput, making it suitable for active data that is accessed frequently.
 3. Archive Tier: This tier is designed for rarely accessed data that can tolerate higher latency. It offers the lowest storage costs but has higher access costs and retrieval times. It is suitable for long-term storage of data that is not expected to be accessed frequently.
 You can choose the appropriate access tier for your data based on its access patterns and cost requirements.    
 
+
+
+## FILE Share
+it is used to share a central storage over the SMB protocol
+> 
