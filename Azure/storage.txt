@@ -68,3 +68,15 @@ handling.
 Queue Storage can be accessed using various tools and SDKs provided by Microsoft, including Azure Portal,
 Azure Storage Explorer, and Azure SDKs for different programming languages. You can use these tools to create queues, add messages to queues, retrieve messages from queues, and manage your queue storage resources effectively.
 it uses PUB/SUB model for communication, where producers publish messages to a queue and consumers subscribe to the queue to receive messages. This allows for decoupling of components and enables asynchronous communication between them.
+
+
+
+## Azure Tables is non sql database that provides a key-value store for storing large amounts of structured data. It is designed for scenarios where you need to store and query large volumes of data with low latency and high throughput.
+Azure Table Storage is commonly used for scenarios such as:
+- Storing and querying large volumes of structured data, such as user profiles, device information,
+and application logs.
+- Building scalable and distributed applications that require fast access to structured data.
+- Enabling flexible schema design, allowing you to store different types of data in the same table without the need for a predefined schema.
+Azure Table Storage can be accessed using various tools and SDKs
+> but it is not in demand as much as blob storage, file share, and queue storage. It is a NoSQL database that provides a key-value store for storing large amounts of structured data. It is designed for scenarios where you need to store and query large volumes of data with low latency and high throughput.
+> Cosmos DB has become more popular for NoSQL database needs, offering more features and better performance compared to Azure Table Storage. As a result, Azure Table Storage is not as widely used as other storage services in Azure, such as Blob Storage, File Share, and Queue Storage.
