@@ -49,4 +49,22 @@ You can choose the appropriate access tier for your data based on its access pat
 
 ## FILE Share
 it is used to share a central storage over the SMB protocol
-> 
+> it connects with resources like virtual machines, on-premises servers, and other Azure services. It allows you to create file shares that can be accessed by multiple users and applications simultaneously.
+File shares are commonly used for scenarios such as:
+- Storing and sharing files across multiple virtual machines or applications.
+- Providing a central location for storing application data that needs to be accessed by multiple instances of an application.
+- Enabling lift-and-shift migrations of applications that rely on file shares for storage.
+File shares can be accessed using various tools and protocols, including SMB, REST API, and Azure
+SMB stands for Server Message Block, which is a network file sharing protocol that allows applications to read and write to files and request services from server programs in a computer network. It is commonly used for accessing file shares in Azure Storage Account.
+
+
+## QUEUE Storage
+Queue Storage is a service that allows you to store and manage messages in a queue. It is designed for scenarios where you need to decouple components of an application and enable asynchronous communication between them.
+Queue Storage is commonly used for scenarios such as:
+- Building scalable and distributed applications that require asynchronous processing.
+- Implementing message-based communication between different components of an application.
+- Enabling reliable and durable messaging for scenarios such as order processing, task scheduling, and event
+handling.
+Queue Storage can be accessed using various tools and SDKs provided by Microsoft, including Azure Portal,
+Azure Storage Explorer, and Azure SDKs for different programming languages. You can use these tools to create queues, add messages to queues, retrieve messages from queues, and manage your queue storage resources effectively.
+it uses PUB/SUB model for communication, where producers publish messages to a queue and consumers subscribe to the queue to receive messages. This allows for decoupling of components and enables asynchronous communication between them.
