@@ -80,3 +80,8 @@ and application logs.
 Azure Table Storage can be accessed using various tools and SDKs
 > but it is not in demand as much as blob storage, file share, and queue storage. It is a NoSQL database that provides a key-value store for storing large amounts of structured data. It is designed for scenarios where you need to store and query large volumes of data with low latency and high throughput.
 > Cosmos DB has become more popular for NoSQL database needs, offering more features and better performance compared to Azure Table Storage. As a result, Azure Table Storage is not as widely used as other storage services in Azure, such as Blob Storage, File Share, and Queue Storage.
+
+## Azure provide two access keys
+- Primary Access Key: This is the main access key for your storage account. It provides full access to all resources in the storage account, including blobs, files, queues, and tables. It is recommended to keep this key secure and not share it with unauthorized users.
+- Secondary Access Key: This is a backup access key for your storage account. It provides the same level of access as the primary access key but can be used as a backup in case the primary access key is compromised or needs to be rotated. It is also recommended to keep this key secure and not share it with unauthorized users.
+It is important to note that access keys should be used with caution
