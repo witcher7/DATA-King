@@ -31,3 +31,41 @@ relevant data for further processing.
 
 
   BI analyst use data warehouses to perform data analysis, create reports, and generate insights for business decision-making. They can use tools like SQL, Power BI, or other BI platforms to query the data warehouse and visualize the results in the form of dashboards, charts, and reports. By leveraging the data stored in the warehouse, BI analysts can identify trends, patterns, and correlations in the data that can help inform strategic decisions and drive business growth.
+  
+
+  ## CREATE ADF account
+  > ADF --> DEV
+  > ADF --> UAT
+  > ADF --> PRDuction
+
+
+  COMPONENTS OF DATA FACTORY
+  -- Linked Service
+  -- DataSet
+  -- Activity
+  -- Pipeline
+  -- Integration Runtime
+
+
+
+++ Linked service 
+Authentication system 
+you need server address
+         server port number
+         username
+         password
+
+===> Then connect the dataset 
+===> Activity [COPY,REMOVE ANYTHING]
+===> Dataset CSV
+  \\
+   ACCESS TOKEN/SAAS TOKEN
+   |
+   |
+   ADLS CSV
+
+
+
+
+
+
