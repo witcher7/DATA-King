@@ -41,8 +41,8 @@ relevant data for further processing.
 
   COMPONENTS OF DATA FACTORY
   -- Linked Service
-  -- DataSet
-  -- Activity
+  -- DataSet  [Types of data storage ways]
+  -- Activity 
   -- Pipeline
   -- Integration Runtime
 
@@ -56,15 +56,14 @@ you need server address
          password
 
 ===> Then connect the dataset 
-===> Activity [COPY,REMOVE ANYTHING]
-===> Dataset CSV
+===> THEN Activity [COPY,REMOVE ANYTHING]
+===> THEN AGAIN Dataset CSV
   \\
+    LINKED SERVICE [is used to make connection ]
    ACCESS TOKEN/SAAS TOKEN
    |
    |
    ADLS CSV
-
-
 
 
 
