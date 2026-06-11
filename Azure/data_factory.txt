@@ -44,7 +44,8 @@ relevant data for further processing.
   -- DataSet  [Types of data storage ways]
   -- Activity 
   -- Pipeline
-  -- Integration Runtime
+  -- Integration Runtime ==> pipeline computation
+  -- Triggers ==> trigger the pipeline to run
 
 
 
