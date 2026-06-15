@@ -83,3 +83,19 @@ Parameters would be available that you created
 After that automatically it will be added into pipeline area where
 you can select the dataset properties
 
+
+
+>> ForEach
+for (int i = 0 , i <3 , i++)
+
+> To do a task again and again and again
+> Settings will have 
+ > Items ( provide the array which you want to iterate) 
+ > In add Dynamic Content 
+     Functions ---> CREATEARRAY ==> Create an array for paramete returns the expression
+     @createArray('Product','Customer','ProductDescription')
+
+  > Activities 
+     Add Copy,insertions or anyactiviy you wanted to add 
+     
+
