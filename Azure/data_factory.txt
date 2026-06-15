@@ -67,5 +67,19 @@ you need server address
    ADLS CSV
 
 
+## PARAMETERS IN DATASETS
+parameters help you to select things for selectively
 
+Name ------> Type ======> DEFAULT VALUE
+
+
+>> In connection
+Add Dynamic Content 
+    
+PIPELINE EXPRESSION BUILDED
+
+Parameters would be available that you created 
+
+After that automatically it will be added into pipeline area where
+you can select the dataset properties
 
