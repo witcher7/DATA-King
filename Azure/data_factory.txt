@@ -103,5 +103,6 @@ for (int i = 0 , i <3 , i++)
      Iteration -> item2
      Iteration -> item3
 
-     #Batch count we can mention how many max we want to have 
+  > Batch count we can mention how many max we want to have 
 
+# Mapping in copy helps you to map certain column names to diferernt types of columns
