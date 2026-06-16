@@ -106,3 +106,9 @@ for (int i = 0 , i <3 , i++)
   > Batch count we can mention how many max we want to have 
 
 # Mapping in copy helps you to map certain column names to diferernt types of columns
+
+
+?>> Condition 
+
+Copy the records from the customer table into ADLS only when we have more than 1000 records
+LOOKUP ACTIVITY
