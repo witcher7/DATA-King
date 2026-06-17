@@ -146,3 +146,30 @@ Various functions are there to use depending on the usage you can use them
  ++ COPY DATA AS we usual do 
 
 ==FALSE
+  ++ DO NOTHING
+
+
+
+--===QUESTION FOR PRACTICE
+
+Copy the records from the customer table into ADLS only WHEN 
+we have more than 500 records. Once you copied, check the product 
+table count
+if (customer count > 500){
+  copy the customer data.
+  get the product count
+  if(product count > 100){
+     copy the product as well
+  }
+}
+
+#### NESTED LOOP AND NEST IF IS NOT ALLOWED
+
+>> EXECUTE PIPELINE Activity
+P1 ---> Customer_count ---> if > 500 --> COPY --======== CALL PIPELINE2
+P2 ---> Product_count ----> if > 100 ---> copy
+BREAK THE PIPELINES TO MULTIPLE PIPELINES
+
+
+
+## Dynamic FOlders creation based on time
