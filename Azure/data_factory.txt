@@ -173,3 +173,13 @@ BREAK THE PIPELINES TO MULTIPLE PIPELINES
 
 
 ## Dynamic FOlders creation based on time
+Customer/2023/07/02/09/10/20
+yyyy-mm-dd hh:mm:ss
+Everytime the customer folder will be created to not to overwrite the exisitng file
+ 
+ WHen you are sinking in the copy data
+needed a path for folder so opt for functions 
+there find 
+### FORMAT DateTIme 
+Utcnow (gives current timestamp()
+@FormateDateTime((utcnow(),'yyyy'/FormatDateTime(Utcnow(),'MM))
