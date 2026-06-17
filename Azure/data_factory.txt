@@ -128,6 +128,13 @@ Lookup Activity -> Total Record Count
 
 
 > IF CONDITION PIPELINE 
-if Count >50 {
-
+if Count >500 {
+   Copy the data
+}else{
+  do nothing
 }
+
+#### EXPRESSION in IF CONDITION
+
+Greate funtion 
+Various functions are there to use depending on the usage you can use them 
