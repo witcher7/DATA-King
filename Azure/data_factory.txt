@@ -178,6 +178,10 @@ Customer/2023/07/02/09/10/20
 yyyy-mm-dd hh:mm:ss
 Everytime the customer folder will be created to not to overwrite the exisitng file
  
+
+## To merge with filename
+@concat('Sales_Report_', formatDateTime(utcNow(), 'yyyyMMdd'), '.csv')
+
  WHen you are sinking in the copy data
 needed a path for folder so opt for functions 
 there find 
