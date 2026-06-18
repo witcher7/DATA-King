@@ -140,6 +140,7 @@ Greate funtion
 Various functions are there to use depending on the usage you can use them 
 
 "ACTIVITY OUTPUT --> Get the records from the row.RecordCount,The number you want to have"
+@greater(activity('Get the records count from db').output.firstRow.RecordCount,500)
 
 ---TWO CONDITIONS
 ==TRUE
