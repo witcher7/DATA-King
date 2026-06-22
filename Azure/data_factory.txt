@@ -209,3 +209,8 @@ TO CHECK WHETHER A FILE EXISTS OR NOT we USE GETMETADATAACTIVITY
 GetMetaData ---> IfCondition [True ---> Copy the data]
 OR
 Copy the file 'SalesLt.cst' FROM ADLS to DB WHEN THE SIZE > 1000 (1 GB or not)
+
+
+
+GetMetaData --> Child Items help you to identify which files and folders are there so we can filter out if we want folder
+or files
