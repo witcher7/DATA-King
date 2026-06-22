@@ -1,0 +1,235 @@
+# Azure Data factory
+Azure Data Factory (ADF) is a cloud-based data integration service provided by Microsoft Azure. It allows you to create, schedule, and orchestrate data workflows for moving and transforming data across various sources and destinations. ADF provides a visual interface for designing data pipelines, as well as a rich set of connectors and activities for working with different data sources and transformations.
+ADF can be used to perform a wide range of data integration tasks, including:
+- Data movement: ADF can copy data from various sources, such as on-premises databases, cloud-based data stores, and SaaS applications, to Azure Storage Account or other destinations.
+- Data transformation: ADF provides activities for transforming data using Azure Data Flow, which allows you to perform complex data transformations without writing code. You can also use custom activities to execute your own code for data transformation.
+- Data orchestration: ADF allows you to create complex workflows that orchestrate the execution of various activities, such as data movement and transformation, based on dependencies and triggers. You can schedule your pipelines to run at specific times or in response to events, such as the arrival of new data.
+- Data monitoring and management: ADF provides monitoring and management capabilities to track the execution of your pipelines, view logs and metrics, and troubleshoot any issues that may arise during data integration processes.
+Overall, Azure Data Factory is a powerful tool for building and managing data integration workflows in the cloud, enabling you to efficiently move and transform data across various sources and destinations while providing robust monitoring and management capabilities.
+
+
+### ADF --> object orchestration tool
+- ADF is an object orchestration tool that allows you to create and manage data pipelines for moving and transforming data across various sources and destinations. It provides a visual interface for designing data workflows, as well as a rich set of connectors and activities for working with different data sources and transformations. ADF enables you to orchestrate complex data integration processes, schedule pipeline executions, and monitor the performance of your data workflows, making it an essential tool for managing data integration in the cloud.
+DATA PIPELINE --> a logical grouping of activities that together perform a task. A pipeline allows you to manage the activities as a set instead of managing each one individually. For example, if you have a pipeline that copies data from an on-premises SQL Server database to an Azure Blob Storage account, you can group the copy activity and any related activities (such as data transformation or validation) into a single pipeline. This makes it easier to manage and monitor the entire data integration process as a cohesive unit.
+
+>>> ETL == Extract, Transform, Load
+- Extract: The process of retrieving data from various sources, such as databases, files, or APIs. This step involves connecting to the data source, executing queries or reading files, and extracting the
+relevant data for further processing.
+- Transform: The process of converting the extracted data into a desired format or structure. This step may involve cleaning the data, applying business rules, performing calculations, or aggregating data to prepare it for loading into the target destination.
+- Load: The process of writing the transformed data to a target destination, such as a database, data warehouse, or cloud storage. This step involves connecting to the
+
+
+> OLTP Database --> Online Transaction Processing Database
+- An OLTP database is designed to handle a large number of short online transactions, such as inserting, updating, and deleting data. It is optimized for fast query processing and maintaining data integrity in real-time applications. OLTP databases are commonly used in scenarios like e-commerce platforms, banking systems, and customer relationship management (CRM) systems, where there is a need for high concurrency and quick response times.
+\
+ \  ETL --> Extract, Transform, Load
+- ETL is a data integration process that involves three main steps: Extract, Transform, and Load. It is commonly used in data warehousing and business intelligence applications to move and transform data from various sources into a target data warehouse or data mart. The ETL process allows organizations to consolidate and prepare data for analysis, reporting, and decision-making by extracting data from source systems, transforming it into a suitable format, and loading it into a target destination for further analysis and reporting.
+  \
+> Data warehouse --> A data warehouse is a centralized repository that stores large volumes of structured and semi-structured data from various sources. It is designed for analytical processing and reporting, allowing users to perform complex queries and analysis on the data. Data warehouses are optimized for read-heavy workloads and are often used in business intelligence (BI) applications, where there is a need to analyze historical data and generate insights for decision-making. They typically use a star or snowflake schema to organize the data for efficient querying and reporting.
+   ==> OLAP --> Online Analytical Processing
+- OLAP is a category of software tools that enable users to analyze multidimensional data from a data warehouse or data mart. OLAP tools allow users to perform complex queries and analysis on the data, such as slicing and dicing the data, drilling down into details, and aggregating data across multiple dimensions. OLAP is designed for analytical processing and is optimized for read-heavy workloads, making it ideal for business intelligence applications where users need to analyze historical data and generate insights for decision-making. OLAP tools typically provide a user-friendly interface for exploring and analyzing data, allowing users to create reports, dashboards, and visualizations based on the data stored in the data warehouse.
+
+
+  BI analyst use data warehouses to perform data analysis, create reports, and generate insights for business decision-making. They can use tools like SQL, Power BI, or other BI platforms to query the data warehouse and visualize the results in the form of dashboards, charts, and reports. By leveraging the data stored in the warehouse, BI analysts can identify trends, patterns, and correlations in the data that can help inform strategic decisions and drive business growth.
+  
+
+  ## CREATE ADF account
+  > ADF --> DEV
+  > ADF --> UAT
+  > ADF --> PRDuction
+
+
+  COMPONENTS OF DATA FACTORY
+  -- Linked Service
+  -- DataSet  [Types of data storage ways]
+  -- Activity 
+  -- Pipeline
+  -- Integration Runtime ==> pipeline computation
+  -- Triggers ==> trigger the pipeline to run
+
+
+
+++ Linked service 
+Authentication system 
+you need server address
+         server port number
+         username
+         password
+
+===> Then connect the dataset 
+===> THEN Activity [COPY,REMOVE ANYTHING]
+===> THEN AGAIN Dataset CSV
+  \\
+    LINKED SERVICE [is used to make connection ]
+   ACCESS TOKEN/SAAS TOKEN
+   |
+   |
+   ADLS CSV
+
+
+## PARAMETERS IN DATASETS
+parameters help you to select things for selectively
+
+Name ------> Type ======> DEFAULT VALUE
+
+
+>> In connection
+Add Dynamic Content 
+    
+PIPELINE EXPRESSION BUILDED
+
+Parameters would be available that you created 
+
+After that automatically it will be added into pipeline area where
+you can select the dataset properties
+
+
+
+>> ForEach
+for (int i = 0 , i <3 , i++)
+
+> To do a task again and again and again
+> Settings will have 
+ > Items ( provide the array which you want to iterate) 
+ > In add Dynamic Content 
+     Functions ---> CREATEARRAY ==> Create an array for paramete returns the expression
+     @createArray('Product','Customer','ProductDescription')
+
+  > Activities 
+     Add Copy,insertions or anyactiviy you wanted to add 
+
+
+     Iteration -> item1  
+     Iteration -> item2
+     Iteration -> item3
+
+  > Batch count we can mention how many max we want to have 
+
+# Mapping in copy helps you to map certain column names to diferernt types of columns
+
+
+?>> Condition 
+
+Copy the records from the customer table into ADLS only when we have more than 1000 records
+LOOKUP ACTIVITY
+  --> used to read data from activity and much better conditional observations
+
+
+SETTING
+useQuery -> Copy Data Settings
+query option has high priority
+
+SELECT COUNT(*) AS RecordCount FROM SalesLT.Customers
+
+> Lookup Activity has limit of max 5000 rows and 4MB data
+ 
+Lookup Activity -> Total Record Count
+
+
+
+> IF CONDITION PIPELINE 
+if Count >500 {
+   Copy the data
+}else{
+  do nothing
+}
+
+#### EXPRESSION in IF CONDITION
+
+Greate funtion 
+Various functions are there to use depending on the usage you can use them 
+
+"ACTIVITY OUTPUT --> Get the records from the row.RecordCount,The number you want to have"
+@greater(activity('Get the records count from db').output.firstRow.RecordCount,500)
+
+---TWO CONDITIONS
+==TRUE
+ ++ COPY DATA AS we usual do 
+
+==FALSE
+  ++ DO NOTHING
+
+
+
+--===QUESTION FOR PRACTICE
+
+Copy the records from the customer table into ADLS only WHEN 
+we have more than 500 records. Once you copied, check the product 
+table count
+if (customer count > 500){
+  copy the customer data.
+  get the product count
+  if(product count > 100){
+     copy the product as well
+  }
+}
+
+#### NESTED LOOP AND NEST IF IS NOT ALLOWED
+
+>> EXECUTE PIPELINE Activity
+P1 ---> Customer_count ---> if > 500 --> COPY --======== CALL PIPELINE2
+P2 ---> Product_count ----> if > 100 ---> copy
+BREAK THE PIPELINES TO MULTIPLE PIPELINES
+
+
+
+## Dynamic FOlders creation based on time
+Customer/2023/07/02/09/10/20
+yyyy-mm-dd hh:mm:ss
+Everytime the customer folder will be created to not to overwrite the exisitng file
+ 
+
+## To merge with filename
+@concat('Sales_Report_', formatDateTime(utcNow(), 'yyyyMMdd'), '.csv')
+
+ WHen you are sinking in the copy data
+needed a path for folder so opt for functions 
+there find 
+### FORMAT DateTIme 
+Utcnow (gives current timestamp()
+@FormateDateTime((utcnow(),'yyyy'/FormatDateTime(Utcnow(),'MM))
+ 
+
+### @GetMetaDataActivity
+Before copying the data from adls to DB or any other pipeline, we have to check whether the file exists or not
+TO CHECK WHETHER A FILE EXISTS OR NOT we USE GETMETADATAACTIVITY 
+
+> GetMetdata
+   --> SETTING
+     ==FIELD LIST ARGUMENT
+     ==
+      Column Count
+      Contnet MD5 (transferring file from one place to other it creates a key to cross check like security Key pair) 
+      Exists
+      Item Name
+      Item Type
+
+     
+## THE PIPELINE
+GetMetaData ---> IfCondition [True ---> Copy the data]
+OR
+Copy the file 'SalesLt.cst' FROM ADLS to DB WHEN THE SIZE > 1000 (1 GB or not)
+
+
+
+GetMetaData --> Child Items help you to identify which files and folders are there so we can filter out if we want folder
+or files    
+Child items --> give you array ---> 
+Use FOR EACH 
+             if file ==> is there
+                   works 
+             else folder ==> is there
+                   will not work
+
+@equals(item().type,'File')
+
+
+
+
+# Azure key vault is a place to store keys
+password
+Secrets
+Certificates
+Confidential information 
+
+# Azure Key vault is used to store passwords for your services
