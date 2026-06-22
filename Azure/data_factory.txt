@@ -213,4 +213,11 @@ Copy the file 'SalesLt.cst' FROM ADLS to DB WHEN THE SIZE > 1000 (1 GB or not)
 
 
 GetMetaData --> Child Items help you to identify which files and folders are there so we can filter out if we want folder
-or files
+or files    
+Child items --> give you array ---> 
+Use FOR EACH 
+             if file ==> is there
+                   works
+             else folder ==> is there
+                   will not work
+                   
