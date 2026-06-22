@@ -188,3 +188,16 @@ there find
 ### FORMAT DateTIme 
 Utcnow (gives current timestamp()
 @FormateDateTime((utcnow(),'yyyy'/FormatDateTime(Utcnow(),'MM))
+ 
+
+### @GetMetaDataActivity
+Before copying the data from adls to DB or any other pipeline, we have to check whether the file exists or not
+TO CHECK WHETHER A FILE EXISTS OR NOT we USE GETMETADATAACTIVITY 
+
+> GetMetdata
+   --> SETTING
+      Column Count
+      Contnet MD5 (transferring file from one place to other it creates a key to cross check like security Key pair) 
+      Exists
+      Item Name
+      Item Type
