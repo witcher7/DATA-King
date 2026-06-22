@@ -196,8 +196,16 @@ TO CHECK WHETHER A FILE EXISTS OR NOT we USE GETMETADATAACTIVITY
 
 > GetMetdata
    --> SETTING
+     ==FIELD LIST ARGUMENT
+     ==
       Column Count
       Contnet MD5 (transferring file from one place to other it creates a key to cross check like security Key pair) 
       Exists
       Item Name
       Item Type
+
+     
+## THE PIPELINE
+GetMetaData ---> IfCondition [True ---> Copy the data]
+OR
+Copy the file 'SalesLt.cst' FROM ADLS to DB WHEN THE SIZE > 1000 (1 GB or not)
