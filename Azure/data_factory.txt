@@ -258,3 +258,10 @@ Incremental  --> Updating only newly updated data
  We will find the last updated timestamp from DB table
  We will pull all the records between data > step1 and date <= step2
  Lastly update the HW mark file with latest datetime from step 2
+
+
+ HighWaterMark File: 1900-01-01 00:00:00
+ Today 8:00 AM
+
+ Steps 
+ 1. Fetch the date from Datetime
