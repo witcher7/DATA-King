@@ -233,3 +233,28 @@ Certificates
 Confidential information 
 
 # Azure Key vault is used to store passwords for your services
+
+
+
+
+---> INCREMENTAL PIPELINE
+
+Today 8:00 AM (1000 records)
+I will copy all the 1000 records
+
+
+Today 9:00 AM (1100)
+only 100 new records
+
+Today at 10:00 AM (1250)
+only 150 new records
+
+Types of PIPELINE
+Full Load --> As it is full capacity of data
+Incremental  --> Updating only newly updated data
+
+---> HighWaterMark Concept 
+ We will have one file to keep last execution datetime
+ We will find the last updated timestamp from DB table
+ We will pull all the records between data > step1 and date <= step2
+ Lastly update the HW mark file with latest datetime from step 2
