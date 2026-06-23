@@ -254,7 +254,7 @@ Full Load --> As it is full capacity of data
 Incremental  --> Updating only newly updated data
 
 ---> HighWaterMark Concept 
- We will have one file to keep last execution datetime
+ We will have one file to keep last execution datetime Fetch the date from Datetime
  We will find the last updated timestamp from DB table
  We will pull all the records between data > step1 and date <= step2
  Lastly update the HW mark file with latest datetime from step 2
@@ -264,4 +264,4 @@ Incremental  --> Updating only newly updated data
  Today 8:00 AM
 
  Steps 
- 1. Fetch the date from Datetime
+ 1. 
