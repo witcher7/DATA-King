@@ -279,6 +279,7 @@ Incremental  --> Updating only newly updated data
       -------------------> >LOOKUP 
       Fetch LASTDATETime From DB
                          ----- > COPY DATA
+                         
 SELECT * FROM salesLT.customer
 WHERE
 modifieddate > '@{activity('Fetch HW DateTime').output}' and modifieddate <= @{activity('Fetch LastDateTime fromDB').output}
