@@ -273,13 +273,12 @@ Incremental  --> Updating only newly updated data
 
  Highwater mark file Updated '2023-07-09 07:55:00'
  Today 9:00 AM
-  
-
-                          > LOOKUP 
-                             Fetch HW DateTime 
-                                   -------------------> >LOOKUP 
-                                                          Fetch LASTDATETime From DB
-                                                                ----- > COPY DATA
+                         
+ > LOOKUP 
+      Fetch HW DateTime 
+      -------------------> >LOOKUP 
+      Fetch LASTDATETime From DB
+                         ----- > COPY DATA
 SELECT * FROM salesLT.customer
 WHERE
 modifieddate > '@{activity('Fetch HW DateTime').output}' and modifieddate <= @{activity('Fetch LastDateTime fromDB').output}
