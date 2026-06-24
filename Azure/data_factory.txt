@@ -274,3 +274,9 @@ Incremental  --> Updating only newly updated data
  Highwater mark file Updated '2023-07-09 07:55:00'
  Today 9:00 AM
   
+
+                          > LOOKUP 
+                             Fetch HW DateTime 
+                                   -------------------> >LOOKUP 
+                                                          Fetch LASTDATETime From DB
+                                                                ----- > COPY DATA
