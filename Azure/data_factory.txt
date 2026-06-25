@@ -295,4 +295,4 @@ inside the 'Address' Folder as CSV file
 Create a pipeline name 'Ingestion_Customer_join_ADLS' which will copy all the customer names along with their address into the csv
 (Join Customer + Customer Address Table)
 
-Create 
+Create a pipeline name 'Ingestion_Product_To_JSON' which will copy all the product records as JSON only if total number of records > 10
