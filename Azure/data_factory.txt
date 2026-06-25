@@ -283,3 +283,16 @@ Incremental  --> Updating only newly updated data
 SELECT * FROM salesLT.customer
 WHERE
 modifieddate > '@{activity('Fetch HW DateTime').output}' and modifieddate <= @{activity('Fetch LastDateTime fromDB').output}
+
+
+## ASSIGNMENT
+
+Create a pipeline name 'Ingestion_Customer_SQLDB_ADLS' which will copy all the records from customer table to ADLS account as CSV file
+
+Create a pipeline name 'Ingestion_customer_SQLDB+ADLS_FOLDER' which will  copy all the records from address table to ADLS account
+inside the 'Address' Folder as CSV file
+
+Create a pipeline name 'Ingestion_Customer_join_ADLS' which will copy all the customer names along with their address into the csv
+(Join Customer + Customer Address Table)
+
+Create 
