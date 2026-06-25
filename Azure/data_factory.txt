@@ -296,3 +296,6 @@ Create a pipeline name 'Ingestion_Customer_join_ADLS' which will copy all the cu
 (Join Customer + Customer Address Table)
 
 Create a pipeline name 'Ingestion_Product_To_JSON' which will copy all the product records as JSON only if total number of records > 10
+
+Create a pipeline name 'Ingestion_Product_Address_To_JOin' which will copy all the product records as JSON only if total number of records
+> 10. After that check total record count in address table if they are greater than 100 then copy the address table data as CSV in ADLS
