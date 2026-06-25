@@ -301,9 +301,3 @@ Create a pipeline name 'Ingestion_Product_Address_To_JOin' which will copy all t
 > 10. After that check total record count in address table if they are greater than 100 then copy the address table data as CSV in ADLS
 
 
-### Knowledge Test
-
-Your ADF pipeline processe sales data from a multinational organization with multiple departments 
-Each department's data is stored in a separate folder in ADLS. For Cost Optimization, the organization
-wants to process data only from departments where the number of files has increased since the last run 
-How would you achieve this using ADF activities.
