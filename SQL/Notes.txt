@@ -110,6 +110,9 @@ id   name   Age              Orderid    Name   Pid
 3                                               |
 ------------------------------------------------|
 
+7. Default --> sets a default value for a column if no value is specified
+CREATE TABLE EMP2 (COUNTRY VARCHAR(255) DEFAULT 'INDIA')
+
 CREATE TABLE orders (ordered int PRIMARY KEY, orderNo int , pid INT foreign Key references person(id))
 
 6. index --> retrieves data from databases faster
