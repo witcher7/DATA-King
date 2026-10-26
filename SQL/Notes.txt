@@ -284,6 +284,15 @@ GIVES UNIQUE VALUES
 SELECT DISTINCT customer_name FROM superstore
 
 
+
+### COALESCE (if you want to deal with null values)
+
+SELECT NAME,COALESCE(PHONE,'Unknown') FROM Employee
+# it will replace null values with unknown
+
+CALCULATE Total Compensation(Salary + Bonus)
+SELECT salary + COALESCE(bonus,0) FROM Employee
+
 SELECT customer_name, SUM(sales) as TotalSales FROM superstore GROUP BY Customer_name ORDER BY SUM(sales) DESC LIMIT 5
 
 LIMIT ---> limit the number of results
