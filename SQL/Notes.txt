@@ -96,6 +96,10 @@ nchar(max char) -->if going to use unicode
 1. not null --> ensures that a column cannot have a null value 
 2. Unique --> ensures that all values in a column are different
 3. primary Key --> a column which is unique and not null ( helps to identify the unique element )
+It does not contain duplicate values and null values
+We can only have one primary key in a table
+
+
 4. Check --> ensures that a value in column satisfies a given condition
 
 CREATE TABLE salesTable(productid int default 001, product_name VARCHAR(255) unique, REGION VARCHAR(255) PRIMARY KEY, price INT CHECK (price<1000))
