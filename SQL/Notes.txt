@@ -106,6 +106,7 @@ CREATE TABLE salesTable(productid int default 001, product_name VARCHAR(255) uni
 
 
 5. Foreign Key --> It is a column in one table that refers to the primary key in another table
+It ensures that the values in the foreign key column must exist in the primary key column of the referenced table
 
 Person Table                 Orders Table
 id   name   Age              Orderid    Name   Pid
