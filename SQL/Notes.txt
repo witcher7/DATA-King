@@ -173,6 +173,12 @@ delete could also use rollback , where condition , truncate once done is done
 
 SELECT * FROM student  
 
+DELETE VS TRUNCATE VS DROP 
+DELETE - delete one by one row / SPECIFIC ROW / Complete DATA 
+TRUNCATE - delete all table data 
+DROP - delete table structure 
+
+
 ``````
 
 
@@ -225,6 +231,7 @@ SELECT customer_name,max(sales),Order_date FROM [dbo].[Superstore] WHERE Order_d
 2. Comparison Operators = < , > , = >= , <=
 3. Logical Operators -=> they are used to combine two or more conditions (and, or , not)
 4. Special Operators => IN , BETWEEN Operator used only in integers, exists check for values , LIKE (wildcard search) -> _ represents a Character
+SELECT * FROM EMPL WHERE ID IN (1,2,3)
 
 
 SELECT Customer_name,SUM(sales) FROM superstore
@@ -251,10 +258,30 @@ ORDER BY customer_naem DESC --> 6
 1. FROM
 2. WHERE
 3. GROUP BY
-4. AGGREGATION
-4. HAVING
+4. AGGREGATION (SUM/COUNT/MAX/MIN/AVG)
+4. HAVING --> clause used to apply on aggregated results
 5. SELECT
 6. ORDER BY
+
+
+
+### TOP / LIMIT 
+How to get only first 3 record from table
+SELECT TOP 3 * FROM Employee
+SELECT * FROM Employee LIMIT 3
+
+HOW TO GET 50% OF RECORDS
+SELECT * FROM Employee LIMIT (SELECT COUNT(*)/2 FROM Employee)
+SELECT TOP 50 PERCENT * FROM EMployees
+
+Write query to get TOP 2 HIGHEST salary of Employees
+SELECT * FROM Employee ORDER BY salary DESC LIMIT 2
+SELECT TOP 2 * FROM Employee ORDER BY salary DESC
+
+
+## DISTINCT 
+GIVES UNIQUE VALUES
+SELECT DISTINCT customer_name FROM superstore
 
 
 SELECT customer_name, SUM(sales) as TotalSales FROM superstore GROUP BY Customer_name ORDER BY SUM(sales) DESC LIMIT 5
