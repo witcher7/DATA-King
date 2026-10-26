@@ -125,7 +125,7 @@ SELECT COUNT(*) AS RecordCount FROM SalesLT.Customers
  
 Lookup Activity -> Total Record Count
 
-
+SELECT COUNT(*) AS RecordCount FROM SalesLT.Product
 
 > IF CONDITION PIPELINE 
 if Count >500 {
@@ -154,7 +154,7 @@ Various functions are there to use depending on the usage you can use them
 --===QUESTION FOR PRACTICE
 
 Copy the records from the customer table into ADLS only WHEN 
-we have more than 500 records. Once you copied, check the product 
+we have more than 150 records. Once you copied, check the product 
 table count
 if (customer count > 500){
   copy the customer data.

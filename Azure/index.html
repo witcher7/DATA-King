@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlackForge Labs</title>
+  <meta name="description" content="BlackForge Labs teaches data engineering, machine learning, AI, DevOps, and cloud through immersive, modern technical education." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=cabinet-grotesk@400,500,700,800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
+
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+      --text-hero: clamp(3rem, 0.5rem + 7vw, 8rem);
+
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+      --space-32: 8rem;
+
+      --color-bg: #f7f6f2;
+      --color-surface: #f9f8f5;
+      --color-surface-2: #fbfbf9;
+      --color-surface-offset: #f3f0ec;
+      --color-surface-offset-2: #edeae5;
+      --color-surface-dynamic: #e6e4df;
+      --color-divider: #dcd9d5;
+      --color-border: #d4d1ca;
+      --color-text: #28251d;
+      --color-text-muted: #7a7974;
+      --color-text-faint: #bab9b4;
+      --color-text-inverse: #f9f8f4;
+      --color-primary: #01696f;
+      --color-primary-hover: #0c4e54;
+      --color-primary-active: #0f3638;
+      --color-primary-highlight: #cedcd8;
+
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-full: 9999px;
+
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+      --shadow-md: 0 4px 12px oklch(0.2 0.01 80 / 0.08);
+      --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+
+      --content-default: 960px;
+      --content-wide: 1200px;
+
+      --font-display: 'Cabinet Grotesk', 'Inter', sans-serif;
+      --font-body: 'Satoshi', 'Inter', sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #050505;
+      --color-surface: #0d0d10;
+      --color-surface-2: #131318;
+      --color-surface-offset: #111217;
+      --color-surface-offset-2: #171920;
+      --color-surface-dynamic: #1f2230;
+      --color-divider: #212430;
+      --color-border: rgba(255,255,255,.12);
+      --color-text: #f4f7fb;
+      --color-text-muted: #a4adbd;
+      --color-text-faint: #636a78;
+      --color-text-inverse: #050505;
+      --color-primary: #6ee7f2;
+      --color-primary-hover: #8cf0f8;
+      --color-primary-active: #47c9d8;
+      --color-primary-highlight: rgba(110,231,242,.12);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.2);
+      --shadow-md: 0 8px 24px rgba(0,0,0,.35);
+      --shadow-lg: 0 24px 60px rgba(0,0,0,.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      -moz-text-size-adjust: none;
+      -webkit-text-size-adjust: none;
+      text-size-adjust: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--space-16);
+    }
+
+    body {
+      min-height: 100dvh;
+      line-height: 1.6;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0,255,255,.08), transparent 25%),
+        radial-gradient(circle at 80% 0%, rgba(255,0,153,.09), transparent 28%),
+        linear-gradient(180deg, #030304 0%, #08090d 45%, #040405 100%);
+      overflow-x: hidden;
+    }
+
+    img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+    input, button, textarea, select { font: inherit; color: inherit; }
+    h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.05; }
+    p, li, figcaption { text-wrap: pretty; max-width: 70ch; }
+    a, button, [role="button"], [role="link"], input, textarea, select {
+      transition: color var(--transition-interactive), background var(--transition-interactive),
+        border-color var(--transition-interactive), box-shadow var(--transition-interactive),
+        transform var(--transition-interactive);
+    }
+    button { cursor: pointer; background: none; border: none; }
+    :focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    .skip-link {
+      position: absolute;
+      left: var(--space-4);
+      top: -40px;
+      background: var(--color-primary);
+      color: #001316;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      z-index: 1000;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .skip-link:focus { top: var(--space-4); }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--content-wide));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: clamp(var(--space-12), 8vw, var(--space-24)) 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-4);
+      letter-spacing: -.04em;
+    }
+
+    .section-copy {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-10);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--color-primary);
+      backdrop-filter: blur(12px);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5,5,5,.65);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-4) 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      text-decoration: none;
+      color: var(--color-text);
+    }
+
+    .brand-mark {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: var(--radius-lg);
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(110,231,242,.18), rgba(255,0,153,.12));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 10px 20px rgba(0,0,0,.25);
+    }
+
+    .brand-mark svg { width: 1.6rem; height: 1.6rem; }
+
+    .brand-text strong {
+      display: block;
+      font-size: var(--text-base);
+      letter-spacing: .04em;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .nav-links a:hover { color: var(--color-text); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .theme-toggle, .menu-toggle {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: var(--radius-full);
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+    }
+
+    .menu-toggle { display: none; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      min-height: 44px;
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6ee7f2, #80f8ff);
+      color: #031417;
+      box-shadow: 0 10px 30px rgba(110,231,242,.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(110,231,242,.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.04);
+      color: var(--color-text);
+      border-color: rgba(255,255,255,.1);
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,.08); }
+
+    .hero {
+      padding-top: clamp(var(--space-12), 8vw, var(--space-24));
+      min-height: 100dvh;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: clamp(var(--space-8), 5vw, var(--space-16));
+      align-items: center;
+    }
+
+    .hero-copy h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      letter-spacing: -.08em;
+      text-transform: uppercase;
+      line-height: .92;
+      margin: var(--space-5) 0 var(--space-6);
+      position: relative;
+    }
+
+    .hero-copy p {
+      color: var(--color-text-muted);
+      font-size: var(--text-lg);
+      max-width: 58ch;
+    }
+
+    .glitch-line {
+      position: relative;
+      display: inline-block;
+      text-shadow: 2px 0 rgba(110,231,242,.9), -2px 0 rgba(255,0,153,.8);
+      animation: glitch 4.6s infinite steps(1,end);
+    }
+
+    .glitch-line::before, .glitch-line::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .glitch-line::before {
+      color: #6ee7f2;
+      clip-path: inset(0 0 68% 0);
+      transform: translate(-2px,-1px);
+      mix-blend-mode: screen;
+      opacity: .75;
+    }
+
+    .glitch-line::after {
+      color: #ff3ea7;
+      clip-path: inset(72% 0 0 0);
+      transform: translate(2px,1px);
+      mix-blend-mode: screen;
+      opacity: .75;
+    }
+
+    @keyframes glitch {
+      0%,87%,100% { transform: none; filter: none; }
+      88% { transform: translate(2px,-1px); }
+      89% { transform: translate(-2px,1px); }
+      90% { transform: none; filter: contrast(1.15); }
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      margin: var(--space-8) 0;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+
+    .stat {
+      padding: var(--space-5);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      letter-spacing: -.04em;
+    }
+
+    .stat span {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      place-items: center;
+    }
+
+    #forge-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 2rem;
+      background: radial-gradient(circle at center, rgba(110,231,242,.08), rgba(255,255,255,.02) 30%, transparent 70%);
+    }
+
+    .visual-card {
+      position: relative;
+      z-index: 2;
+      width: min(520px, 100%);
+      padding: var(--space-6);
+      border-radius: 1.6rem;
+      background: linear-gradient(180deg, rgba(10,10,14,.82), rgba(10,10,14,.58));
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(20px);
+      transform-style: preserve-3d;
+      transform: perspective(1000px) rotateY(-10deg) rotateX(7deg);
+    }
+
+    .logo-frame {
+      overflow: hidden;
+      border-radius: 1.25rem;
+      border: 1px solid rgba(255,255,255,.08);
+      background: #000;
+      box-shadow: 0 20px 40px rgba(0,0,0,.35);
+    }
+
+    .logo-frame img {
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      width: 100%;
+      filter: contrast(1.05) saturate(1.05);
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    .skill-pills span {
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      color: var(--color-text-muted);
+    }
+
+    .float-chip {
+      position: absolute;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-md);
+      animation: floaty 4.5s ease-in-out infinite;
+    }
+
+    .chip-1 { top: 9%; left: -4%; }
+    .chip-2 { top: 16%; right: -3%; animation-delay: .7s; }
+    .chip-3 { bottom: 12%; left: 2%; animation-delay: 1.2s; }
+    .chip-4 { bottom: 8%; right: -2%; animation-delay: 1.8s; }
+
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(12,1fr);
+      gap: var(--space-4);
+    }
+
+    .signal-card {
+      grid-column: span 4;
+      padding: var(--space-6);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signal-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -40% auto;
+      width: 10rem;
+      height: 10rem;
+      background: radial-gradient(circle, rgba(110,231,242,.18), transparent 65%);
+      filter: blur(18px);
+    }
+
+    .signal-card i {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--color-primary);
+      margin-bottom: var(--space-4);
+    }
+
+    .signal-card h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-3);
+      letter-spacing: -.03em;
+    }
+
+    .signal-card p {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .tracks {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: var(--space-6);
+    }
+
+    .track {
+      position: relative;
+      padding: var(--space-8);
+      border-radius: 1.6rem;
+      background: linear-gradient(180deg, rgba(16,16,20,.8), rgba(11,11,15,.92));
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .track::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(110,231,242,.08), transparent 35%, rgba(255,0,153,.08));
+      opacity: .9;
+      z-index: -1;
+    }
+
+    .track h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      letter-spacing: -.04em;
+      margin: var(--space-4) 0;
+    }
+
+    .track p {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-5);
+    }
+
+    .track ul {
+      list-style: none;
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .track li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .track li::before {
+      content: "";
+      flex: 0 0 .6rem;
+      height: .6rem;
+      border-radius: 50%;
+      margin-top: .45rem;
+      background: linear-gradient(135deg, #6ee7f2, #ff3ea7);
+      box-shadow: 0 0 12px rgba(110,231,242,.6);
+    }
+
+    .experience {
+      display: grid;
+      grid-template-columns: 1fr .95fr;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    .feature-stack { display: grid; gap: var(--space-5); }
+
+    .feature-panel {
+      padding: var(--space-6);
+      border-radius: 1.35rem;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow-md);
+      transform: translateZ(0);
+    }
+
+    .feature-panel h3 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-3);
+    }
+
+    .feature-panel p {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .terminal {
+      border-radius: 1.6rem;
+      background: #07080b;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .terminal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-4) var(--space-5);
+      background: rgba(255,255,255,.04);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .terminal-dots { display: flex; gap: .45rem; }
+    .terminal-dots span {
+      width: .75rem;
+      height: .75rem;
+      border-radius: 50%;
+      background: #2b2d35;
+    }
+
+    .terminal-dots span:nth-child(1) { background: #ff637d; }
+    .terminal-dots span:nth-child(2) { background: #ffd166; }
+    .terminal-dots span:nth-child(3) { background: #57cc99; }
+
+    .terminal-body {
+      padding: var(--space-6);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .95rem;
+      color: #cbf8ff;
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .terminal-line { display: flex; gap: var(--space-3); }
+    .prompt { color: #6ee7f2; }
+    .comment { color: #7f8796; }
+    .success { color: #9ef58f; }
+    .pink { color: #ff7bd5; }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: var(--space-6);
+    }
+
+    .proof-card {
+      padding: var(--space-8);
+      border-radius: 1.6rem;
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .proof-card h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      letter-spacing: -.04em;
+      margin-bottom: var(--space-4);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: var(--space-4);
+    }
+
+    .mini {
+      padding: var(--space-5);
+      border-radius: 1rem;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .mini strong {
+      display: block;
+      font-size: var(--text-lg);
+      font-family: var(--font-display);
+    }
+
+    .mini span, .proof-card p {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .cta-shell {
+      padding: clamp(var(--space-8),6vw,var(--space-16));
+      border-radius: 2rem;
+      background:
+        linear-gradient(135deg, rgba(110,231,242,.12), rgba(255,0,153,.08)),
+        rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.1);
+      position: relative;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .cta-shell::before {
+      content: "";
+      position: absolute;
+      inset: -20% auto auto -10%;
+      width: 16rem;
+      height: 16rem;
+      background: radial-gradient(circle, rgba(110,231,242,.22), transparent 70%);
+      filter: blur(22px);
+    }
+
+    .cta-shell h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      letter-spacing: -.05em;
+      max-width: 12ch;
+      margin-bottom: var(--space-4);
+    }
+
+    .cta-shell p {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-8);
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: var(--space-10) 0 var(--space-8);
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-6);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-row p, .footer-row a {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .reveal { opacity: 1; }
+
+    @supports (animation-timeline: view()) {
+      .reveal {
+        opacity: 0;
+        animation: reveal-fade linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 65%;
+      }
+
+      .reveal-clip {
+        clip-path: inset(100% 0 0 0);
+        animation: reveal-clip linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 90%;
+      }
+
+      @keyframes reveal-fade { to { opacity: 1; } }
+      @keyframes reveal-clip { to { clip-path: inset(0 0 0 0); } }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .experience, .proof-grid { grid-template-columns: 1fr; }
+      .tracks { grid-template-columns: 1fr; }
+      .signal-card { grid-column: span 6; }
+      .hero-visual { min-height: 520px; }
+      .visual-card { transform: none; }
+    }
+
+    @media (max-width: 760px) {
+      .menu-toggle { display: grid; }
+      .nav { align-items: flex-start; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        top: calc(100% + .5rem);
+        padding: var(--space-5);
+        border-radius: 1rem;
+        background: rgba(10,10,14,.97);
+        border: 1px solid rgba(255,255,255,.08);
+        box-shadow: var(--shadow-lg);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.open { display: flex; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .signal-card { grid-column: 1 / -1; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .hero-copy h1 { font-size: clamp(3.2rem, 16vw, 5rem); }
+      .cta-shell h2 { max-width: none; }
+      .chip-1, .chip-2, .chip-3, .chip-4 { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="BlackForge Labs home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M10 34L24 8l14 26" />
+            <path d="M16 28h16" />
+            <path d="M24 8v31" />
+            <path d="M18 40h12" />
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>BLACKFORGE LABS</strong>
+          <span>Build systems. Ship intelligence.</span>
+        </span>
+      </a>
+
+      <nav>
+        <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" data-menu-toggle>
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="#tracks">Programs</a>
+          <a href="#experience">Experience</a>
+          <a href="#proof">Why us</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Switch theme" data-theme-toggle>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a class="btn btn-primary" href="#contact">Book a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Elite technical education for builders</span>
+          <h1>
+            <span class="glitch-line" data-text="Forge">Forge</span><br>
+            <span class="glitch-line" data-text="the next">the next</span><br>
+            <span class="glitch-line" data-text="cloud minds">cloud minds</span>
+          </h1>
+          <p>
+            BlackForge Labs is a high-impact edtech brand for ambitious learners who want real mastery
+            in data engineering, machine learning, AI, DevOps, and cloud.
+            We teach with production-style systems, visual depth, and hands-on execution instead of theory-only classes.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#tracks">Explore learning tracks</a>
+            <a class="btn btn-secondary" href="#experience">See the experience</a>
+          </div>
+
+          <div class="hero-stats">
+            <article class="stat"><strong>5+</strong><span>Core technical domains</span></article>
+            <article class="stat"><strong>Labs</strong><span>Hands-on project-first learning</span></article>
+            <article class="stat"><strong>3D UI</strong><span>Immersive premium branding</span></article>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal-clip" aria-hidden="true">
+          <div id="forge-canvas"></div>
+
+          <div class="visual-card">
+            <div class="logo-frame">
+              <img
+                src="./Gemini_Generated_Image_noayb3noayb3noay.jpg"
+                alt="BlackForge Labs glitch-style brand artwork"
+                width="1600"
+                height="900"
+                loading="eager"
+                decoding="async"
+              >
+            </div>
+
+            <div class="skill-pills">
+              <span>Data Engineering</span>
+              <span>Machine Learning</span>
+              <span>AI Systems</span>
+              <span>DevOps</span>
+              <span>Cloud</span>
+            </div>
+          </div>
+
+          <span class="float-chip chip-1">ETL Pipelines</span>
+          <span class="float-chip chip-2">MLOps</span>
+          <span class="float-chip chip-3">Terraform</span>
+          <span class="float-chip chip-4">Kubernetes</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow reveal">What learners unlock</span>
+        <h2 class="section-title reveal">A sharper path from curiosity to deployment</h2>
+        <p class="section-copy reveal">
+          This design positions BlackForge Labs like a premium technical build studio,
+          not a generic course marketplace.
+        </p>
+
+        <div class="signal-grid">
+          <article class="signal-card reveal">
+            <i data-lucide="database-zap"></i>
+            <h3>Production data pipelines</h3>
+            <p>Design ingestion, warehousing, orchestration, and transformation systems that mirror real engineering teams.</p>
+          </article>
+
+          <article class="signal-card reveal">
+            <i data-lucide="brain-circuit"></i>
+            <h3>Applied machine learning</h3>
+            <p>Go beyond notebooks into feature engineering, evaluation, deployment thinking, and ML lifecycle discipline.</p>
+          </article>
+
+          <article class="signal-card reveal">
+            <i data-lucide="bot"></i>
+            <h3>AI systems thinking</h3>
+            <p>Learn how AI products connect prompts, data, APIs, observability, and model-aware workflows.</p>
+          </article>
+
+          <article class="signal-card reveal">
+            <i data-lucide="workflow"></i>
+            <h3>DevOps execution</h3>
+            <p>Master CI/CD, containers, infrastructure automation, and operations patterns that make software shippable.</p>
+          </article>
+
+          <article class="signal-card reveal">
+            <i data-lucide="cloud"></i>
+            <h3>Cloud architecture</h3>
+            <p>Build confidence across AWS, Azure, and GCP with networking, identity, compute, and storage design.</p>
+          </article>
+
+          <article class="signal-card reveal">
+            <i data-lucide="shield-check"></i>
+            <h3>Career-grade projects</h3>
+            <p>Create visible portfolio work through labs, capstones, and system walkthroughs that prove capability.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tracks">
+      <div class="container">
+        <span class="eyebrow reveal">Learning tracks</span>
+        <h2 class="section-title reveal">Programs engineered around high-value technical roles</h2>
+        <p class="section-copy reveal">
+          Each track is structured like a serious build path, with layered content and clear outcomes.
+        </p>
+
+        <div class="tracks">
+          <article class="track reveal">
+            <span class="eyebrow">Data + AI</span>
+            <h3>Data engineering, machine learning, and AI</h3>
+            <p>Build the backbone and intelligence layer together, from raw ingestion to decision-ready systems.</p>
+            <ul>
+              <li>Data modeling, warehousing, ETL and ELT, orchestration, observability, and performance thinking.</li>
+              <li>Feature pipelines, experimentation, model serving concepts, evaluation loops, and practical MLOps foundations.</li>
+              <li>AI product workflows using modern tooling, API integration patterns, and deployment-ready project architecture.</li>
+            </ul>
+          </article>
+
+          <article class="track reveal">
+            <span class="eyebrow">Infra + Delivery</span>
+            <h3>DevOps and cloud engineering</h3>
+            <p>Master the systems that make software portable, scalable, and resilient across environments.</p>
+            <ul>
+              <li>Linux, Git, CI/CD, Docker, Kubernetes, Terraform, and release automation fundamentals.</li>
+              <li>Cloud deployment design across AWS, Azure, and GCP with identity, networking, storage, and compute patterns.</li>
+              <li>Hands-on platform projects that connect infrastructure, delivery workflows, and monitoring into one operating model.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container experience">
+        <div>
+          <span class="eyebrow reveal">Experience design</span>
+          <h2 class="section-title reveal">Built like a technical command center</h2>
+          <p class="section-copy reveal">
+            The UI uses depth, glow restraint, motion, and 3D layering to feel premium without looking templated.
+          </p>
+
+          <div class="feature-stack">
+            <article class="feature-panel reveal">
+              <h3><i data-lucide="sparkles"></i> Immersive brand identity</h3>
+              <p>The site uses your glitch artwork as a hero anchor, then extends it into cyan and magenta signal accents and strong typography.</p>
+            </article>
+
+            <article class="feature-panel reveal">
+              <h3><i data-lucide="box"></i> 3D motion layer</h3>
+              <p>A lightweight Three.js particle and wireframe scene adds motion depth behind the hero card.</p>
+            </article>
+
+            <article class="feature-panel reveal">
+              <h3><i data-lucide="smartphone"></i> Mobile-first polish</h3>
+              <p>The layout collapses cleanly for small screens and keeps buttons touch-friendly.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="terminal reveal-clip" aria-label="Course experience preview">
+          <div class="terminal-top">
+            <div class="terminal-dots"><span></span><span></span><span></span></div>
+            <span class="comment">/blackforge/academy/session.log</span>
+          </div>
+
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="prompt">></span><span>initialize cohort --track <span class="pink">cloud-devops</span></span></div>
+            <div class="terminal-line"><span class="prompt">></span><span>spin up sandbox lab environment</span></div>
+            <div class="terminal-line"><span class="prompt">></span><span>deploy pipeline → docker → kubernetes → observability</span></div>
+            <div class="terminal-line"><span class="prompt">></span><span>stream data into warehouse and train inference workflow</span></div>
+            <div class="terminal-line"><span class="prompt success">✓</span><span class="success">capstone generated: portfolio-ready system architecture</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="container proof-grid">
+        <article class="proof-card reveal">
+          <span class="eyebrow">Why BlackForge</span>
+          <h3>Education with system-level thinking</h3>
+          <p>
+            Most platforms separate topics into disconnected lessons.
+            BlackForge Labs can stand out by teaching how data, models, infrastructure, delivery, and cloud fit together in real work.
+          </p>
+        </article>
+
+        <article class="proof-card reveal">
+          <div class="mini-grid">
+            <div class="mini"><strong>Hands-on</strong><span>Scenario-based labs, architecture walkthroughs, and deployment-oriented assignments.</span></div>
+            <div class="mini"><strong>Modern</strong><span>AI, cloud, DevOps, and data topics presented with a premium contemporary interface.</span></div>
+            <div class="mini"><strong>Focused</strong><span>Clear paths for ambitious learners preparing for interviews, projects, and role transitions.</span></div>
+            <div class="mini"><strong>Distinct</strong><span>A visual identity that feels like an elite lab, not a generic classroom dashboard.</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="cta-shell reveal">
+          <span class="eyebrow">Launch your academy presence</span>
+          <h2>Turn BlackForge Labs into the brand serious learners remember.</h2>
+          <p>
+            Use this as version one of your edtech landing page, then extend it with enrollment forms,
+            curriculum pages, mentor profiles, testimonials, and cohort applications.
+          </p>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="mailto:hello@blackforgelabs.com">Start cohort applications</a>
+            <a class="btn btn-secondary" href="#top">Back to top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <p>BlackForge Labs — premium edtech for data engineering, machine learning, AI, DevOps, and cloud.</p>
+      <a href="#tracks">Explore programs</a>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+
+      const updateToggle = () => {
+        toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+        toggle.innerHTML = theme === 'dark'
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>';
+      };
+
+      updateToggle();
+      toggle.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        updateToggle();
+      });
+
+      const menuToggle = document.querySelector('[data-menu-toggle]');
+      const navLinks = document.querySelector('[data-nav-links]');
+
+      menuToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      if (window.THREE) {
+        const mount = document.getElementById('forge-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, mount.clientWidth / mount.clientHeight, 0.1, 1000);
+        camera.position.z = 5;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+        renderer.setSize(mount.clientWidth, mount.clientHeight);
+        mount.appendChild(renderer.domElement);
+
+        const pointsGeometry = new THREE.BufferGeometry();
+        const particleCount = 900;
+        const positions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+          positions[i] = (Math.random() - 0.5) * 7;
+          positions[i + 1] = (Math.random() - 0.5) * 5.5;
+          positions[i + 2] = (Math.random() - 0.5) * 5;
+        }
+
+        pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const pointsMaterial = new THREE.PointsMaterial({
+          color: 0x6ee7f2,
+          size: 0.03,
+          transparent: true,
+          opacity: 0.9
+        });
+
+        const points = new THREE.Points(pointsGeometry, pointsMaterial);
+        scene.add(points);
+
+        const torus = new THREE.Mesh(
+          new THREE.TorusKnotGeometry(1.1, 0.22, 160, 18),
+          new THREE.MeshBasicMaterial({
+            color: 0xff3ea7,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.35
+          })
+        );
+        scene.add(torus);
+
+        const ring = new THREE.Mesh(
+          new THREE.RingGeometry(1.65, 1.72, 96),
+          new THREE.MeshBasicMaterial({
+            color: 0x6ee7f2,
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.25
+          })
+        );
+        ring.rotation.x = Math.PI / 2.3;
+        scene.add(ring);
+
+        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let raf;
+
+        const animate = () => {
+          raf = requestAnimationFrame(animate);
+          if (!mediaQuery.matches) {
+            torus.rotation.x += 0.003;
+            torus.rotation.y += 0.004;
+            points.rotation.y += 0.0008;
+            points.rotation.x += 0.0005;
+            ring.rotation.z += 0.0018;
+          }
+          renderer.render(scene, camera);
+        };
+
+        animate();
+
+        const resize = () => {
+          const { clientWidth, clientHeight } = mount;
+          camera.aspect = clientWidth / clientHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(clientWidth, clientHeight);
+        };
+
+        window.addEventListener('resize', resize);
+        window.addEventListener('beforeunload', () => cancelAnimationFrame(raf));
+      }
+    });
+  </script>
+</body>
+</html>

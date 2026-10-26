@@ -399,6 +399,30 @@ RETURN(SELECT customer_name,ORDER_id, ORDER_DATE FROM superstore WHERE customer_
 SELECT * from dbo.getorderdetails('DV-13045')
 
 
+CREATE OR REPLACE FUNCTION calc_age(dob DATE)
+RETURNS INT
+LANGUAGE SQL
+AS $$
+    SELECT EXTRACT(YEAR FROM age(current_date, dob))::INT;
+$$;
+SELECT calc_age('1998-05-10');
+
+
+CREATE OR REPLACE FUNCTION top_products(n INT)
+RETURNS SETOF products
+LANGUAGE SQL
+AS $$
+    SELECT * FROM products
+    ORDER BY revenue DESC
+    LIMIT n;
+$$;
+SELECT * FROM top_products(5);
+
+
+
+
+
+
 ##### WAYS TO COMBINE TABLES
 
 1. JOIN happens on same column
