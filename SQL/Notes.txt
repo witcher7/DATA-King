@@ -913,3 +913,23 @@ ON order$(Customer_name)
 
 
 
+#### INTERVIEW QUESTIONS
+
+QUERY 1 --> REMOVE DUPLICATE VALUES FROM EMPLOYEE TABLE
+SELECT DISTINCT * FROM employee;
+
+QUERY 2 --> WRITE A QUERY TO FIND OUT DUPLICATE VALUES FROM EMPLOYEE
+first give row number to each row
+then filter out rows with row number > 1
+SELECT *, ROW_NUMBER() OVER (PARTITION BY column_name ORDER BY column_name) as row_num
+FROM employee
+WHERE row_num > 1;
+
+or 
+WITH CTE AS (
+  SELECT *, ROW_NUMBER() OVER (PARTITION BY column_name ORDER BY column_name) as row_num
+  FROM employee
+)
+SELECT * FROM CTE WHERE row_num = 2;
+
+QUERY 3 --> WRITE A QUERY TO GET TOP 3 LOWEST EARNING EMPLOYEE
