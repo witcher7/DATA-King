@@ -952,3 +952,25 @@ WITH CTE AS (
 )
 SELECT * FROM CTE WHERE rn = 2;
 
+
+QUERY --6 -> WRITE A QUERY TO GET 2nd HIGHEST SALARY BASED ON EACH DEPT
+
+WITH CTE AS(
+  SELECT *,row_number() OVER(PARTITION BY DEPT ORDER BY SALARY DESC) AS rn FROM emp
+)
+SELECT * FROM WHERE rn =2
+
+QUERY - 7 --> WRITE a QUERY TO FIND 3rd lowest salary based on each location 
+
+WITH CTE AS (
+  SELECT *,row_number() OVER (PARTITION BY location ORDER BY salary ASC) as rn FROM emp
+)
+SELECT * FROM CTE WHERE rn = 3;
+
+
+QUERY -8 --> WRITE A QUERY TO GET BOTTOM 2 SALARY BASED ON EACH LOCATION
+
+WITH CTE AS (
+  SELECT *,row_number() OVER(PARTITION BY location ORDER BY salary ASC) as rn FROM emp
+)
+SELECT * FROM CTE WHERE rn <= 2 OR rn in (1,2);
