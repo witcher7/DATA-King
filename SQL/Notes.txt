@@ -686,6 +686,14 @@ SELECT emp_name ,sale_amount, RANK() OVER (PARTITION BY emp_name ORDER BY sale_a
 SELECT *, ROW_NUMBER() OVER (partition by product order by sales_amount DESC) as Salesrank FROM  sales_data
 
 
+## Find the 3rd highest salary from employee table
+WITH CTE AS(
+  SELECT *, ROW_NUMBER() OVER(ORDER BY SALARY DESC) RN FROM Employees
+)
+SELECT * FROM CTE WHERE RN=3
+
+
+
 
 #### ANALYTICAL FUNCTIONS 
 Lead, Lag , First , Last , n_tile
