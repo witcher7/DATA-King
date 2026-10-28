@@ -212,5 +212,98 @@ it is a concise way to create lists
 a = [12, 23, 34, 45, 56]
 l = []
 for i in a:
-    l.append(i)
+    l.append(i*i)
+
+# list comprehension
+l = [i*i for i in a]
 print(l)
+
+# list comprehension with condition
+l = [i*i for i in a if i%2==0]
+print(l)
+
+# list comprehension with condition and else
+l = [i*i if i%2==0 else i for i in a]
+print(l)
+
+### Tuples
+Tuples are immutable
+Tuples are ordered
+Tuples are indexed
+Tuples allow duplicates
+Tuples can store different data types (Heterogeneous)
+
+a = (1, 2, 3, 4, 5)
+print(a)
+print(type(a))
+
+# Tuples are immutable
+# a[0] = 10  # This will throw an error
+
+# Tuples are ordered
+print(a[0])
+
+# Tuples are indexed
+print(a[-1])
+
+# Tuples allow duplicates
+a = (1, 2, 3, 4, 5, 1, 2, 3)
+print(a)
+
+# Tuples can store different data types (Heterogeneous)
+a = (1, 2, 3, 4, 5, "hello", 3.14, True)
+print(a)
+
+# Tuples are faster than lists
+# Tuples are used for coordinates, database records, etc.
+# Tuples are used when data should not be changed
+
+
+## SETs 
+SETs are used to store multiple items in single variable 
+SETs are unordered
+SETs are unindexed
+SETs are mutable
+SETs do not allow duplicates
+SETs can store different data types (Heterogeneous)
+
+a = {1, 2, 3, 4, 5}
+print(a)
+print(type(a))
+a.add(6)
+print(a)
+
+## SETs methods
+a = {1, 2, 3, 4, 5}
+b = {4, 5, 6, 7, 8}
+
+# union
+print(a.union(b))
+
+# intersection
+print(a.intersection(b))
+
+# difference
+print(a.difference(b))
+
+# symmetric difference
+print(a.symmetric_difference(b))
+
+# issubset
+print(a.issubset(b))
+
+# issuperset
+print(a.issuperset(b))
+
+# isdisjoint
+print(a.isdisjoint(b))
+
+
+### DICTIONARIES
+ordered Changable Duplicates NOT allowed
+d = {"name": "John", "age": 30, "city": "New York"}
+print(d)
+print(type(d))
+print(d["name"])
+print(d["age"])
+print(d["city"])
