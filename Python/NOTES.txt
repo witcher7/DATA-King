@@ -26,3 +26,21 @@ for example in python, the type is known at runtime
 b = 5
 b = "hello"
 print(b)
+
+
+## INPUT FUNCTION is used to get input from the user
+name = input("Enter your name: ")
+print("Hello " + name)
+
+# By default, input is always a string
+age = input("Enter your age: ")
+print("You are " + age + " years old")
+
+# To convert input to integer
+age = int(input("Enter your age: "))
+print("You are " + str(age) + " years old")
+
+# To convert input to float
+height = float(input("Enter your height: "))
+print("You are " + str(height) + " cm tall")
+
