@@ -1,1 +1,14 @@
-fdsf
+# To print 
+print("Hello World")
+
+## DATA TYPES AND VARIABLES
+name = "John"
+age = 30
+height = 5.9
+is_student = True
+
+## PRINTING VARIABLES
+print(name)
+print(age)
+print(height)
+print(is_student)
