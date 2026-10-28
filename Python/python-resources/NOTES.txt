@@ -307,3 +307,41 @@ print(type(d))
 print(d["name"])
 print(d["age"])
 print(d["city"])
+
+
+## reverse a string
+s = "hello"
+print(s[::-1])
+
+
+## Lambda functions
+x = lambda a : a + 10
+print(x(5))
+
+x = lambda a, b : a * b
+print(x(5, 6))
+
+x = lambda a, b, c : a + b + c
+print(x(5, 6, 2))
+
+
+## MAP function 
+map() is used to modify elements in a list
+l = [1, 2, 3, 4, 5]
+l = list(map(lambda x: x*2, l))
+print(l)
+
+## FILTER function
+filter() is used to filter elements in a list
+l = [1, 2, 3, 4, 5]
+l = list(filter(lambda x: x%2==0, l))
+print(l)
+
+
+## REDUCE function
+from functools import reduce
+reduce() is used to reduce elements in a list
+l = [1, 2, 3, 4, 5]
+l = reduce(lambda x, y: x+y, l)
+print(l)
+
