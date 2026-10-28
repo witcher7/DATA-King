@@ -1,6 +1,10 @@
 # ============================================================================
-# Combined Python Resources File
-# All Python files from python-resources folder combined in numerical order
+# Python Resources - Course Ordered
+# Reorganized in logical learning progression
+# ============================================================================
+
+# ============================================================================
+# PART 1: PYTHON BASICS (FOUNDATIONAL)
 # ============================================================================
 
 # ============================================================================
@@ -52,57 +56,6 @@ if 10 > 5:
     print(True)
 
 # ============================================================================
-# 04-functions.py
-# ============================================================================
-# 1. function declaration
-def hello(name):
-    print(name)
-    print("Hello, there!")
-    print("Hi there")
-
-
-hello("Bogdan")
-hello("Alice")
-
-
-# 2. function parameters and arguments
-def add_numbers(a, b):
-    sum = a + b
-    print(sum)
-
-
-add_numbers(5, 2)
-add_numbers(100, 50)
-add_numbers(8, 10.5)
-
-
-# 3. return statement
-def multiply_numbers(a, b):
-    result = a * b
-    return result
-    print("This line is not executed!")
-
-
-result_of_multiplication = multiply_numbers(20, 5)
-print(result_of_multiplication)
-
-print(multiply_numbers(15, 2))
-
-# ============================================================================
-# 05-pep8.py
-# ============================================================================
-print(       'Bogdan'    ,    10
-
-
-
-
-             )
-
-def my_fn():
-    print(True)
-my_fn()
-
-# ============================================================================
 # 06-comments.py
 # ============================================================================
 # Single line comment
@@ -115,36 +68,24 @@ print(777)  # Printing 777 to the terminal
 print('Bogdan')  # Printing my name to the terminal
 
 # ============================================================================
-# 07-id.py
+# 05-pep8.py
 # ============================================================================
-my_name = 'Bogdan'
-print(id(my_name))
+print(       'Bogdan'    ,    10
 
-my_num = 777
 
-other_num = my_num
-print(id(my_num) == id(other_num))
 
-# ============================================================================
-# 08-type.py
-# ============================================================================
-my_num = 777
-print(type(my_num) == int)  # True
 
-print(type(int))
-print(type(str))
-print(type(bool))
-print(type(list))
-print(type(dict))
+
+
+             )
+
+def my_fn():
+    print(True)
+my_fn()
 
 # ============================================================================
-# 09-isinstance.py
+# PART 2: DATA TYPES
 # ============================================================================
-print(isinstance(777, int))
-print(isinstance(777, object))
-print(isinstance('Bogdan', str))
-print(isinstance('Bogdan', object))
-print(type(object))  # <class 'type'>
 
 # ============================================================================
 # 10-str.py
@@ -295,6 +236,38 @@ if is_available and my_name:
     print("Is available")
 
 # ============================================================================
+# 07-id.py
+# ============================================================================
+my_name = 'Bogdan'
+print(id(my_name))
+
+my_num = 777
+
+other_num = my_num
+print(id(my_num) == id(other_num))
+
+# ============================================================================
+# 08-type.py
+# ============================================================================
+my_num = 777
+print(type(my_num) == int)  # True
+
+print(type(int))
+print(type(str))
+print(type(bool))
+print(type(list))
+print(type(dict))
+
+# ============================================================================
+# 09-isinstance.py
+# ============================================================================
+print(isinstance(777, int))
+print(isinstance(777, object))
+print(isinstance('Bogdan', str))
+print(isinstance('Bogdan', object))
+print(type(object))  # <class 'type'>
+
+# ============================================================================
 # 16-magic-methods.py
 # ============================================================================
 print(dir(str))
@@ -311,6 +284,10 @@ print(my_num.__eq__(other_num))
 print(my_num == other_num)
 
 print(help(my_num.__add__))
+
+# ============================================================================
+# PART 3: DATA STRUCTURES
+# ============================================================================
 
 # ============================================================================
 # 17-lists.py
@@ -651,6 +628,47 @@ print(info)
 print(info_deepcopy)
 
 # ============================================================================
+# PART 4: FUNCTIONS
+# ============================================================================
+
+# ============================================================================
+# 04-functions.py
+# ============================================================================
+# 1. function declaration
+def hello(name):
+    print(name)
+    print("Hello, there!")
+    print("Hi there")
+
+
+hello("Bogdan")
+hello("Alice")
+
+
+# 2. function parameters and arguments
+def add_numbers(a, b):
+    sum = a + b
+    print(sum)
+
+
+add_numbers(5, 2)
+add_numbers(100, 50)
+add_numbers(8, 10.5)
+
+
+# 3. return statement
+def multiply_numbers(a, b):
+    result = a * b
+    return result
+    print("This line is not executed!")
+
+
+result_of_multiplication = multiply_numbers(20, 5)
+print(result_of_multiplication)
+
+print(multiply_numbers(15, 2))
+
+# ============================================================================
 # 26-objects-in-functions.py
 # ============================================================================
 # 1. Mutation of the external list in the function
@@ -960,6 +978,10 @@ dec_counter()
 print(counter)
 
 # ============================================================================
+# PART 5: OPERATORS
+# ============================================================================
+
+# ============================================================================
 # 36-prefix-operators.py
 # ============================================================================
 # 1. Prefix unary "-" operator
@@ -1193,6 +1215,10 @@ if my_list:
 my_list and print("List is not empty")
 
 # ============================================================================
+# PART 6: ADVANCED PYTHON FEATURES
+# ============================================================================
+
+# ============================================================================
 # 40-lambda.py
 # ============================================================================
 # 1. Regular function returns a lambda function
@@ -1233,133 +1259,6 @@ print('Even numbers', even_nums)
 
 odd_nums = list(filter(lambda num: num % 2 == 1, my_nums))
 print('Odd numbers', odd_nums)
-
-# ============================================================================
-# 41-try-except.py
-# ============================================================================
-# 1. Different except blocks
-try:
-    salary = int(input("Enter salary amount: "))
-    days_qty = int(input("Enter days quantity: "))
-    salary_per_day = round(salary / days_qty)
-    print(salary_per_day)
-except ValueError:
-    print("Cannot convert value to integer")
-except ZeroDivisionError:
-    print("Cannot divide by zero!")
-
-
-# 2. One except block with different error types
-try:
-    salary = int(input("Enter salary amount: "))
-    days_qty = int(input("Enter days quantity: "))
-    salary_per_day = round(salary / days_qty)
-    print(salary_per_day)
-except (ValueError, ZeroDivisionError) as e:
-    if type(e) == ValueError:
-        print(e)
-        print("Cannot convert value to int")
-    if type(e) == ZeroDivisionError:
-        print(e)
-        print("Cannot divide by zero")
-
-
-# 3. General exception class and different actions depending on the error type
-try:
-    salary = int(input("Enter salary amount: "))
-    days_qty = int(input("Enter days quantity: "))
-    salary_per_day = round(salary / days_qty)
-    print(salary_per_day)
-except Exception as e:
-    if type(e) == ValueError:
-        print(e)
-        print("Cannot convert value to int")
-    if type(e) == ZeroDivisionError:
-        print(e)
-        print("Cannot divide by zero")
-
-
-# 4. General exception class
-try:
-    salary = int(input("Enter salary amount: "))
-    days_qty = int(input("Enter days quantity: "))
-    salary_per_day = round(salary / days_qty)
-    print(salary_per_day)
-except Exception as e:
-    print(type(e))
-    print(e)
-    print(isinstance(e, Exception))
-    print(isinstance(e, ValueError))
-    print(isinstance(e, ZeroDivisionError))
-
-
-# 5. No error context (NOT RECOMMENDED)
-try:
-    salary = int(input("Enter salary amount: "))
-    days_qty = int(input("Enter days quantity: "))
-    salary_per_day = round(salary / days_qty)
-    print(salary_per_day)
-except:
-    print("Some error happened")
-
-
-# 6. else and finally blocks
-try:
-    salary = int(input("Enter salary amount: "))
-    days_qty = int(input("Enter days quantity: "))
-    salary_per_day = round(salary / days_qty)
-except ValueError as e:
-    print(e)
-    print("Cannot convert value to integer")
-except ZeroDivisionError as e:
-    print(e)
-    print("Cannot divide by zero!")
-else:
-    print("Result, salary per day: ", salary_per_day)
-finally:
-    print("Salary operation calculation complete")
-
-
-# 7. Handling file not found error
-try:
-    file = open("file.txt", "r")
-except FileNotFoundError as e:
-    print(e)
-else:
-    print("File is ready for reading")
-finally:
-    if 'file' in globals() and file and not file.closed:
-        file.close()
-        print("File was closed.")
-        print(file.closed)
-
-# ============================================================================
-# 42-raise.py
-# ============================================================================
-def contains_at_symbol(email):
-    return '@' in email
-
-
-def register_user(email: str, age: int):
-    if not isinstance(email, str):
-        raise TypeError("Email must be a string")
-
-    if not isinstance(age, int):
-        raise TypeError("Age must be an integer")
-
-    if not contains_at_symbol(email):
-        raise ValueError("Invalid email. Email must contain @ sign")
-
-    # Register user...
-    print("User was registered successfully")
-    return {'email': email, 'age': age}
-
-
-try:
-    registered_user = register_user('abc@abc.com', 10)
-    print(registered_user)
-except (TypeError, ValueError) as e:
-    print(e)
 
 # ============================================================================
 # 43-list-tuple-unpacking.py
@@ -1550,6 +1449,10 @@ user_settings = {'font_size': 20, 'show_avatar': True}
 merged_settings = default_settings | user_settings
 
 print(merged_settings)
+
+# ============================================================================
+# PART 7: CONTROL FLOW
+# ============================================================================
 
 # ============================================================================
 # 47-if.py
@@ -1896,6 +1799,10 @@ print("User registration complete.")
 print(current_usernames)
 
 # ============================================================================
+# PART 8: COMPREHENSIONS & GENERATORS
+# ============================================================================
+
+# ============================================================================
 # 55-comprehensions.py
 # ============================================================================
 # 1. List comprehension
@@ -2004,6 +1911,10 @@ for num in squares_gen:
         break
 
 # ============================================================================
+# PART 9: DECORATORS
+# ============================================================================
+
+# ============================================================================
 # 57-decorators.py
 # ============================================================================
 # 1. Syntax of the decorator function
@@ -2110,6 +2021,10 @@ try:
     print(sum_nums('5', 2))
 except ValueError as e:
     print(e)
+
+# ============================================================================
+# PART 10: OBJECT-ORIENTED PROGRAMMING
+# ============================================================================
 
 # ============================================================================
 # 58-classes.py
@@ -2519,9 +2434,397 @@ class PayPalPayment(Payment):
         pass
 
 # ============================================================================
+# PART 11: ERROR HANDLING
+# ============================================================================
+
+# ============================================================================
+# 41-try-except.py
+# ============================================================================
+# 1. Different except blocks
+try:
+    salary = int(input("Enter salary amount: "))
+    days_qty = int(input("Enter days quantity: "))
+    salary_per_day = round(salary / days_qty)
+    print(salary_per_day)
+except ValueError:
+    print("Cannot convert value to integer")
+except ZeroDivisionError:
+    print("Cannot divide by zero!")
+
+
+# 2. One except block with different error types
+try:
+    salary = int(input("Enter salary amount: "))
+    days_qty = int(input("Enter days quantity: "))
+    salary_per_day = round(salary / days_qty)
+    print(salary_per_day)
+except (ValueError, ZeroDivisionError) as e:
+    if type(e) == ValueError:
+        print(e)
+        print("Cannot convert value to int")
+    if type(e) == ZeroDivisionError:
+        print(e)
+        print("Cannot divide by zero")
+
+
+# 3. General exception class and different actions depending on the error type
+try:
+    salary = int(input("Enter salary amount: "))
+    days_qty = int(input("Enter days quantity: "))
+    salary_per_day = round(salary / days_qty)
+    print(salary_per_day)
+except Exception as e:
+    if type(e) == ValueError:
+        print(e)
+        print("Cannot convert value to int")
+    if type(e) == ZeroDivisionError:
+        print(e)
+        print("Cannot divide by zero")
+
+
+# 4. General exception class
+try:
+    salary = int(input("Enter salary amount: "))
+    days_qty = int(input("Enter days quantity: "))
+    salary_per_day = round(salary / days_qty)
+    print(salary_per_day)
+except Exception as e:
+    print(type(e))
+    print(e)
+    print(isinstance(e, Exception))
+    print(isinstance(e, ValueError))
+    print(isinstance(e, ZeroDivisionError))
+
+
+# 5. No error context (NOT RECOMMENDED)
+try:
+    salary = int(input("Enter salary amount: "))
+    days_qty = int(input("Enter days quantity: "))
+    salary_per_day = round(salary / days_qty)
+    print(salary_per_day)
+except:
+    print("Some error happened")
+
+
+# 6. else and finally blocks
+try:
+    salary = int(input("Enter salary amount: "))
+    days_qty = int(input("Enter days quantity: "))
+    salary_per_day = round(salary / days_qty)
+except ValueError as e:
+    print(e)
+    print("Cannot convert value to integer")
+except ZeroDivisionError as e:
+    print(e)
+    print("Cannot divide by zero!")
+else:
+    print("Result, salary per day: ", salary_per_day)
+finally:
+    print("Salary operation calculation complete")
+
+
+# 7. Handling file not found error
+try:
+    file = open("file.txt", "r")
+except FileNotFoundError as e:
+    print(e)
+else:
+    print("File is ready for reading")
+finally:
+    if 'file' in globals() and file and not file.closed:
+        file.close()
+        print("File was closed.")
+        print(file.closed)
+
+# ============================================================================
+# 42-raise.py
+# ============================================================================
+def contains_at_symbol(email):
+    return '@' in email
+
+
+def register_user(email: str, age: int):
+    if not isinstance(email, str):
+        raise TypeError("Email must be a string")
+
+    if not isinstance(age, int):
+        raise TypeError("Age must be an integer")
+
+    if not contains_at_symbol(email):
+        raise ValueError("Invalid email. Email must contain @ sign")
+
+    # Register user...
+    print("User was registered successfully")
+    return {'email': email, 'age': age}
+
+
+try:
+    registered_user = register_user('abc@abc.com', 10)
+    print(registered_user)
+except (TypeError, ValueError) as e:
+    print(e)
+
+# ============================================================================
+# PART 12: MODULES & PACKAGES
+# ============================================================================
+
+# ============================================================================
 # 64-modules.py
 # ============================================================================
 # Check folder 63-modules
+
+# ============================================================================
+# 63-modules folder files (commented out as they require separate files)
+# ============================================================================
+# The following module examples are commented out as they require separate files
+# to function properly. Refer to the 63-modules folder for the complete examples.
+
+# # ============================================================================
+# # 63-modules/01-entire-module/main.py
+# # ============================================================================
+# # import utils
+# #
+# # print(utils)
+# # print(type(utils))
+# # print(dir(utils))
+# #
+# # print(utils.my_name)
+# # print(utils.hello(utils.my_name))
+
+# # ============================================================================
+# # 63-modules/01-entire-module/utils.py
+# # ============================================================================
+# # def hello(name):
+# #     return f"Hello {name}"
+# #
+# #
+# # my_name = 'Bogdan'
+
+# # ============================================================================
+# # 63-modules/02-rename-module/main.py
+# # ============================================================================
+# # import utils as u
+# #
+# # print(u)
+# # print(type(u))
+# # print(dir(u))
+# #
+# # print(u.my_name)
+# # print(u.hello(u.my_name))
+
+# # ============================================================================
+# # 63-modules/02-rename-module/utils.py
+# # ============================================================================
+# # def hello(name):
+# #     return f"Hello {name}"
+# #
+# #
+# # my_name = 'Bogdan'
+
+# # ============================================================================
+# # 63-modules/03-variables/main.py
+# # ============================================================================
+# # from utils import hello, my_name as name
+# #
+# # print(hello('Bogdan'))
+# # print(name)
+# #
+# # print(dir())
+
+# # ============================================================================
+# # 63-modules/03-variables/utils.py
+# # ============================================================================
+# # def hello(name):
+# #     return f"Hello {name}"
+# #
+# #
+# # my_name = 'Bogdan'
+
+# # ============================================================================
+# # 63-modules/04-everything/main.py
+# # ============================================================================
+# # from utils import *
+# #
+# # my_name = 'Alice'
+# #
+# # print(dir())
+# # print(hello('Bogdan'))
+# # print(my_name)
+
+# # ============================================================================
+# # 63-modules/04-everything/utils.py
+# # ============================================================================
+# # def hello(name):
+# #     return f"Hello {name}"
+# #
+# #
+# # my_name = 'Bogdan'
+
+# # ============================================================================
+# # 63-modules/05-different-modules/main.py
+# # ============================================================================
+# # from other import sum_fn
+# # import utils as my_utils
+# #
+# # print(sum_fn(10, 2))
+# #
+# # print(my_utils.hello('Bogdan'))
+# # print(my_utils.my_name)
+# #
+# #
+# # def main():
+# #     print("Running main block of code")
+
+# # ============================================================================
+# # 63-modules/05-different-modules/other.py
+# # ============================================================================
+# # import utils
+# #
+# # print(utils.hello('Bogdan'))
+# #
+# #
+# # def sum_fn(a, b):
+# #     return a + b
+
+# # ============================================================================
+# # 63-modules/05-different-modules/utils.py
+# # ============================================================================
+# # def hello(name):
+# #     return f"Hello {name}"
+# #
+# #
+# # print('UTILS')
+# #
+# # my_name = 'Bogdan'
+
+# # ============================================================================
+# # 63-modules/06-subfolders/main.py
+# # ============================================================================
+# # from src.other import sum_fn
+# # from src import utils as my_utils
+# #
+# # print(sum_fn(10, 2))
+# #
+# # print(my_utils.hello('Bogdan'))
+# # print(my_utils.my_name)
+# #
+# #
+# # def main():
+# #     print("Running main block of code")
+
+# # ============================================================================
+# # 63-modules/06-subfolders/src/other.py
+# # ============================================================================
+# # import utils
+# #
+# # print(utils.hello('Bogdan'))
+# #
+# #
+# # def sum_fn(a, b):
+# #     return a + b
+
+# # ============================================================================
+# # 63-modules/06-subfolders/src/utils.py
+# # ============================================================================
+# # def hello(name):
+# #     return f"Hello {name}"
+# #
+# #
+# # print('UTILS')
+# #
+# # my_name = 'Bogdan'
+
+# # ============================================================================
+# # 63-modules/07-built-in-modules/main.py
+# # ============================================================================
+# # from math import pi
+# #
+# # print(pi)
+
+# # ============================================================================
+# # 63-modules/08-what-is-__name__/main.py
+# # ============================================================================
+# # import other
+# #
+# # print("MODULE NAME: MAIN")
+# #
+# # # print(dir())
+# # # print(__name__)
+# # # print(type(__name__))
+# #
+# # print('MAIN', __name__)
+# # print('MAIN', __name__ == '__main__')
+# #
+# # if __name__ == '__main__':
+# #     print('MAIN:', 'ONLY IF RUN DIRECTLY')
+
+# # ============================================================================
+# # 63-modules/08-what-is-__name__/other.py
+# # ============================================================================
+# # print("MODULE NAME: OTHER")
+# #
+# # print('OTHER', __name__)
+# # print('OTHER', __name__ == '__main__')
+# #
+# # if __name__ == '__main__':
+# #     print('OTHER:', 'ONLY IF RUN DIRECTLY')
+
+# # ============================================================================
+# # 63-modules/09-if-__name__/main.py
+# # ============================================================================
+# # def initialize():
+# #     # Code to initialize application and perform setup
+# #     print("Initializing...")
+# #
+# #
+# # def main():
+# #     # Code for main app functionality
+# #     print("Running main functionality...")
+# #
+# #
+# # if __name__ == '__main__':
+# #     initialize()
+# #     main()
+
+# # ============================================================================
+# # 63-modules/09-if-__name__/other.py
+# # ============================================================================
+# # from main import initialize
+# #
+# # initialize()
+
+# # ============================================================================
+# # 63-modules/10-packages/main.py
+# # ============================================================================
+# # from my_package.module_one import my_num
+# # from my_package.module_two import my_name
+# #
+# # print(my_num)
+# # print(my_name)
+# #
+# # # from my_package import module_one, module_two
+# # #
+# # # print(module_one.my_num)
+# # # print(module_two.my_name)
+
+# # ============================================================================
+# # 63-modules/10-packages/my_package/__init__.py
+# # ============================================================================
+# # (empty file)
+
+# # ============================================================================
+# # 63-modules/10-packages/my_package/module_one.py
+# # ============================================================================
+# # my_num = 10
+
+# # ============================================================================
+# # 63-modules/10-packages/my_package/module_two.py
+# # ============================================================================
+# # my_name = 'Bogdan'
+
+# ============================================================================
+# PART 13: STANDARD LIBRARY - DATA PROCESSING
+# ============================================================================
 
 # ============================================================================
 # 65-json.py
@@ -2602,6 +2905,98 @@ my_dict_json = json.dumps(my_dict, indent=2)
 
 file = open('test.txt', 'w')
 file.write(my_dict_json)
+
+# ============================================================================
+# 70-csv.py
+# ============================================================================
+import csv
+
+with open('test.csv', 'w') as csv_file:
+    writer = csv.writer(csv_file, delimiter=';')
+    writer.writerow(['user_id', 'user_name', 'comments_qty'])
+    writer.writerow([5423, 'bogdan', 1300])
+    writer.writerow([5425, 'alice', 830])
+    writer.writerow([7245, 'bob', 970])
+
+with open('test.csv') as csv_file:
+    reader = csv.reader(csv_file, delimiter=';')
+    for index, line in enumerate(reader):
+        print(index, line)
+        if index == 0:
+            header = line
+        else:
+            for idx, val in enumerate(line):
+                print(f"{header[idx]}: {val}")
+
+# ============================================================================
+# 77-re.py
+# ============================================================================
+import re
+
+# 1. Searching using re "search"
+my_string = "My name is Bogdan."
+
+res = re.search(r'^M.*Bogdan\.$', my_string)
+print(res.span())
+print(res.start())
+print(res.end())
+print(res)
+
+
+# 2. Creating patterns using re "compile"
+my_string = "My name is Bogdan."
+
+my_pattern = re.compile(r'B....n')
+print(my_pattern)
+print(type(my_pattern))
+
+print(my_pattern.search(my_string))
+print(my_pattern.search("Hello, this is Boooon"))
+
+print(my_pattern.match(my_string))
+print(my_pattern.match('Boooon'))
+print(my_pattern.match('Bogdan!!!'))
+
+print(my_pattern.findall("My name is Bogdan. Hello Bogdan"))
+
+
+# 3. Validating an email using re
+def validate_email(email):
+    email_regexp = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    email_pattern = re.compile(email_regexp)
+    is_valid = bool(email_pattern.match(email))
+    return email, is_valid
+
+
+print(validate_email('bogdan@gmail.com'))  # Valid
+print(validate_email('bogdangmail.com'))  # Invalid
+print(validate_email('bogdan@gmailcom'))  # Invalid
+
+
+# 4. Substitution using re "sub"
+regexp = r'bad'
+
+my_text = "Something bad is here. bad situation. bad words"
+
+changed_text = re.sub(regexp, '*', my_text)
+print(changed_text)
+
+
+# 5. Splitting the string using re "split"
+my_text = "This is    a very    long    not formatted    sentence"
+print(my_text)
+
+regexp = r'\s+'
+
+words = re.split(regexp, my_text)
+print(words)
+print(' '.join(words))
+
+print(my_text.split(' '))
+
+# ============================================================================
+# PART 14: STANDARD LIBRARY - FILE & DIRECTORY OPERATIONS
+# ============================================================================
 
 # ============================================================================
 # 66-files-dirs-os.py
@@ -2821,26 +3216,8 @@ with ZipFile('my-files.zip') as zip_file:
     # zip_file.extract('my-files/first.txt', 'individual-files')
 
 # ============================================================================
-# 70-csv.py
+# PART 15: STANDARD LIBRARY - DATE & TIME
 # ============================================================================
-import csv
-
-with open('test.csv', 'w') as csv_file:
-    writer = csv.writer(csv_file, delimiter=';')
-    writer.writerow(['user_id', 'user_name', 'comments_qty'])
-    writer.writerow([5423, 'bogdan', 1300])
-    writer.writerow([5425, 'alice', 830])
-    writer.writerow([7245, 'bob', 970])
-
-with open('test.csv') as csv_file:
-    reader = csv.reader(csv_file, delimiter=';')
-    for index, line in enumerate(reader):
-        print(index, line)
-        if index == 0:
-            header = line
-        else:
-            for idx, val in enumerate(line):
-                print(f"{header[idx]}: {val}")
 
 # ============================================================================
 # 71-datetime.py
@@ -2950,6 +3327,30 @@ print(my_list[1000000])
 end_time = time.time()
 
 print('Time spent:', round(end_time - start_time, 2))
+
+# ============================================================================
+# PART 16: STANDARD LIBRARY - MATH & RANDOM
+# ============================================================================
+
+# ============================================================================
+# 75-math.py
+# ============================================================================
+import math
+
+print(math.e)
+print(math.pi)
+
+print(math.sqrt(225))
+print(math.sqrt(230.5))
+
+print(math.factorial(10))  # 1 * 2 * 3 * ... * 10
+
+print(math.log10(100))
+print(math.log10(1000))
+print(math.log2(8))
+
+print(math.floor(10.7))
+print(round(10.7))
 
 # ============================================================================
 # 73-random.py
@@ -3084,26 +3485,6 @@ print(generate_special_password(4))
 print(counter)
 
 # ============================================================================
-# 75-math.py
-# ============================================================================
-import math
-
-print(math.e)
-print(math.pi)
-
-print(math.sqrt(225))
-print(math.sqrt(230.5))
-
-print(math.factorial(10))  # 1 * 2 * 3 * ... * 10
-
-print(math.log10(100))
-print(math.log10(1000))
-print(math.log2(8))
-
-print(math.floor(10.7))
-print(round(10.7))
-
-# ============================================================================
 # 76-recursive-functions.py
 # ============================================================================
 import math
@@ -3125,70 +3506,84 @@ print(calc_factorial(10))
 print(math.factorial(10))  # 10 * 9 * 8 ... 2 * 1
 
 # ============================================================================
-# 77-re.py
+# 81-array.py
 # ============================================================================
-import re
+from array import array
 
-# 1. Searching using re "search"
-my_string = "My name is Bogdan."
+# 1. Create array, add and remove elements
+my_int_array = array('i', [10, 4, 3, 7, 9, 15])
 
-res = re.search(r'^M.*Bogdan\.$', my_string)
-print(res.span())
-print(res.start())
-print(res.end())
-print(res)
-
-
-# 2. Creating patterns using re "compile"
-my_string = "My name is Bogdan."
-
-my_pattern = re.compile(r'B....n')
-print(my_pattern)
-print(type(my_pattern))
-
-print(my_pattern.search(my_string))
-print(my_pattern.search("Hello, this is Boooon"))
-
-print(my_pattern.match(my_string))
-print(my_pattern.match('Boooon'))
-print(my_pattern.match('Bogdan!!!'))
-
-print(my_pattern.findall("My name is Bogdan. Hello Bogdan"))
+print(my_int_array)
+print(type(my_int_array))
+print(dir(my_int_array))
+print(my_int_array[2])
+my_int_array.append(20)
+print(my_int_array)
+# my_int_array.append(10.5)
+my_int_array.append(True)
+print(my_int_array)
+my_int_array.pop(0)
+print(my_int_array)
 
 
-# 3. Validating an email using re
-def validate_email(email):
-    email_regexp = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-    email_pattern = re.compile(email_regexp)
-    is_valid = bool(email_pattern.match(email))
-    return email, is_valid
+# 2. Save array to the file and load from the file
+my_int_array = array('i', [10, 4, 3, 7, 9, 15])
+
+with open('my_array.bin', 'wb') as file:
+    my_int_array.tofile(file)
+
+imported_array = array('i')
+with open('my_array.bin', 'rb') as file:
+    imported_array.fromfile(file, 3)
+    print(imported_array)
+
+# ============================================================================
+# PART 17: STANDARD LIBRARY - SYSTEM & NETWORK
+# ============================================================================
+
+# ============================================================================
+# 82-sys.py
+# ============================================================================
+import sys
+
+print(sys.argv)
+print(sys.version_info)
+print(sys.version)
+
+if len(sys.argv) < 3:
+    raise IOError("You must provide username and password!")
+
+# username = sys.argv[1]
+# password = sys.argv[2]
+# print(username, password)
+
+_, username, password = sys.argv
+print(username, password)
+
+# ============================================================================
+# 83-webbrowser.py
+# ============================================================================
+import webbrowser
 
 
-print(validate_email('bogdan@gmail.com'))  # Valid
-print(validate_email('bogdangmail.com'))  # Invalid
-print(validate_email('bogdan@gmailcom'))  # Invalid
+def search_on_search_engine(query: str, search_engine: str):
+    search_engines = {
+        'google': 'https://www.google.com/search?q={}',
+        'yahoo': 'https://search.yahoo.com/search?p={}',
+        'bing': 'https://www.bing.com/search?q={}'
+    }
+
+    if search_engine not in search_engines:
+        print("Unsupported search engine:", search_engine)
+        return
+
+    search_url = search_engines[search_engine].format(query)
+
+    webbrowser.open(search_url)
 
 
-# 4. Substitution using re "sub"
-regexp = r'bad'
-
-my_text = "Something bad is here. bad situation. bad words"
-
-changed_text = re.sub(regexp, '*', my_text)
-print(changed_text)
-
-
-# 5. Splitting the string using re "split"
-my_text = "This is    a very    long    not formatted    sentence"
-print(my_text)
-
-regexp = r'\s+'
-
-words = re.split(regexp, my_text)
-print(words)
-print(' '.join(words))
-
-print(my_text.split(' '))
+search_on_search_engine("Python programming", 'google')
+search_on_search_engine("Java programming", 'bing')
 
 # ============================================================================
 # 78-smtplib.py
@@ -3314,85 +3709,8 @@ with sqlite3.connect(DB_NAME) as sqlite_conn:
     print(courses)
 
 # ============================================================================
-# 81-array.py
+# PART 18: GAME DEVELOPMENT (PYGAME)
 # ============================================================================
-from array import array
-
-# 1. Create array, add and remove elements
-my_int_array = array('i', [10, 4, 3, 7, 9, 15])
-
-print(my_int_array)
-print(type(my_int_array))
-print(dir(my_int_array))
-print(my_int_array[2])
-my_int_array.append(20)
-print(my_int_array)
-# my_int_array.append(10.5)
-my_int_array.append(True)
-print(my_int_array)
-my_int_array.pop(0)
-print(my_int_array)
-
-
-# 2. Save array to the file and load from the file
-my_int_array = array('i', [10, 4, 3, 7, 9, 15])
-
-with open('my_array.bin', 'wb') as file:
-    my_int_array.tofile(file)
-
-imported_array = array('i')
-with open('my_array.bin', 'rb') as file:
-    imported_array.fromfile(file, 3)
-    print(imported_array)
-
-# ============================================================================
-# 82-sys.py
-# ============================================================================
-import sys
-
-print(sys.argv)
-print(sys.version_info)
-print(sys.version)
-
-if len(sys.argv) < 3:
-    raise IOError("You must provide username and password!")
-
-# username = sys.argv[1]
-# password = sys.argv[2]
-# print(username, password)
-
-_, username, password = sys.argv
-print(username, password)
-
-# ============================================================================
-# 83-webbrowser.py
-# ============================================================================
-import webbrowser
-
-
-def search_on_search_engine(query: str, search_engine: str):
-    search_engines = {
-        'google': 'https://www.google.com/search?q={}',
-        'yahoo': 'https://search.yahoo.com/search?p={}',
-        'bing': 'https://www.bing.com/search?q={}'
-    }
-
-    if search_engine not in search_engines:
-        print("Unsupported search engine:", search_engine)
-        return
-
-    search_url = search_engines[search_engine].format(query)
-
-    webbrowser.open(search_url)
-
-
-search_on_search_engine("Python programming", 'google')
-search_on_search_engine("Java programming", 'bing')
-
-# ============================================================================
-# 84-django.py
-# ============================================================================
-# Check folder 83-django
 
 # ============================================================================
 # 85-pygame-rectangle.py
@@ -3546,248 +3864,10 @@ pygame.quit()
 # Check folder 87-pygame-shooter-oop
 
 # ============================================================================
-# 63-modules/01-entire-module/main.py
+# 84-django.py
 # ============================================================================
-# import utils
-#
-# print(utils)
-# print(type(utils))
-# print(dir(utils))
-#
-# print(utils.my_name)
-# print(utils.hello(utils.my_name))
+# Check folder 83-django
 
 # ============================================================================
-# 63-modules/01-entire-module/utils.py
-# ============================================================================
-# def hello(name):
-#     return f"Hello {name}"
-#
-#
-# my_name = 'Bogdan'
-
-# ============================================================================
-# 63-modules/02-rename-module/main.py
-# ============================================================================
-# import utils as u
-#
-# print(u)
-# print(type(u))
-# print(dir(u))
-#
-# print(u.my_name)
-# print(u.hello(u.my_name))
-
-# ============================================================================
-# 63-modules/02-rename-module/utils.py
-# ============================================================================
-# def hello(name):
-#     return f"Hello {name}"
-#
-#
-# my_name = 'Bogdan'
-
-# ============================================================================
-# 63-modules/03-variables/main.py
-# ============================================================================
-# from utils import hello, my_name as name
-#
-# print(hello('Bogdan'))
-# print(name)
-#
-# print(dir())
-
-# ============================================================================
-# 63-modules/03-variables/utils.py
-# ============================================================================
-# def hello(name):
-#     return f"Hello {name}"
-#
-#
-# my_name = 'Bogdan'
-
-# ============================================================================
-# 63-modules/04-everything/main.py
-# ============================================================================
-# from utils import *
-#
-# my_name = 'Alice'
-#
-# print(dir())
-# print(hello('Bogdan'))
-# print(my_name)
-
-# ============================================================================
-# 63-modules/04-everything/utils.py
-# ============================================================================
-# def hello(name):
-#     return f"Hello {name}"
-#
-#
-# my_name = 'Bogdan'
-
-# ============================================================================
-# 63-modules/05-different-modules/main.py
-# ============================================================================
-# from other import sum_fn
-# import utils as my_utils
-#
-# print(sum_fn(10, 2))
-#
-# print(my_utils.hello('Bogdan'))
-# print(my_utils.my_name)
-#
-#
-# def main():
-#     print("Running main block of code")
-
-# ============================================================================
-# 63-modules/05-different-modules/other.py
-# ============================================================================
-# import utils
-#
-# print(utils.hello('Bogdan'))
-#
-#
-# def sum_fn(a, b):
-#     return a + b
-
-# ============================================================================
-# 63-modules/05-different-modules/utils.py
-# ============================================================================
-# def hello(name):
-#     return f"Hello {name}"
-#
-#
-# print('UTILS')
-#
-# my_name = 'Bogdan'
-
-# ============================================================================
-# 63-modules/06-subfolders/main.py
-# ============================================================================
-# from src.other import sum_fn
-# from src import utils as my_utils
-#
-# print(sum_fn(10, 2))
-#
-# print(my_utils.hello('Bogdan'))
-# print(my_utils.my_name)
-#
-#
-# def main():
-#     print("Running main block of code")
-
-# ============================================================================
-# 63-modules/06-subfolders/src/other.py
-# ============================================================================
-# import utils
-#
-# print(utils.hello('Bogdan'))
-#
-#
-# def sum_fn(a, b):
-#     return a + b
-
-# ============================================================================
-# 63-modules/06-subfolders/src/utils.py
-# ============================================================================
-# def hello(name):
-#     return f"Hello {name}"
-#
-#
-# print('UTILS')
-#
-# my_name = 'Bogdan'
-
-# ============================================================================
-# 63-modules/07-built-in-modules/main.py
-# ============================================================================
-# from math import pi
-#
-# print(pi)
-
-# ============================================================================
-# 63-modules/08-what-is-__name__/main.py
-# ============================================================================
-# import other
-#
-# print("MODULE NAME: MAIN")
-#
-# # print(dir())
-# # print(__name__)
-# # print(type(__name__))
-#
-# print('MAIN', __name__)
-# print('MAIN', __name__ == '__main__')
-#
-# if __name__ == '__main__':
-#     print('MAIN:', 'ONLY IF RUN DIRECTLY')
-
-# ============================================================================
-# 63-modules/08-what-is-__name__/other.py
-# ============================================================================
-# print("MODULE NAME: OTHER")
-#
-# print('OTHER', __name__)
-# print('OTHER', __name__ == '__main__')
-#
-# if __name__ == '__main__':
-#     print('OTHER:', 'ONLY IF RUN DIRECTLY')
-
-# ============================================================================
-# 63-modules/09-if-__name__/main.py
-# ============================================================================
-# def initialize():
-#     # Code to initialize application and perform setup
-#     print("Initializing...")
-#
-#
-# def main():
-#     # Code for main app functionality
-#     print("Running main functionality...")
-#
-#
-# if __name__ == '__main__':
-#     initialize()
-#     main()
-
-# ============================================================================
-# 63-modules/09-if-__name__/other.py
-# ============================================================================
-# from main import initialize
-#
-# initialize()
-
-# ============================================================================
-# 63-modules/10-packages/main.py
-# ============================================================================
-# from my_package.module_one import my_num
-# from my_package.module_two import my_name
-#
-# print(my_num)
-# print(my_name)
-#
-# # from my_package import module_one, module_two
-# #
-# # print(module_one.my_num)
-# # print(module_two.my_name)
-
-# ============================================================================
-# 63-modules/10-packages/my_package/__init__.py
-# ============================================================================
-# (empty file)
-
-# ============================================================================
-# 63-modules/10-packages/my_package/module_one.py
-# ============================================================================
-# my_num = 10
-
-# ============================================================================
-# 63-modules/10-packages/my_package/module_two.py
-# ============================================================================
-# my_name = 'Bogdan'
-
-# ============================================================================
-# END OF COMBINED FILE
+# END OF COURSE ORDERED FILE
 # ============================================================================
