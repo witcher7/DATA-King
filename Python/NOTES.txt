@@ -12,3 +12,17 @@ print(name)
 print(age)
 print(height)
 print(is_student)
+
+## TYPE CONVERSION
+age = str(age)
+print(type(age))
+print("Age is: " + age)
+print(f"Age is: {age}")
+
+# STATIC TYPING VS DYNAMIC TYPING
+# STATIC TYPING: Type is known at compile time
+# DYNAMIC TYPING: Type is known at runtime
+for example in python, the type is known at runtime
+b = 5
+b = "hello"
+print(b)
