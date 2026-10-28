@@ -137,3 +137,80 @@ for i in range(10):
     if i == 5:
         break
     print(i)
+
+
+
+## LISTS 
+LISTS are mutable
+Lists are ordered
+Lists are indexed
+Lists allow duplicates
+can store different data types (Heterogeneous)
+
+a = [1, 2, 3, 4, 5]
+print(a)
+print(type(a))
+
+a[0] = 10
+print(a)
+
+a.append(6)
+print(a)
+
+a.insert(1, 7)
+print(a)
+
+a.remove(7)
+print(a)
+
+a.pop()
+print(a)
+
+a.pop(0)
+print(a)
+
+a.clear()
+print(a)
+
+a.sort()
+print(a)
+
+a.reverse()
+print(a)
+
+a.count(1)
+print(a)
+
+a.copy()
+print(a)
+
+## SLICING LISTS
+a = [1, 2, 3, 4, 5]
+print(a[0:3])
+print(a[0:])
+print(a[:3])
+print(a[:])
+print(a[-1])
+print(a[-2])
+
+###
+QUESTIONS 
+Practice questions on lists
+Find largest element in a list
+Find second largest element in a list
+Find sum of elements in a list
+Find average of elements in a list
+Find product of elements in a list
+Find lowest number in a list
+Reverse a list
+Remove duplicates from a list
+
+
+## LIST COMPREHENSION
+it is a concise way to create lists
+
+a = [12, 23, 34, 45, 56]
+l = []
+for i in a:
+    l.append(i)
+print(l)
