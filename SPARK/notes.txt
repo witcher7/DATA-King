@@ -1,0 +1,24 @@
+What is Spark?
+It is a general purpose in memory computing framework/Engine
+
+Data Cleaning -> PIG
+Data Processing -> HIVE
+ML Operations -> MLlib / Mahout
+Graphs -> GraphX
+
+SPARK --> EACH AND EVERYT OPERATION WE CAN PERFORM OR DO IN SPARK ITSELF
+DATA CLEANING
+SQL
+SPARK MLLIB
+SPARK STREAMING
+
+HADOOP VS SPARK
+HADOOP -> DISK BASED
+hadoop provide 3 components
+1. HDFS (Distributed File System)
+2. YARN (Resource Manager)
+3. MapReduce (Processing Model) /Computation
+
+
+
+SPARK -> IN MEMORY
