@@ -50,3 +50,54 @@ Benefits of Spark:
 8. Cost-Effective
 9. Scalable
 10. Flexible
+
+
+## SPARK ARCHITECTURE
+It follows Master-Slave Architecture
+A cluster has multiple nodes and each node has a role of master or slave
+Spark distributes the data and computations across multiple nodes in the cluster,
+allows parallel processing
+
+one of the node acts as a master node and the rest are slave nodes
+                                          -------- WORKER NODE
+DRIVER PROGRAM                           |          EXECUTOR | CACHE
+SPARK CONTEXT  ----------> CLUSTER MANAGER            TASK     TASK 
+                                         |
+                                         |--------WORKER NODE 
+                                                 EXECUTOR | CACHE
+                                                 TASK     TASK
+When a user submits an application, the cluster manager allocates resources and starts executors on worker nodes.
+one node acts as a driver node and the rest are worker nodes.
+a resource manager is responsible for allocating resources which will be installed on each node.
+
+for example we have 10 nodes in a cluster
+each node has a executor installed on it.
+having 64 gb ram and 16 core per node
+
+Total ram = 10 * 64 = 640 gb
+Total cores = 10 * 16 = 160 cores
+suppose we need a driver with 8 gb ram and 2 cores and we need 5 executors with 16 gb ram and 4 cores each
+remaining resources = 640 - 8 - (5 * 16) = 640 - 8 - 80 = 552 gb ram
+remaining cores = 160 - 2 - (5 * 4) = 160 - 2 - 20 = 138 cores
+
+
+Driver program calls the main application
+SparkContext is created which is the entry point of spark functionality
+It would communicate with cluster manager to request resources (CPU, Memory) whose job is to allocate executors in worker nodes
+Cluster manager will allocate resources to the driver program
+
+Driver has components like DAG Scheduler, Task Scheduler, and Job Scheduler
+Cluster Manager would send status and details of executors to the driver program
+Then driver would schedule job. It would take RDD(resilient distributed dataset) and break it into tasks and schedule them on executors
+Translate into execution graph called DAG (Directed Acyclic Graph)
+
+
+RDD 
+Resilient Distributed Dataset
+It is the main object in Spark
+It is an immutable distributed collection of elements
+It is fault-tolerant
+It is lazily evaluated
+The dataset is nothing but the data that we provided.
+The distribution means the input data is stored across all worker nodes.
+Resilient means if any data is lost, it can be recovered from the original source.
