@@ -20,5 +20,33 @@ hadoop provide 3 components
 3. MapReduce (Processing Model) /Computation
 
 
-
 SPARK -> IN MEMORY
+It is used only for computation just like MAPREDUCE in HADOOP
+Spark does computing in RAM only
+Spark is faster than MapReduce
+
+Multiple INPUT/OUTPUT happens in HADOOP
+MR1  MR2  MR3 
+ \ \ \
+  \ \ \
+   \ \ \
+    [HDFS]
+
+V1 --> V2 --> V3 --> V4
+|                    |
+|                    |
+|                    |
+[HDFS] ---------------
+Only 2 times IO operations happens in Spark
+
+Benefits of Spark:
+1. In-Memory Computing
+2. Faster than MapReduce
+3. Unified Engine (Batch, Streaming, ML, Graphs)
+4. Rich APIs (Python, Scala, Java, R)
+5. Real-time Processing
+6. Fault Tolerance
+7. Easy to Use
+8. Cost-Effective
+9. Scalable
+10. Flexible
