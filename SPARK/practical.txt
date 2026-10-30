@@ -36,4 +36,9 @@ flight_df = spark.read.format("csv").option("header", "false").load("path")
 flight_df.show()
 flight_df.count()
 flight_df.printSchema()
+flight_df_header = spark.read.format("csv") \
+    .option("header","true") \
+    .load("file:/Workspace/Users/gulati.r7121@gmail.com/Drafts/myflights.csv")
+
+flight_df_header.printSchema()
 
