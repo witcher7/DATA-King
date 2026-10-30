@@ -22,6 +22,37 @@ ISSUES
 - Storage
 - Processing --RAM,CPU
 
+
+
+HADOOP VS SPARK
+
+> Hadoop is slower than spark because it uses disk for processing
+It writes the data disk back and forth and read again from disk to in-memory
+> Build for batch data processing
+> Use kerberos and ACL for security
+
+> Spark is faster than Hadoop because it uses RAM for processing
+> Build for real-time, streaming and interactive data processing
+> Spark has less security compared to Hadoop as it was not designed with security in mind
+> Uses DAG to provide fault tolerance
+
+
+## SPARK ECO SYSTEM 
+
+DATAFRAME    SPARK STREAMING   MLLIB   GRAPHx
+SPARK SQL 
+
+SPARKCORE 
+  [PYTHON, SCALA, JAVA, R]
+
+SPARK ENGINE
+|
+|
+V
+Cluster Manager
+[YARN, K8s, Standalone]
+
+
 ## MONOLITHIC VS DISTRIBUTED
 Vertical Scaling (Monolithic) vs Horizontal Scaling (Distributed)
 Expensive vs Cost-Effective
