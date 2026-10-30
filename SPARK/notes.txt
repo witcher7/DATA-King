@@ -8,9 +8,20 @@ Helps in parallel data processing
 Big Data:
 - Volume (How much data?)
 - Velocity (How fast data is generated?)
-- Variety (What type of data?)
-- Veracity (How reliable is the data?)
+- Variety (What type of data?) --> structured, semi-structured, unstructured
+- Veracity (How reliable is the data?) --> accuracy, consistency, trustworthiness
 - Value (What business value can be derived?)
+
+ETL -> Extract, Transform, Load
+
+ AFTER DATA LAKE 
+ELT -> Extract, Load, Transform
+
+
+ISSUES 
+- Storage
+- Processing --RAM,CPU
+
 
 
 
