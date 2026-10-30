@@ -22,7 +22,11 @@ ISSUES
 - Storage
 - Processing --RAM,CPU
 
-
+## MONOLITHIC VS DISTRIBUTED
+Vertical Scaling (Monolithic) vs Horizontal Scaling (Distributed)
+Expensive vs Cost-Effective
+Low Availability vs High Availability
+Single Point of Failure vs Fault Tolerance
 
 
 Data Cleaning -> PIG
