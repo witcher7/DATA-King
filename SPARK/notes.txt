@@ -1,5 +1,8 @@
 What is Spark?
 It is a general purpose in memory computing framework/Engine
+Helps in parallel data processing
+> Spark does not store data as it is processed in RAM
+> it connects different data sources and processes them in parallel
 
 Data Cleaning -> PIG
 Data Processing -> HIVE
