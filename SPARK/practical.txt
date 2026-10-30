@@ -1,0 +1,30 @@
+# Core structure
+Dataframereader.format("csv")
+               .load("path")
+               .option("header", "true")
+               .schema()
+
+format ==> Date file format
+   CSV,JSON,PARQUET,AVRO,JDBC,TABLE
+
+option => inferSchema => true/false
+         => header => true/false
+         => mode 
+
+Schema => manual schema =>
+           StructType, StructField
+
+DataframeReader API 
+       -> HOW TO ACCESS ?
+         -> spark.read
+         -> spark.read.format("csv")
+         -> spark.read.option("header", "true")
+         -> spark.read.option("inferSchema", "true")
+         -> spark.read.option("mode", "DROPMALFORMED"/"PERMISSIVE"/"FAILFAST")
+         -> spark.read.schema("schema")
+         -> spark.read.load("path")
+
+FailFast => throws exception if there is a bad record
+DropMalformed => drops the bad records
+Permissive => sets all the fields to null if there is a bad record
+-> Permissive is default mode
