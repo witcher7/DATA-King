@@ -42,3 +42,20 @@ flight_df_header = spark.read.format("csv") \
 
 flight_df_header.printSchema()
 
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
+
+schema = StructType([
+    StructField("ID", IntegerType(), True),
+    StructField("name", StringType(), True),
+    StructField("age", IntegerType(), True),
+    StructField("salary", DoubleType(), True)
+])
+
+flight_df_header_schema = spark.read.format("csv") \
+    .option("header","false") \
+    .option("skipRows",1) \
+    .option("inferSchema","false") \
+    .schema(schema) \
+    .load("file:/Workspace/Users/gulati.r7121@gmail.com/Drafts/myflights.csv")
+
+flight_df_header_schema.printSchema()

@@ -184,3 +184,4 @@ myname = StructType([
 
 
 2. Using SQL DDL syntax
+ddl_schema = "ID INT, name STRING, age INT, salary DOUBLE"
