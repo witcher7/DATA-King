@@ -244,7 +244,7 @@ df.filter(df.income > 60000).show()
 
 2. Wide Dependency Transformations
 > These transformations create a many-to-one or one-to-many relationship between the input and output partitions.
-> Examples: groupBy(), join(), etc.
+> Examples: groupBy(), join(), Distinct() etc.
 We have to depend on other partitions.
 for example, if we have 4 partitions and we apply groupBy() transformation, each partition will be processed based on the other partitions.
 
@@ -252,3 +252,24 @@ for example, if we have 4 partitions and we apply groupBy() transformation, each
 df.groupBy("name").sum("income").show()
 if data is present in each other executor, then it will be processed based on the other executors as it will
 be swapped across executors that will be an expensive operation.
+
+
+### DAG CREATION AND LAZY EVALUATION
+DAG - Directed Acyclic Graph
+It is a tree-like structure that represents the dependencies between the transformations.
+
+
+Lazy Evaluation - The transformations are not executed until an action is called.
+
+flight_data = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("path/to/file")
+flight_data_repartitioned = flight_data.repartition(4)
+> repartition() - redistributes the data randomly across partitions
+> coalesce() - redistributes the data based on the existing partitions
+us_flight_data = flight_data.filter(flight_data.source_country == "United States")
+uk_flight_data = flight_data.filter(flight_data.source_country == "United Kingdom")
+us_india_data = us_flight_data.filter((col("ORIGIN_COUNTRY_NAME") == "United States") | (col("DEST_COUNTRY_NAME") == "India"))
+total_flight_us_india = us_india_data.union(uk_flight_data)
+total_flight_us_india.count()
+total_flight_us_india.show()
+
+DAG works for each job when an action is called.
