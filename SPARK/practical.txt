@@ -59,3 +59,28 @@ flight_df_header_schema = spark.read.format("csv") \
     .load("file:/Workspace/Users/gulati.r7121@gmail.com/Drafts/myflights.csv")
 
 flight_df_header_schema.printSchema()
+
+
+
+### Corrupted Record Handling
+from pyspark.sql.types import StructType,StructField,StringType,IntegerType,DateType,FloatType
+myschema = StructType([ \
+    StructField("Transaction_id", IntegerType(), True), \
+    StructField("CustomerName", StringType(), True), \
+    StructField("Age", StringType(), True), \
+    StructField("PurchaseAmt", StringType(), True), \
+    StructField("TransactionDate", DateType(), True), \
+    StructField("Status", StringType(), True),\
+    StructField("_corrupt_record",StringType(),True)
+])
+
+
+flight_df_header = spark.read.format("csv") \
+    .option("header","false") \
+    .option("inferSchema","false") \
+    .option("skipRows","1")\
+    .schema(myschema) \
+    .option('BadRecordsPath','file:///Workspace/Users/gulati.r7121@gmail.com/Drafts/badrecords')\
+    .load("file:/Workspace/Users/gulati.r7121@gmail.com/Drafts/badpractice.csv")
+
+flight_df_header.show(truncate=False)
