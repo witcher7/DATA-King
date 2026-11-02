@@ -342,3 +342,4 @@ Analysis happens when the query is parsed and the schema is inferred.
 Catalog is used to resolve the table names and column names.
 Analysis exceptions are thrown when the table or column names are not found.
 SQL engine convert a code into java byte code using code generation.
+Spark SQL engine is responsible for optimizing the query and it is a compiler.
