@@ -193,3 +193,28 @@ we have 3 modes to handle corrupted records:
 1. PERMISSIVE - All invalid fields are set to null
 2. DROPMALFORMED - Drop the entire record if any invalid field is found
 3. FAILFAST - Throw an exception if any invalid field is found
+
+
+### How can we print Bad records
+> first we need to make schema with null values allowed
+> then we need to read the file with the schema
+> then we need to filter the bad records
+> finally we need to print the bad records
+
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType
+bad_schema = StructType([
+    StructField("ID", IntegerType(), True),
+    StructField("name", StringType(), True),
+    StructField("age", IntegerType(), True),
+    StructField("salary", DoubleType(), True),
+    StructField("corrupted_record", StringType(), True)
+])
+bad_df = spark.read.format("csv").schema(bad_schema).option("mode", "PERMISSIVE").load("path/to/file")
+bad_df.show(truncate=False)
+> truncate = False means it will not truncate the output
+
+
+> Store bad records in a separate file
+bad_df.write.format("csv").option("path", "path/to/bad_records").save()
+or 
+bad_df = spark.read.format("csv").schema(bad_schema).option("mode", "PERMISSIVE").option("badRecordsPath", "path/to/bad_records").load("path/to/file")
