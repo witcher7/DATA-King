@@ -218,3 +218,37 @@ bad_df.show(truncate=False)
 bad_df.write.format("csv").option("path", "path/to/bad_records").save()
 or 
 bad_df = spark.read.format("csv").schema(bad_schema).option("mode", "PERMISSIVE").option("badRecordsPath", "path/to/bad_records").load("path/to/file")
+
+
+
+### TRANSFORMATIONS IN PYSPARK
+1. Narrow Dependency Transformations
+> These transformations create a one-to-one relationship between the input and output partitions.
+> Examples: map(), filter(), flatMap(), union(), select(), etc.
+We dont have to depend on other partitions.
+for example, if we have 4 partitions and we apply map() transformation, each partition will be processed independently.
+
+ID NAME AGE INCOME SOURCE
+1 John 25 50000 Job
+2 Jane 30 60000 Teaching
+3 Bob 35 70000 Freelancing
+4 Alice 28 55000 Teaching
+5 Charlie 40 80000 Youtuber
+6 David 32 65000 Job
+
+> Show me people with income > 60000
+df.filter(df.income > 60000).show()
+> if our data is 200MB and hdfs has 128 MB block size, then it will be stored in 2 blocks
+> when we read this data, it will be read in parallel
+
+
+2. Wide Dependency Transformations
+> These transformations create a many-to-one or one-to-many relationship between the input and output partitions.
+> Examples: groupBy(), join(), etc.
+We have to depend on other partitions.
+for example, if we have 4 partitions and we apply groupBy() transformation, each partition will be processed based on the other partitions.
+
+> Find the total income of each employee 
+df.groupBy("name").sum("income").show()
+if data is present in each other executor, then it will be processed based on the other executors as it will
+be swapped across executors that will be an expensive operation.
