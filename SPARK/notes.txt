@@ -321,3 +321,24 @@ for example
 > from_json() - converts the json string to json object
 > to_json() - converts the json object to json string
 
+#### SPARK SQL ENGINE
+> catalyst optimizer is responsible for optimizing the query 
+
+
+SQL ---------------------<
+                         < CATALYST OPTIMIZER
+DATAFRAME API -----------< SPARK SQL ENGINE  ---------> RDD JAVA/SCALA
+                         <
+DATASET -----------------<
+
+4 Phases of spark SQL engine / Catalyst Optimizer
+1. Analysis
+2. Optimization
+3. Physical Planning
+4. Code Generation
+      
+The code goes to unresolved logical plan -> resolved logical plan -> optimized logical plan -> physical plan -> code generation
+Analysis happens when the query is parsed and the schema is inferred.
+Catalog is used to resolve the table names and column names.
+Analysis exceptions are thrown when the table or column names are not found.
+SQL engine convert a code into java byte code using code generation.
