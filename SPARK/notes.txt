@@ -273,3 +273,51 @@ total_flight_us_india.count()
 total_flight_us_india.show()
 
 DAG works for each job when an action is called.
+
+
+
+#### JSON --> JAVASCRIPT OBJECT NOTATION
+> It is semi-structured data.
+Key Value Pairs
+{
+    "name": "John",
+    "age": 25,
+    "city": "New York"
+}
+
+
+#### READING JSON FILES
+> spark.read.format("json").load("path/to/file")
+> spark.read.json("path/to/file")
+
+> spark.read.format("json").option("inferSchema", "true").load("path/to/file")
+
+# line delimeted json vs multi line json
+# line delimeted json - each line is a json object
+# multi line json - json object can span multiple lines
+read options:
+- multiline: true/false
+- inferSchema: true/false
+> spark.read.format("json").option("multiline", "true").load("path/to/file")
+> spark.read.format("json").option("multiline", "false").load("path/to/file")
+
+
+## NESTED JSON
+it contains nested objects and arrays
+for example
+{
+    "name": "John",
+    "age": 25,
+    "address": {
+        "street": "123 Main St",
+        "city": "New York"
+    }
+}
+> spark.read.format("json").option("inferSchema", "true").load("path/to/file").printSchema()
+
+> flatten() - flattens the nested json
+> explode() - explodes the array
+> get_json_object() - extracts the json object
+> from_json() - converts the json string to json object
+> to_json() - converts the json object to json string
+
