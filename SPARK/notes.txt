@@ -185,3 +185,11 @@ myname = StructType([
 
 2. Using SQL DDL syntax
 ddl_schema = "ID INT, name STRING, age INT, salary DOUBLE"
+
+
+### Corrupted Record 
+Corrupted record is a record that is not in the correct format.
+we have 3 modes to handle corrupted records:
+1. PERMISSIVE - All invalid fields are set to null
+2. DROPMALFORMED - Drop the entire record if any invalid field is found
+3. FAILFAST - Throw an exception if any invalid field is found
