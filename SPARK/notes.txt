@@ -378,3 +378,90 @@ data.map(lambda x: (x[0], 1)).reduceByKey(lambda x, y: x + y).collect()
 > Dataframe is optimized for columnar storage
 > Dataframe is optimized for in-memory computing
 # In modern spark versions, RDD is not used much as dataframe  is converted to RDD internally
+
+##### PARQUET #####
+There are two types of orientation:
+1. Row-oriented
+> Data is stored in rows, where each row represents a complete record.
+for example:
+Name, Age, City
+John, 25, New York
+Jane, 30, Los Angeles
+it will be stored as:
+John, 25, New York
+Jane, 30, Los Angeles
+
+> Row-oriented is good for transactional systems where you need to read entire rows of data.
+> But it is not good for analytical systems where you need to read only a few columns of data.
+
+
+2. Column-oriented
+> Data is stored in columns, where each column represents a single attribute.
+for example:
+Name, Age, City
+John, 25, New York
+Jane, 30, Los Angeles
+it will be stored as:
+Name: John, Jane
+Age: 25, 30
+City: New York, Los Angeles
+
+> Column-oriented is good for analytical systems where you need to read only a few columns of data.
+> But it is not good for transactional systems where you need to read entire rows of data.
+
+OLAP VS OLTP
+OLAP: Online Analytical Processing
+> Used for complex queries and analysis
+> Optimized for read-heavy workloads
+> Data is typically stored in a star/snowflake schema
+> Examples: Data warehouses, business intelligence, reporting
+> Here we have to use SELECT, JOIN, GROUP BY, ORDER BY operations more frequently
+> OLAP uses column-oriented storage
+
+OLTP: Online Transaction Processing
+> Used for day-to-day operations and transactions
+> Optimized for fast, simple queries
+> Data is typically stored in a normalized schema
+> Examples: Banking systems, e-commerce, customer service
+> Here we have to use UPDATE, DELETE, INSERT operations more frequently
+> OLTP uses row-oriented storage
+
+# Parquet uses column-oriented storage
+> df = spark.read.parquet("path/to/parquet/file")
+> df.write.parquet("path/to/parquet/file")
+# it is much better for analytical workloads
+
+# CSV uses row-oriented storage
+> df = spark.read.csv("path/to/csv/file")
+> df.write.csv("path/to/csv/file")
+# it is much better for transactional workloads
+
+>>> DATAFRAME WRITER METHODS
+DataframeWriter.format() \
+    .mode() \
+    .option() \
+    .options() \
+    .partitionBy()\
+    .bucketBy()\
+    .sortBy()
+    .save()
+
+df.write.format('csv').option('header', True).option("mode", "overwrite").save('path/to/csv/file')
+Mode options:
+- overwrite: Overwrite existing data
+- append: Append to existing data
+- ignore: Ignore if data already exists
+- error: Throw an exception if data already exists
+- errorifexists: Throw an exception if data already exists (same as error)
+
+for example
+df.write.format("csv").option("header", True).mode("overwrite").save("path/to/csv/file").save()
+
+# repartition is used to increase or decrease the number of partitions in a DataFrame
+# It is useful when you want to optimize the performance of your Spark application
+# by ensuring that the data is evenly distributed across the cluster
+
+df.repartition(3).write.format("csv").option("header", True).mode("overwrite").save("path/to/csv/file")
+# it will create 3 partitions
+# it will shuffle the data and redistribute it across the cluster
+# it is an expensive operation as it involves data movement across the network
