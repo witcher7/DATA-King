@@ -372,3 +372,9 @@ SELECT column_name, COUNT(*) FROM table_name GROUP BY column_name
 
 RDD 
 data.map(lambda x: (x[0], 1)).reduceByKey(lambda x, y: x + y).collect()
+
+> Dataframe is optimized for small records
+> Dataframe is optimized for iterative algorithms
+> Dataframe is optimized for columnar storage
+> Dataframe is optimized for in-memory computing
+# In modern spark versions, RDD is not used much as dataframe  is converted to RDD internally
