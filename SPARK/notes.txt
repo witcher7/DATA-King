@@ -363,3 +363,12 @@ Disadvantages of RDD:
 > RDD is not optimized for columnar storage
 > RDD is not optimized for in-memory computing
 So it was replaced by Dataframe and Dataset APIs. Better to use Dataframe and Dataset APIs.
+
+Dataframe
+data.groupBy("column_name").count().show()
+
+SQL
+SELECT column_name, COUNT(*) FROM table_name GROUP BY column_name
+
+RDD 
+data.map(lambda x: (x[0], 1)).reduceByKey(lambda x, y: x + y).collect()
