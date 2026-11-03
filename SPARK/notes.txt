@@ -343,3 +343,8 @@ Catalog is used to resolve the table names and column names.
 Analysis exceptions are thrown when the table or column names are not found.
 SQL engine convert a code into java byte code using code generation.
 Spark SQL engine is responsible for optimizing the query and it is a compiler.
+
+
+### RDD Resilient Distributed Dateset
+Just like List is a data structure [1,2,3,4,5] in python,
+RDD is a data structure in spark which is immutable, distributed and fault-tolerant.
