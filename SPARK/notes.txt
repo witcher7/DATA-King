@@ -356,3 +356,9 @@ RDD actions trigger the execution
 Why rdd is fault tolerant?
 > RDDs are fault tolerant because they track the lineage of operations that created them.
 > If a partition is lost, it can be recomputed from the original data using the lineage information.
+Disadvantages of RDD:
+> RDD is immutable
+> RDD is not optimized for small records
+> RDD is not optimized for iterative algorithms
+> RDD is not optimized for columnar storage
+> RDD is not optimized for in-memory computing
