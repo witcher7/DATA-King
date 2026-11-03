@@ -465,3 +465,47 @@ df.repartition(3).write.format("csv").option("header", True).mode("overwrite").s
 # it will create 3 partitions
 # it will shuffle the data and redistribute it across the cluster
 # it is an expensive operation as it involves data movement across the network
+
+
+## PARTITION BY
+> it is used to partition the data based on a specific column(s)
+> it is useful when you want to organize the data in a specific way
+> it is useful when you want to optimize the performance of your Spark application
+> it is useful when you want to ensure that the data is evenly distributed across the cluster
+
+df.write.partitionBy("column_name").format("csv").option("header", True).mode("overwrite").save("path/to/csv/file")
+
+df.write.format("csv").option("header",'"true").option("path","path/to/csv/file").partitionBy("column_name").saveAsTable("table_name")
+
+> if there are 200 jobs and  partitions are 100, then each job will have 2 partitions
+> if there are 200 jobs and  partitions are 200, then each job will have 1 partition
+> if there are 200 jobs and  partitions are 400, then each job will have 2 partitions
+
+### BUCKET BY
+> it is used to bucket the data based on a specific column(s)
+> it is useful when you want to organize the data in a specific way
+> it is useful when you want to optimize the performance of your Spark application
+> it is useful when you want to ensure that the data is evenly distributed across the cluster
+
+df.write.bucketBy(3, "column_name").format("csv").option("header", True).mode("overwrite").save("path/to/csv/file")
+
+df.write.format("csv").option("header",'"true").option("path","path/to/csv/file").bucketBy(3, "column_name").saveAsTable("table_name")
+3 buckets will be created and data will be distributed across them
+if there are 200 jobs and 3 buckets, then each job will have 67 buckets
+
+
+
+#### SPARK SESSION 
+> it is the entry point for working with Spark DataFrames
+> it provides a way to interact with distributed data in Spark
+> it is responsible for creating and managing DataFrames
+> it is used to read and write data from various sources
+> it is used to execute SQL queries on DataFrames
+> it is used to manage the Spark application lifecycle
+> it is used to configure Spark settings and properties
+import pyspark
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("AppName").getOrCreate()
+print(spark)
+
+But it is not recommended to use this approach in production 
