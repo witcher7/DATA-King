@@ -348,3 +348,8 @@ Spark SQL engine is responsible for optimizing the query and it is a compiler.
 ### RDD Resilient Distributed Dateset
 Just like List is a data structure [1,2,3,4,5] in python,
 RDD is a data structure in spark which is immutable, distributed and fault-tolerant.
+It is the fundamental data structure of spark.
+It helps in parallel processing of data.
+RDD is immutable 
+RDD transformation is lazy evaluation
+RDD actions trigger the execution
