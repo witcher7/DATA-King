@@ -353,3 +353,6 @@ It helps in parallel processing of data.
 RDD is immutable 
 RDD transformation is lazy evaluation
 RDD actions trigger the execution
+Why rdd is fault tolerant?
+> RDDs are fault tolerant because they track the lineage of operations that created them.
+> If a partition is lost, it can be recomputed from the original data using the lineage information.
