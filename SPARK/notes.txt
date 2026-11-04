@@ -509,3 +509,9 @@ spark = SparkSession.builder.appName("AppName").getOrCreate()
 print(spark)
 
 But it is not recommended to use this approach in production 
+
+
+### JOB, STAGE AND TASK
+>>  Actions are the operations that are performed on DataFrames
+>>  Stages are the units of execution that are created from Actions
+>>  Tasks are the units of work that are executed on the executors
