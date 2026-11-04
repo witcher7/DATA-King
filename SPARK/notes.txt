@@ -515,3 +515,18 @@ But it is not recommended to use this approach in production
 >>  Actions are the operations that are performed on DataFrames
 >>  Stages are the units of execution that are created from Actions
 >>  Tasks are the units of work that are executed on the executors
+
+
+#### DE PIPELINE 
+
+READ --> TRANSFORM --> WRITE --> BI/ML
+> ETL/ELT process
+> Data is read from various sources
+> Data is transformed using Spark
+> Data is written to various destinations
+> Data is used for BI/ML purposes
+
+TRANSFORM --> DATAFRAME API
+          --> SPARK SQL 
+          
+spark.createDataFrame(data=myData, schema=mySchema).show() --> creates a DataFrame from the data and schema
