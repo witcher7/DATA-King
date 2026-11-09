@@ -95,3 +95,23 @@ df = spark.read.json("path")
 df = spark.read.parquet("path")
 df = spark.read.jdbc("path")
 df = spark.read.text("path")
+
+> df.show() --> to show the dataframe 
+> display(df) --> to show the dataframe in a table format
+> df.show(10) --> to show the first 10 rows
+> df.show(10, truncate=False) --> to show the first 10 rows without truncating
+> df.show(10, truncate=50) --> to show the first 10 rows with 50 characters truncated
+
+Dataframe with header
+df1 = spark.read.format("csv").option("header", "true").load("path")
+df1.show()
+or 
+df1 = spark.read.csv("path", header=True)
+# the difference is that format() is more explicit and load() is more flexible and can be used for any format
+
+> To see the schema of the dataframe
+df1.printSchema()
+
+> Dataframe with header and proper schema
+df2 = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("path")
+df2.printSchema()
