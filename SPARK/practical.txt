@@ -115,3 +115,9 @@ df1.printSchema()
 > Dataframe with header and proper schema
 df2 = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("path")
 df2.printSchema()
+
+
+
+## How to read JSON file 
+df3 = spark.read.format("json").load("path")
+df3.printSchema()
