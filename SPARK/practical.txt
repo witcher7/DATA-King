@@ -260,3 +260,69 @@ df.groupBy("address").avg("salary").alias("avg_salary").show()
 df.groupBy("address").agg({"salary": "sum"}).alias("total_salary").show()
 # agg() is used to apply aggregate functions to grouped data
 # alias() is used to give a column a different name
+
+
+### JOINS IN SPARK 
+INNER JOIN -> Returns rows that have matching values in both tables
+LEFT JOIN -> Returns all rows from the left table, and matching rows from the right table
+RIGHT JOIN -> Returns all rows from the right table, and matching rows from the left table
+FULL OUTER JOIN -> Returns all rows from both tables
+LEFT SEMI JOIN -> Returns rows from the left table that have a match in the right table
+LEFT ANTI JOIN -> Returns rows from the left table that do not have a match in the right table
+
+> emp_df.join(dept_df, emp_df.emp_id == dept_df.dept_id, "inner").show()
+# join() is used to join two dataframes on a column
+# == is used to compare two columns
+# "inner" is used to specify the type of join
+
+> emp_df.join(dept_df, emp_df.emp_id == dept_df.dept_id, "left").show()
+# "left" is used to specify the type of join
+
+> emp_df.join(dept_df, emp_df.emp_id == dept_df.dept_id, "right").show()
+# "right" is used to specify the type of join
+
+> emp_df.join(dept_df, emp_df.emp_id == dept_df.dept_id, "full").show()
+# "full" is used to specify the type of join
+
+> emp_df.join(dept_df, emp_df.emp_id == dept_df.dept_id, "left_semi").show()
+# "left_semi" is used to specify the type of join
+
+> emp_df.join(dept_df, emp_df.emp_id == dept_df.dept_id, "left_anti").show()
+# "left_anti" is used to specify the type of join
+
+> emp_df.join(dept_df, "emp_id", "full_outer").show()
+# "emp_id" is used to specify the column to join on
+# "full_outer" is used to specify the type of join
+
+
+
+### UNION AND UNION ALL
+UNION -> Returns all rows from both tables
+UNION ALL -> Returns all rows from both tables, including duplicates
+
+> emp_df.union(dept_df).show()
+# union() is used to combine two dataframes
+# union() is used to combine two dataframes with the same schema
+
+> emp_df.unionAll(dept_df).show()
+# unionAll() is used to combine two dataframes
+# unionAll() is used to combine two dataframes with the same schema
+
+
+
+## CREATE DATA
+import pyspark
+from pyspark.sql import SparkSession
+
+data1 = [(1, "John", 25), (2, "Jane", 30), (3, "Bob", 35), (4, "Alice", 28), (5, "Charlie", 32), (6, "David", 29)]
+schema1 = ["id", "name", "age"]
+df1 = spark.createDataFrame(data1, schema1)
+df1.show()
+
+data2 = [(4, "Alice", 28), (5, "Charlie", 32), (7, "Eve", 31), (8, "Frank", 27), (9, "Grace", 33), (10, "Henry", 26)]
+schema2 = ["id", "name", "age"]
+df2 = spark.createDataFrame(data2, schema2)
+df2.show()
+
+df1.union(df2).show()
+df1.unionAll(df2).show()
