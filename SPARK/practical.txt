@@ -143,3 +143,42 @@ df.select(df.columns[1:5]).show()
 ## How to select all columns
 df6 = df.select("*")
 df6.show()
+
+
+>> Pyspark withColumn() is a transformation function that is used to change the value, 
+convert the datatype of the existing columns, add new columns, and many more uses.
+
+df = spark.createDataFrame([(1, "Alice", 25), (2, "Bob", 30)], ["id", "name", "age"])
+df.withColumn("age", df["age"] + 1).show()
+
+> Add a column 
+df.withColumn("new_column", df["column1"] + df["column2"]).show()
+
+
+
+withColumnRenamed():
+use Pyspark withColumnRenamed() to rename an existing column in a DataFrame.
+
+> Create Dataframe
+> Add new column based on existing column
+> Add new column
+> change datatype
+> Update the value of an existing column 
+
+> Add a new column based on constant value 
+
+from pyspark.sql.functions import lit
+df.withColumn("new_column", lit("constant_value")).show()
+# lit is used to add a constant value to a column
+
+> Change the schema of a column
+df.withColumn("age", df["age"].cast("string")).show()
+# cast is used to change the data type of a column
+
+> From pyspark.sql.functions import col
+df.withColumn("age", col("age").cast("string")).show()
+# col is used to reference a column
+
+> Rename a column
+df.withColumnRenamed("old_name", "new_name").show()
+# withColumnRenamed() is used to rename a column
