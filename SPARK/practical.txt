@@ -209,3 +209,54 @@ df.filter(df.name.isin(["Alice", "Bob"])).show()
 df.filter(df.name.isNull()).show()
 df.filter(df.name.isNotNull()).show()
 df.filter(df.name.like("%li%")).show()
+
+
+## DISTINCT AND DROP DUPLICATES
+Pyspark distinct() and dropDuplicates() methods are used to drop duplicate rows from DataFrame.
+distinct() --> transformation used to drop/remove duplicate rows based on all columns
+dropDuplicates() --> transformation used to drop/remove duplicate rows based on specified/selected columns
+
+df1 = df.distinct() # removes duplicate rows based on all columns
+df1.show()
+
+df2 = df.dropDuplicates('emp_id','salary') # removes duplicate rows based on emp_id and salary columns
+df2.show()
+
+
+## GROUP BY
+> it allows you to perform aggregate functions on groups of rows, rather than on individual rows,
+enable you to calculate summary statistics for different categories within your data
+
+## aggregate functions
+count(), sum(), avg(), max(), min(), countDistinct(), approx_count_distinct(),mean(), stddev(), variance()
+agg() function is used to apply aggregate functions to grouped data and calculate more than one aggregate value
+
+Sum()
+df.groupBy("address").sum("salary").show()
+# sum() is used to calculate the sum of a column
+# groupBy() is used to group rows by a column
+
+Count()
+df.groupBy("address").count().show()
+# count() is used to count the number of rows in a column
+# groupBy() is used to group rows by a column
+
+Max()
+df.groupBy("address").max("salary").show()
+# max() is used to find the maximum value in a column
+# groupBy() is used to group rows by a column
+
+Min()
+df.groupBy("address").min("salary").show()
+# min() is used to find the minimum value in a column
+# groupBy() is used to group rows by a column
+
+Avg()
+df.groupBy("address").avg("salary").alias("avg_salary").show()
+# avg() is used to calculate the average of a column
+# groupBy() is used to group rows by a column
+
+.Alias
+df.groupBy("address").agg({"salary": "sum"}).alias("total_salary").show()
+# agg() is used to apply aggregate functions to grouped data
+# alias() is used to give a column a different name
