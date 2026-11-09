@@ -84,3 +84,14 @@ flight_df_header = spark.read.format("csv") \
     .load("file:/Workspace/Users/gulati.r7121@gmail.com/Drafts/badpractice.csv")
 
 flight_df_header.show(truncate=False)
+
+
+#### How to create dataframe
+Dataframe is two dimensional structure with rows and columns and stores potentially large amount of data.
+it is mutable like RDD.
+
+df = spark.read.csv("path")
+df = spark.read.json("path")
+df = spark.read.parquet("path")
+df = spark.read.jdbc("path")
+df = spark.read.text("path")

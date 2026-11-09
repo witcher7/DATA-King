@@ -530,3 +530,4 @@ TRANSFORM --> DATAFRAME API
           --> SPARK SQL 
           
 spark.createDataFrame(data=myData, schema=mySchema).show() --> creates a DataFrame from the data and schema
+ 
