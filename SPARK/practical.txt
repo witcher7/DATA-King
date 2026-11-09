@@ -121,3 +121,25 @@ df2.printSchema()
 ## How to read JSON file 
 df3 = spark.read.format("json").load("path")
 df3.printSchema()
+
+## to read multiple lines JSON 
+df4 = spark.read.format("json").option("multiLine", "true").load("path")
+df4.printSchema()
+
+## How to select specific columns
+df5 = df.select("column1", "column2")
+df5.show()
+
+## also 
+df.select(df["column1"], df["column2"]).show()
+> This is useful when you want to select columns with special characters in their names
+
+## range of columns
+df.select("column1":"column5").show()
+> This is useful when you want to select a range of columns
+df.select(df.columns[1:5]).show()
+> This is useful when you want to select a range of columns by index
+
+## How to select all columns
+df6 = df.select("*")
+df6.show()
