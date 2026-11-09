@@ -182,3 +182,30 @@ df.withColumn("age", col("age").cast("string")).show()
 > Rename a column
 df.withColumnRenamed("old_name", "new_name").show()
 # withColumnRenamed() is used to rename a column
+
+
+> Filter in pyspark
+Pyspark filter() function is used to filter the rows in DataFrame based on certain conditions.
+you can also use where() function which is an alias for filter().
+
+df.filter(df["column1"] > 10).show()
+# filter() is used to filter rows based on a condition
+
+df.where(df["column1"] > 10).show()
+# where() is used to filter rows based on a condition
+
+> df.filter(df.address=="India").show()
+> df.where(df.address!="India").show()
+
+> df.filter((df.age > 25) & (df.name == "Alice")).show()
+# & is used for AND operation
+# | is used for OR operation
+# ~ is used for NOT operation
+
+df.filter(df.name.startswith("A")).show()
+df.filter(df.name.endswith("e")).show()
+df.filter(df.name.contains("li")).show()
+df.filter(df.name.isin(["Alice", "Bob"])).show()
+df.filter(df.name.isNull()).show()
+df.filter(df.name.isNotNull()).show()
+df.filter(df.name.like("%li%")).show()
