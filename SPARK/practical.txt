@@ -335,3 +335,8 @@ In pyspark we use fill() and fillNa() to fill null values / non-values either wi
 > df.na.fill({"age": 0, "name": "Unknown"}) -- to fill null values with specific values
 > df.fillna(0, subset=["age"]) -- to fill null values with 0 in age column only
 > df.fillna("",["city"]) -- to fill null values with empty string in city column only
+> df.na.fill("",["city"]).na.fill(0,["age"]) -- to fill null values with empty string in city column and 0 in age column
+> df.na.fill("",["city"]).na.fill(0,["age"]).na.fill("Unknown",["name"]).drop() -- to fill null values with empty string in city column, 0 in age column and Unknown in name column and drop rows with null values
+> df.na.drop() -- to drop rows with null values
+> df.na.drop("any") -- to drop rows with null values if any column has null values
+> df.na.drop("all") -- to drop rows with null values if all columns have null values
