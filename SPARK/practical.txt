@@ -513,3 +513,17 @@ from pyspark.sql.functions import col
 > df.withColumn("date", to_date("date", "yyyy-MM-dd")).show()
 > df.withColumn("date", date_format("date", "dd/MM/yyyy")).show()
 > df.select("date_col",date_format("date_col", "dd-MM-yyyy")).show()
+
+
+### Date_add  -> returns a new date by adding a specified number of days to a given date
+> from pyspark.sql.functions import date_add
+> df.withColumn("date", date_add("date", 1)).show()
+
+## Date_sub -> returns a new date by subtracting a specified number of days from a given date
+> from pyspark.sql.functions import date_sub
+> df.withColumn("date", date_sub("date", 1)).show()
+
+## DATEDIFF -> returns the number of days between two dates
+> from pyspark.sql.functions import datediff
+> df.withColumn("date", datediff("date", "date")).show()
+
