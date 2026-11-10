@@ -527,3 +527,35 @@ from pyspark.sql.functions import col
 > from pyspark.sql.functions import datediff
 > df.withColumn("date", datediff("date", "date")).show()
 
+#### Partition BY is used to partition the data into groups based on a specific column
+partition the large dataset into smaller chunks for better performance
+> pyspark supports partitions in two ways:
+> 1. Partitioning in memory repartition() or coalesce()
+> 2. Partitioning on disk   partitionBy() 
+
+df.write.option("path", "output_path").partitionBy("column_name").mode("overwrite").parquet("output_path")
+dfRepart.repartition(2, "column_name").write.option("path", "output_path").mode("overwrite").parquet("output_path")
+
+
+### Explode function helps to flatten array and map columns
+> from pyspark.sql.functions import explode
+> df.withColumn("explode_column", explode("column_name")).show()
+
+from pyspark.sql import *
+data = [
+    ("Alice", [1, 2, 3]),
+    ("Bob", [4, 5]),
+    ("Charlie", [6, 7, 8, 9])
+]
+df = spark.createDataFrame(data, ["name", "numbers"])
+df.show()
+df.withColumn("explode_column", explode("numbers")).show()
+
+
+
+#### CACHE AND PERSIST
+> cache() - caches the DataFrame in memory
+> persist() - caches the DataFrame in memory or disk
+> unpersist() - removes the DataFrame from cache
+Caching is used to optimize the performance of Spark applications by storing frequently accessed data in memory or on disk.
+Persisting is used to store the DataFrame in memory or on disk for faster access.(multiple storage level)
