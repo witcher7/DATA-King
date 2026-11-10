@@ -147,6 +147,707 @@ ALTER table student ADD CONSTRAINT NOT NULL salary
 ALTER table student ALTER column salary SET DEFAULT 0;
 
 
+
+Bro, let's crack ALL major MS SQL Server `ALTER TABLE` commands from beginner to advanced. This is your practical DDL cheat sheet for modifying tables, columns, constraints, relationships, and storage. 🔥
+
+# 1. ALTER TABLE syntax
+
+```
+ALTER TABLE table_name
+ADD column_name datatype;
+```
+
+General syntax:
+
+```
+ALTER TABLE table_name
+ADD | ALTER COLUMN | DROP COLUMN
+| ADD CONSTRAINT | DROP CONSTRAINT
+| SWITCH | REBUILD;
+```
+
+# 2. ADD columns
+
+## Add one column
+
+```
+ALTER TABLE Students
+ADD Email VARCHAR(100);
+```
+
+## Add multiple columns
+
+```
+ALTER TABLE Students
+ADD
+    Phone VARCHAR(15),
+    DOB DATE,
+    Salary DECIMAL(10,2);
+```
+
+## Add column with default
+
+```
+ALTER TABLE Students
+ADD Country VARCHAR(50)
+DEFAULT 'India';
+```
+
+## Add NOT NULL column
+
+```
+ALTER TABLE Students
+ADD Status VARCHAR(20) NOT NULL
+DEFAULT 'Active';
+```
+
+# 3. ALTER COLUMN
+
+## Change datatype
+
+```
+ALTER TABLE Students
+ALTER COLUMN Name VARCHAR(200);
+```
+
+## Change datatype from INT to BIGINT
+
+```
+ALTER TABLE Students
+ALTER COLUMN StudentID BIGINT;
+```
+
+## Make column NOT NULL
+
+```
+ALTER TABLE Students
+ALTER COLUMN Email VARCHAR(100) NOT NULL;
+```
+
+## Make column NULL
+
+```
+ALTER TABLE Students
+ALTER COLUMN Email VARCHAR(100) NULL;
+```
+
+## Change column precision
+
+```
+ALTER TABLE Students
+ALTER COLUMN Salary DECIMAL(12,2);
+```
+
+Important: Existing values must be compatible with the new datatype or nullability.
+
+# 4. DROP COLUMN
+
+## Drop one column
+
+```
+ALTER TABLE Students
+DROP COLUMN Email;
+```
+
+## Drop multiple columns
+
+```
+ALTER TABLE Students
+DROP COLUMN Phone, DOB;
+```
+
+Columns involved in constraints, indexes, or other dependencies may need those dependencies removed first.
+
+# 5. PRIMARY KEY commands
+
+## Add primary key
+
+```
+ALTER TABLE Students
+ADD CONSTRAINT PK_Students
+PRIMARY KEY (StudentID);
+```
+
+## Add composite primary key
+
+```
+ALTER TABLE Enrollment
+ADD CONSTRAINT PK_Enrollment
+PRIMARY KEY (StudentID, CourseID);
+```
+
+## Drop primary key
+
+```
+ALTER TABLE Students
+DROP CONSTRAINT PK_Students;
+```
+
+## Add clustered primary key
+
+```
+ALTER TABLE Students
+ADD CONSTRAINT PK_Students
+PRIMARY KEY CLUSTERED (StudentID);
+```
+
+## Add nonclustered primary key
+
+```
+ALTER TABLE Students
+ADD CONSTRAINT PK_Students
+PRIMARY KEY NONCLUSTERED (StudentID);
+```
+
+# 6. FOREIGN KEY commands
+
+## Add foreign key
+
+```
+ALTER TABLE Orders
+ADD CONSTRAINT FK_Orders_Customers
+FOREIGN KEY (CustomerID)
+REFERENCES Customers(CustomerID);
+```
+
+## Composite foreign key
+
+```
+ALTER TABLE ChildTable
+ADD CONSTRAINT FK_Child_Parent
+FOREIGN KEY (A, B)
+REFERENCES ParentTable(A, B);
+```
+
+## Foreign key with CASCADE
+
+```
+ALTER TABLE Orders
+ADD CONSTRAINT FK_Orders_Customers
+FOREIGN KEY (CustomerID)
+REFERENCES Customers(CustomerID)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+```
+
+## Drop foreign key
+
+```
+ALTER TABLE Orders
+DROP CONSTRAINT FK_Orders_Customers;
+```
+
+## Disable foreign key
+
+```
+ALTER TABLE Orders
+NOCHECK CONSTRAINT FK_Orders_Customers;
+```
+
+## Enable and validate foreign key
+
+```
+ALTER TABLE Orders
+WITH CHECK CHECK CONSTRAINT FK_Orders_Customers;
+```
+
+## Enable without validating existing data
+
+```
+ALTER TABLE Orders
+CHECK CONSTRAINT FK_Orders_Customers;
+```
+
+# 7. UNIQUE constraints
+
+## Add UNIQUE
+
+```
+ALTER TABLE Students
+ADD CONSTRAINT UQ_Students_Email
+UNIQUE (Email);
+```
+
+## Composite UNIQUE
+
+```
+ALTER TABLE Enrollment
+ADD CONSTRAINT UQ_Student_Course
+UNIQUE (StudentID, CourseID);
+```
+
+## Drop UNIQUE
+
+```
+ALTER TABLE Students
+DROP CONSTRAINT UQ_Students_Email;
+```
+
+# 8. CHECK constraints
+
+## Add CHECK
+
+```
+ALTER TABLE Students
+ADD CONSTRAINT CK_Students_Age
+CHECK (Age >= 18);
+```
+
+## Add salary CHECK
+
+```
+ALTER TABLE Employees
+ADD CONSTRAINT CK_Employees_Salary
+CHECK (Salary > 0);
+```
+
+## Drop CHECK
+
+```
+ALTER TABLE Students
+DROP CONSTRAINT CK_Students_Age;
+```
+
+## Disable CHECK
+
+```
+ALTER TABLE Students
+NOCHECK CONSTRAINT CK_Students_Age;
+```
+
+## Enable and validate CHECK
+
+```
+ALTER TABLE Students
+WITH CHECK CHECK CONSTRAINT CK_Students_Age;
+```
+
+# 9. DEFAULT constraints
+
+## Add DEFAULT
+
+```
+ALTER TABLE Students
+ADD CONSTRAINT DF_Students_City
+DEFAULT 'Delhi' FOR City;
+```
+
+## Add default for status
+
+```
+ALTER TABLE Employees
+ADD CONSTRAINT DF_Employees_Status
+DEFAULT 'Active' FOR Status;
+```
+
+## Drop DEFAULT constraint
+
+```
+ALTER TABLE Students
+DROP CONSTRAINT DF_Students_City;
+```
+
+Note: SQL Server requires the default constraint name when dropping an existing default.
+
+# 10. Rename table and columns
+
+## Rename table
+
+```
+EXEC sp_rename
+    'Students',
+    'CollegeStudents';
+```
+
+## Rename column
+
+```
+EXEC sp_rename
+    'Students.Name',
+    'FullName',
+    'COLUMN';
+```
+
+## Rename constraint
+
+```
+EXEC sp_rename
+    'Students.PK_Students',
+    'PK_CollegeStudents';
+```
+
+`sp_rename` is a stored procedure, not an `ALTER TABLE` statement.
+
+# 11. Identity columns
+
+## Add identity column
+
+```
+ALTER TABLE Students
+ADD StudentID INT IDENTITY(1,1);
+```
+
+## Identity seed and increment
+
+```
+IDENTITY(100,5)
+```
+
+This generates:
+
+```
+100, 105, 110, 115...
+```
+
+Important: You cannot directly change an existing column into an IDENTITY column using `ALTER COLUMN`. Usually, you create a replacement column or recreate the table.
+
+# 12. Indexes associated with tables
+
+## Add index
+
+```
+CREATE INDEX IX_Students_Name
+ON Students(Name);
+```
+
+## Add unique index
+
+```
+CREATE UNIQUE INDEX UX_Students_Email
+ON Students(Email);
+```
+
+## Drop index
+
+```
+DROP INDEX IX_Students_Name
+ON Students;
+```
+
+## Disable index
+
+```
+ALTER INDEX IX_Students_Name
+ON Students DISABLE;
+```
+
+## Rebuild index
+
+```
+ALTER INDEX IX_Students_Name
+ON Students REBUILD;
+```
+
+## Reorganize index
+
+```
+ALTER INDEX IX_Students_Name
+ON Students REORGANIZE;
+```
+
+# 13. Advanced ALTER TABLE commands
+
+## Disable all constraints
+
+```
+ALTER TABLE Students
+NOCHECK CONSTRAINT ALL;
+```
+
+## Enable all constraints
+
+```
+ALTER TABLE Students
+CHECK CONSTRAINT ALL;
+```
+
+## Enable and validate all constraints
+
+```
+ALTER TABLE Students
+WITH CHECK CHECK CONSTRAINT ALL;
+```
+
+## Disable all triggers
+
+```
+DISABLE TRIGGER ALL ON Students;
+```
+
+## Enable all triggers
+
+```
+ENABLE TRIGGER ALL ON Students;
+```
+
+## Disable specific trigger
+
+```
+DISABLE TRIGGER trg_Students_Update
+ON Students;
+```
+
+## Enable specific trigger
+
+```
+ENABLE TRIGGER trg_Students_Update
+ON Students;
+```
+
+## Add sparse column
+
+```
+ALTER TABLE Students
+ADD MiddleName VARCHAR(100) SPARSE NULL;
+```
+
+## Add computed column
+
+```
+ALTER TABLE Employees
+ADD FullName AS (FirstName + ' ' + LastName);
+```
+
+## Add persisted computed column
+
+```
+ALTER TABLE Employees
+ADD TotalSalary AS (Salary + Bonus) PERSISTED;
+```
+
+## Add column with column-level CHECK
+
+```
+ALTER TABLE Students
+ADD Age INT CHECK (Age >= 18);
+```
+
+## Add column with UNIQUE
+
+```
+ALTER TABLE Students
+ADD Email VARCHAR(100) UNIQUE;
+```
+
+## Add column with REFERENCES
+
+```
+ALTER TABLE Orders
+ADD CustomerID INT REFERENCES Customers(CustomerID);
+```
+
+# 14. Table compression and partitioning
+
+## Enable row compression
+
+```
+ALTER TABLE Students
+REBUILD WITH (DATA_COMPRESSION = ROW);
+```
+
+## Enable page compression
+
+```
+ALTER TABLE Students
+REBUILD WITH (DATA_COMPRESSION = PAGE);
+```
+
+## Disable compression
+
+```
+ALTER TABLE Students
+REBUILD WITH (DATA_COMPRESSION = NONE);
+```
+
+## Partition switching
+
+```
+ALTER TABLE SourceTable
+SWITCH PARTITION 1
+TO TargetTable PARTITION 1;
+```
+
+Partition switching requires compatible table structures, indexes, and partitioning configurations.
+
+# 15. See all table information
+
+## All tables
+
+```
+SELECT name
+FROM sys.tables;
+```
+
+## All columns
+
+```
+SELECT
+    TABLE_NAME,
+    COLUMN_NAME,
+    DATA_TYPE,
+    IS_NULLABLE
+FROM INFORMATION_SCHEMA.COLUMNS;
+```
+
+## Constraints
+
+```
+SELECT
+    name,
+    type_desc
+FROM sys.objects
+WHERE type_desc LIKE '%CONSTRAINT%';
+```
+
+## Primary keys
+
+```
+SELECT *
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE CONSTRAINT_TYPE = 'PRIMARY KEY';
+```
+
+## Foreign keys
+
+```
+SELECT
+    name,
+    parent_object_id,
+    referenced_object_id
+FROM sys.foreign_keys;
+```
+
+## Defaults
+
+```
+SELECT
+    name,
+    parent_object_id,
+    definition
+FROM sys.default_constraints;
+```
+
+## CHECK constraints
+
+```
+SELECT *
+FROM sys.check_constraints;
+```
+
+# 16. ALTER TABLE complete summary
+
+| Operation           | Command                           |
+| ------------------- | --------------------------------- |
+| Add column          | `ADD`                             |
+| Modify datatype     | `ALTER COLUMN`                    |
+| Drop column         | `DROP COLUMN`                     |
+| Add primary key     | `ADD CONSTRAINT ... PRIMARY KEY`  |
+| Drop primary key    | `DROP CONSTRAINT`                 |
+| Add foreign key     | `ADD CONSTRAINT ... FOREIGN KEY`  |
+| Drop foreign key    | `DROP CONSTRAINT`                 |
+| Add unique          | `ADD CONSTRAINT ... UNIQUE`       |
+| Add check           | `ADD CONSTRAINT ... CHECK`        |
+| Add default         | `ADD CONSTRAINT ... DEFAULT`      |
+| Disable constraint  | `NOCHECK CONSTRAINT`              |
+| Enable constraint   | `CHECK CONSTRAINT`                |
+| Rename table        | `sp_rename`                       |
+| Rename column       | `sp_rename`                       |
+| Add computed column | `ADD ... AS`                      |
+| Add identity        | `ADD ... IDENTITY`                |
+| Rebuild table       | `REBUILD`                         |
+| Compress table      | `REBUILD WITH (DATA_COMPRESSION)` |
+| Switch partition    | `SWITCH PARTITION`                |
+
+## 17. Practice lab: complete table modification
+
+```
+
+CREATE DATABASE SQLPractice;
+GO
+
+USE SQLPractice;
+GO
+
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Age INT,
+    Salary DECIMAL(10,2)
+);
+GO
+
+-- Add column
+ALTER TABLE Employees
+ADD Email VARCHAR(100);
+
+-- Modify datatype
+ALTER TABLE Employees
+ALTER COLUMN Name VARCHAR(200);
+
+-- Add default
+ALTER TABLE Employees
+ADD CONSTRAINT DF_Employees_Age
+DEFAULT 25 FOR Age;
+
+-- Add CHECK
+ALTER TABLE Employees
+ADD CONSTRAINT CK_Employees_Age
+CHECK (Age >= 18);
+
+-- Add UNIQUE
+ALTER TABLE Employees
+ADD CONSTRAINT UQ_Employees_Email
+UNIQUE (Email);
+
+-- Add another column
+ALTER TABLE Employees
+ADD DepartmentID INT;
+
+-- Drop CHECK
+ALTER TABLE Employees
+DROP CONSTRAINT CK_Employees_Age;
+
+-- Drop column
+ALTER TABLE Employees
+DROP COLUMN DepartmentID;
+
+-- Rename column
+EXEC sp_rename
+    'Employees.Name',
+    'EmployeeName',
+    'COLUMN';
+
+-- View final structure
+EXEC sp_help 'Employees';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Alter Table1 drop name 
 
 ### DROP table table1
