@@ -457,3 +457,59 @@ or
 def upper_name(x):
     return x.withColumn("name", upper("name"))
 > df.transform(upper_name).show()
+
+
+
+### TempView()
+Temporary views are used to store the data in memory for faster access
+> They are not stored in the catalog and are only visible to the current session
+> They are automaticaly dropped when the session is closed
+# Temp views allow you to reuse the result of a complex query or a DataFrame without creating a permanent table 
+> df.createOrReplaceTempView("temp_table")
+> spark.sql("SELECT * FROM temp_table").show()
+%sql 
+SELECT * FROM temp_table
+
+
+### GlobalTempView()
+> Global temporary views are used to store the data in memory for faster access
+> They are stored in the global_temp database
+> They are visible to all sessions
+> They are dropped when the application is closed
+> df.createOrReplaceGlobalTempView("global_temp_table")
+> spark.sql("SELECT * FROM global_temp.global_temp_table").show()
+%sql 
+SELECT * FROM global_temp.global_temp_table
+
+### WINDOW FUNCTION 
+> Pyspark window functions are used to calculate results such as rankings, running totals, and moving averages, etc. on a set of rows.
+
+> from pyspark.sql.window import Window
+> window = Window.partitionBy("department").orderBy("salary")
+> df.withColumn("row_number", row_number().over(window)).show()
+
+> from pyspark.sql.window import Window
+> window = Window.partitionBy("department").orderBy("salary")
+> df.withColumn("rank", rank().over(window)).show()
+
+> from pyspark.sql.window import Window
+> window = Window.partitionBy("department").orderBy("salary")
+> df.withColumn("dense_rank", dense_rank().over(window)).show()
+
+from pyspark.sql.functions import lead, lag
+> df.withColumn("lead_salary", lead("salary", 1).over(window)).show()
+> df.withColumn("lag_salary", lag("salary", 1).over(window)).show()
+
+> from pyspark.sql.window import Window
+from pyspark.sql.functions import col
+> window = Window.partitionBy("department").orderBy(col("salary").desc())
+> df.withColumn("row_number", row_number().over(window)).show()
+
+
+
+
+### DATE FORMAT In pyspark
+> from pyspark.sql.functions import *
+> df.withColumn("date", to_date("date", "yyyy-MM-dd")).show()
+> df.withColumn("date", date_format("date", "dd/MM/yyyy")).show()
+> df.select("date_col",date_format("date_col", "dd-MM-yyyy")).show()
