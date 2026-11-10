@@ -420,3 +420,40 @@ phone   USA     100
 phone   UK      150
 laptop  USA     200
 laptop  UK      250 
+
+
+### PYSPARK UDF 
+> UDF stands for User Defined Function
+> It is a function that is defined by the user to perform a specific task
+> It is used to extend the functionality of PySpark
+> It is similar to functions in other programming languages
+> It is used to perform complex operations on data
+for example
+you wanted to convert every first letter of a word in a name string to a capital case;
+pyspark built in functions don't have this feature, so we need to use UDF and reuse theis as needed 
+> UDF are the most expensive operations in PySpark hence use them wisely
+
+def add_prefix(name):
+    return "Mr. " + name
+
+df.withColumn("name", add_prefix("name")).show()
+
+def addone(x):
+    return x + 1
+
+df.withColumn("age", addone("age")).show()
+
+
+## pyspark.sql.dataframe.transform() 
+> transform is used to apply a function to each element of a column
+for example
+> df.transform(lambda x: x.withColumn("age", x["age"] + 1)).show()
+
+from pyspark.sql.functions import upper
+> df.transform(lambda x: x.withColumn("name", upper("name"))).show()
+
+or
+
+def upper_name(x):
+    return x.withColumn("name", upper("name"))
+> df.transform(upper_name).show()
