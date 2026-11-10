@@ -326,3 +326,12 @@ df2.show()
 
 df1.union(df2).show()
 df1.unionAll(df2).show()
+
+
+#### FILL AND FILL NA
+In pyspark we use fill() and fillNa() to fill null values / non-values either with a specific value or with the mean, median, or mode of the column or zero(0),empty string,space or any constant literal values.
+> df.fillna(0)
+> df.na.fill("") -- to fill null values with empty string
+> df.na.fill({"age": 0, "name": "Unknown"}) -- to fill null values with specific values
+> df.fillna(0, subset=["age"]) -- to fill null values with 0 in age column only
+> df.fillna("",["city"]) -- to fill null values with empty string in city column only
