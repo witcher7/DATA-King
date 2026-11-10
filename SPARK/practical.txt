@@ -340,3 +340,83 @@ In pyspark we use fill() and fillNa() to fill null values / non-values either wi
 > df.na.drop() -- to drop rows with null values
 > df.na.drop("any") -- to drop rows with null values if any column has null values
 > df.na.drop("all") -- to drop rows with null values if all columns have null values
+
+
+### SORT AND ORDER BY
+> df.sort("age").show() > sorts by age in ascending order
+> df.orderBy("age").show() > sorts by age in ascending order
+> df.sort("age", "name").show() > sorts by age and name in ascending order
+> df.orderBy("age", "name").show() > sorts by age and name in ascending order
+> df.sort("age", "name", ascending=False).show() > sorts by age and name in descending order
+> df.orderBy("age", "name", ascending=False).show() > sorts by age and name in descending order
+> df.sort("age", "name", ascending=[False, True]).show()
+> df.orderBy("age", "name", ascending=[False, True]).show()
+> df.sort("age", "name", ascending=[False, True]).show()
+> df.orderBy("age", "name", ascending=[False, True]).show()
+> it is same for both sort() and orderBy() as they are synonyms
+
+
+### STRUCT TYPE AND STRUCT FIELD
+> Pyspark provides structype class from pyspark.sql.types module to create struct type columns in a dataframe
+> from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+> StructType() - represents the entire struct type
+> StructField() - represents individual fields within the struct type containing column name, data type, and nullable properties
+> StringType() - represents string type
+> IntegerType() - represents integer type
+
+data = [(1,'John',25,'USA'),(2,'Jane',30,'UK'),(3,'Bob',35,'USA')]
+schema = StructType([StructField('id',IntegerType(),True),StructField('name',StringType(),True),StructField('age',IntegerType(),True),StructField('country',StringType(),True)])
+df = spark.createDataFrame(data,schema)
+df.show()
+> we can avoid schema but it is recommended to use it for better performance and clarity
+
+
+data2 = [(1,'John',25,'USA'),(2,'Jane',30,'UK'),(3,'Bob',35,'USA')]
+columns = ['id','name','age','country']
+df2 = spark.createDataFrame(data2,columns)
+df2.show()
+df2.printSchema()
+> the schema would be:
+> root
+>  |-- id: integer (nullable = true)
+>  |-- name: string (nullable = true)
+>  |-- age: integer (nullable = true)
+>  |-- country: string (nullable = true)
+> it is taking random data types for the columns
+
+
+proper way to do it:
+> use StructType and StructField to define the schema explicitly
+> from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+data3 = [(1,'John',25,'USA'),(2,'Jane',30,'UK'),(3,'Bob',35,'USA')]
+schema3 = StructType([StructField('id',IntegerType(),True),StructField('name',StringType(),True),StructField('age',IntegerType(),True),StructField('country',StringType(),True)])
+df3 = spark.createDataFrame(data3,schema3)
+df3.show()
+df3.printSchema()
+
+### PIVOT AND UNPIVOT
+> PIVOT is used to rotate the data from long format to wide format
+product amount country
+phone  100  USA
+laptop 200  USA
+phone  150  UK
+laptop 250  UK
+
+using pivot operation:
+> the data will be pivoted based on the country column
+> df.groupBy("product").pivot("country").sum("amount").show()
+> it will create separate columns for each country and sum the amounts
+product USA UK
+phone  100 150
+laptop 200 250
+
+
+> UNPIVOT is used to rotate the data from wide format to long format
+> it is the reverse of pivot
+> df.groupBy("product").pivot("country").sum("amount").unpivot("country", "amount").show()
+> it will create separate rows for each country and amount
+product country amount
+phone   USA     100
+phone   UK      150
+laptop  USA     200
+laptop  UK      250 
