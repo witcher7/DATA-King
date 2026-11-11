@@ -1,0 +1,19 @@
+### Print duplicate records presents in the data
+data = [(1, "Alice", 30), (2, "Bob", 25), (3, "Charlie", 35), (1, "Alice", 30), (4, "David", 28)]
+schema = ["id", "name", "age"]
+df = spark.createDataFrame(data, schema)
+df.show()
+
+from pyspark.sql.functions import col
+display(df.groupBy("name").count().filter(col("count") > 1))
+
+### Print without duplicates
+display(df.distinct())
+
+### remove duplicate entry 
+display(df.dropDuplicates())
+
+
+
+
+
