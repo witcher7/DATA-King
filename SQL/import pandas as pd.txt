@@ -1,0 +1,447 @@
+import pandas as pd
+
+table1 = {
+   "product": ["Laptop","Phone","Laptop"],
+   "price" : [60000,30000,20000],
+   "brand" : ["Dell","Samsung","Apple"]
+}
+newdf = pd.DataFrame(table1)
+newdf OR print(newdf)
+
+
+##  Reading data 
+
+import pandas as pd
+sales_df = pd.read_csv("sales.csv")
+print(df.head()) 
+
+## df.head() --> first 5 rows
+## df.tail() --> last 5 rows
+## df.info() --> structure of the dataset
+## df.describe() --> statistics for numeric columns
+
+
+## df["column_name"] --> gives you series (column)
+## df[["col1","col2"]] --> gives you a dataFrame with multiple columns 
+
+
+Assume sales_df has a column called "price".
+
+Write one line of code to select only that column from sales_df. ==== sales_df["price"]
+
+Write one line that selects product and brand only. ==== sales_df[["product","brand"]]
+
+
+df[df["age"] > 25] 
+give me all rows where age is greater than 25.
+
+df[df["city"] == "Delhi"]
+
+sales_df[sales_df["price"]>30000]
+
+df[(df["age"] > 25) & (df["city"] == "Delhi")]
+Use () around each condition
+
+Use & for AND    ] Never use and or or — pandas will complain.
+
+Use | for OR
+
+## ==> sales_df[(sales_df["price"] > 30000) & (sales_df["brand"] =="Dell")]
+
+## Creating New Columns
+df["age_in_5_years"] = df["age"] + 5
+
+df["full_name"] = df["first_name"] + " " + df["last_name"]
+df["discounted_price"] = df["price"] * 0.9
+
+
+
+
+Write one line to create a new column called "price_with_tax"
+== > sales_df["price_with_tax"] = sales_df["price"] * 1.18
+
+# SORTING DATA
+
+df.sort_values("price")
+df.sort_values("price",ascending=False)
+## sort by multiple columns 
+df.sort_values(["brand","price"])
+
+sales_df.sort_values("price",ascending=False)
+
+
+
+## df[df["price"] > 30000][["product", "price"]]
+Give me only rows where price > 30000,
+and from those rows, show only product and price columns
+
+sales_df[sales_df["brand"]=="Samsung"][["product","price"]]
+
+## RESETTING THE INDEX 
+filtered = df[df["price"]>30000]
+filtered = filtered.reset_index(drop=True)
+reset_index() gives you fresh row numbers
+
+drop=True prevents the old index from becoming a new column
+
+expensive = sales_df(sales_df["price"]>30000)
+expensive = expensive.reset_index(drop=True)
+
+
+
+#### loc is how you select rows + columns in a clean, explicit way.
+df.loc[0]  # row by index
+df.loc[0:5]  # row slice
+df.loc[:,"price"] # all rows one column
+df.loc[:,["product","bran"]] 
+df.loc[df["price"]>30000],["product","price"]]
+# loc == [row_selection,column_selection]
+
+sales_df.loc[sales_df["price"]>30000,["product","price"]]
+loc = select by labels
+iloc = select by index positions
+
+df.iloc[0]            # first row
+df.iloc[0:3]          # first three rows
+df.iloc[:, 0]         # all rows, first column
+df.iloc[:, 0:2]       # all rows, first two columns
+df.iloc[2, 1]         # row 2, column 1 (single cell)
+
+sales_df.iloc[:,0:2]
+
+
+
+### RENAMING 
+df.rename(columns={"price": "unit_price", "brand": "company"}, inplace=True)
+sales_df.rename(columns={"price":"unit_price"},inplace=True)
+
+
+### Dropping column
+df.drop("age", axis=1, inplace=True)
+df.drop(["age","city"],axis =1 , inplace = True)
+axis = 1 Drop columns
+axis = 0 drop rows
+
+sales_df.drop("brand",axis=1, inplace=True)
+
+
+### Handling missing values, null values NaN
+df.dropna() # drop the rows
+df.fillna(0)  # fill the missing values
+df.fillna("Unknown")
+
+sales_df.fillna("Unknonwn",inplace=True) | sales_df = sales_df.fillna("Unknown")
+With inplace=True, this extra assignment isn’t needed because the change happens in the original object.
+
+
+## Values counts how many times each unique value appears
+df["brand"].value_counts()
+sales_df["product"].value_counts()
+df["product"].unique()      # list of unique values
+df["product"].nunique()     # count of unique values
+sales_df["brand"].nunique()
+
+nunique() tells you how many unique boxes exist
+value_counts() tells you what’s inside each box and how much
+
+
+groupby lets you answer questions like:
+Total sales per product
+Average price per brand
+Count of orders per city
+Anything “by category”
+
+It’s like SQL’s GROUP BY, but smoother.
+df.groupby("brand")["price"].mean() # avg Group rows by brand, then take the mean of price
+df.groupby("product")["price"].sum()
+
+sales_df.groupby("product")["unit_price"].mean()
+
+# df.groupby("product")[["unit_price", "quantity"]].mean()
+df.groupby("product").agg({
+    "unit_price": "mean",
+    "quantity": "sum"            } Multiple calculations
+})
+
+sales_df.groupby("product")["quantity"].sum()
+
+sales_df.groupby("product").agg(
+ {
+   "unit_price": "mean",
+   "quantity": "sum"
+}
+)
+
+## df.groupby("product")["quantity"].sum().sort_values(ascending=False)
+sales_df.groupby("product").agg(
+ {
+   "unit_price": "mean",
+   "quantity": "sum"
+}
+).sort_values(by="quantity",ascending=False)
+
+
+### MERGING dataframes
+pd.merge(df1, df2, on="product_id", how="inner")
+Common how values:
+
+"inner" → only matching rows
+
+"left" → keep everything from left table
+
+"right" → keep everything from right
+
+"outer" → keep everything from both
+
+pd.merge(sales_df,products_df,on="product_id",how="inner")
+
+
+### MERGE WITH DIFFERENT column_names
+pd.merge(df1, df2, left_on="product", right_on="item_name")
+
+### Concatenation / Stacking Dataframes / appending
+
+pd.concat([df1,df2], axis=0, ignore_index=True) # vertical stacking 
+pd.concat([df1,df2],axis = 1 ) side by side columns
+
+sales_q1 = pd.concat([sales_jan,sales_feb],axis = 0, ignore_index = True) 
+
+### Pivot tables 
+
+df.pivot_table(
+    values="quantity",
+    index="product",
+    columns="region",
+    aggfunc="sum"
+)
+Meaning:
+
+index → rows
+
+columns → new categories on top
+
+values → what you’re calculating
+
+aggfunc → sum / mean / count / etc.
+
+
+
+df[df["price">30000],("brand"=="Dell" | "brand"=="Dell")]]
+
+
+### Let's go finallll
+
+pd.read_csv()
+pd.read_excel()
+pd.read_json()
+pd.read_parquet()
+
+df.to_csv(index=False)
+df.to_parquet()
+
+pd.read_csv("file.csv", dtype=..., parse_dates=..., na_values=..., usecols=...)
+pd.read_csv("file.csv", chunksize=100000)      # large files
+df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
+df.drop_duplicates(inplace=True)
+df.replace({"N/A": None}, inplace=True)
+df["name"] = df["name"].str.strip()
+df.isna().sum()
+df.dropna(subset=["col"])
+df.fillna("Unknown")            # strings
+df.fillna(0)                    # numbers
+df["col"].fillna(df["col"].mean(), inplace=True)
+df["price"] = pd.to_numeric(df["price"], errors="coerce")
+df["date"] = pd.to_datetime(df["date"], errors="coerce", format="%Y-%m-%d")
+df["category"] = df["category"].astype("category")
+df[df["price"] > 500]
+df[df["brand"].isin(["Dell", "HP"])]
+df[(df["price"] > 500) & (df["stock"] < 20)]
+df.loc[df["quantity"] == 0, "quantity"] = None    # conditional update
+df["total"] = df["qty"] * df["price"]
+df["name_upper"] = df["name"].str.upper()
+df["clean_col"] = df["col"].apply(lambda x: x.strip().lower())
+df.groupby("product")["quantity"].sum()
+df.groupby("region")[["sales","profit"]].mean()
+
+df.groupby("category").agg({
+    "price": "mean",
+    "quantity": "sum",
+    "profit": "max"
+})
+pd.merge(df1, df2, on="id", how="inner")
+pd.merge(df1, df2, on="id", how="left")
+pd.merge(df1, df2, left_on="product", right_on="item_name", how="inner")
+pd.concat([df1, df2], axis=0, ignore_index=True)
+pd.melt(df, id_vars=["product"], value_vars=["jan","feb","mar"])
+df["year"] = df["date"].dt.year
+df["month"] = df["date"].dt.month
+df["day"] = df["date"].dt.day
+df["hour"] = df["date"].dt.hour
+df.resample("M")["sales"].sum()
+df["year"] = df["date"].dt.year
+df["month"] = df["date"].dt.month
+df["day"] = df["date"].dt.day
+df["hour"] = df["date"].dt.hour
+df.resample("M")["sales"].sum()
+
+
+
+
+## FIND Null amounts
+SELECT * FROM orders WHERE amount is NULL
+
+## COUNT NULLS PER COLUMNS
+
+SELECT COUNT(*) - COUNT(column) FROM table
+
+### REPLACE NULLS with 0 
+COALESCE(amount, 0) AS replaced_null
+
+### FIND DUPLICATES
+SELECT customer_id, COUNT(*) FROM orders GROUP BY customer_id
+HAVING COUNT(*) > 1
+
+## REMOVE duplicates --> keeps latest
+
+WITH cte_duplicates AS(
+  SELECT *,
+         ROW_NUMBER() OVER( PARTITION BY unique-column) ORDER BY ( SELECT FROM yourTable)
+DELETE FROM CTE_duplicates
+
+### TRIM WHITESPACES
+TRIM(product_name)
+LTRIM(left space)
+RTRIM  
+
+## UPPERCASE OR LOWERCASE ALL
+UPPER(product_category)
+
+## STANDARDIZE THE DATES
+STR_TO_DATE(date_sql, '%m/%d/%y')
+
+# FIXING INVALID DATES
+CASE WHEN date_col IS NOT NULL AND date_col != ''  THEN
+STR_TO_DATE(date_col , '%Y-%m-%d') 
+
+# cast string to number / if have
+CAST(amount_str AS DECIMAL(10,2))
+
+# SPLIT 'First Last' name --> split_part(full_name,'',1)
+
+# Flag negatives --> CASE WHEN amount < 0 THEN 'Error' ELSE 'ok'
+                          END
+
+### PANDAS data cleaning 
+
+FILL nulls with mean
+df['amount'].fillna(df['amount'].mean())
+
+DROP ROWS with any NULL
+df.dropna()
+
+DROP if customer_id IS NUL
+df.dropna(subset=['customer_id')]
+
+REMOVE DUPLICATES
+df.drop_duplicates()
+
+# DEDUPE by customer
+df.drop_duplicates(subset=['customer_id'])
+
+# TRIM strings
+df['category'] = df['category'].str.strip()
+
+# Title Case 
+df['name'] = df['name].str.title()
+
+# remove non digits -> df['phone]=df['phone'].str.replace(..)
+# fix numeric strings  df['amount'] = pd.to_numeric(df['amount'],errors='coerce')
+
+# split_names df[['first','last']] = df['full_name'].str.split(' ',expand=True)
+
+# replace_values df['status'] = df['status'].replace('cancelled','failed')
+
+# Flag negatives df['amount_flag'] = df['amount'].lt(0)
+# get data types -> df.dtypes
+
+
+
+### SQL find NULL values
+SELECT * FROM orders WHERE amount IS NULL
+
+## COUNT NULL
+SELECT COUNT(*) - COUNT(column_name) AS null_count FROM tables;
+
+## REPLACE null with values
+SELECT COALESCE(amount,0) FROM orders
+
+## fill NULL value with previous values
+SELECT amount, COALESCE(amount,LAG(amount) IGNORE NULLS OVER (ORDER BY order_date))
+
+## FIND DUPLICATE ROWS
+SELECT customer_id , COUNT(*) FROM orders GROUP BY customer_id
+HAVING COUNT(*) > 1
+
+## DELETE DUPLICATE ROWS
+
+with cte as ( SELECT *, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) rn FROM orders) SELECT *
+FROM cte WHERE rn>1
+
+
+# TRIM WHITESPACE 
+SELECT TRIM(product_name) AS new_col FROM orders;
+
+## Standardize date format 
+  SELECT TO_DATE(date_str, 'MM/DD/YYYY')
+
+
+## FIX negative amounts
+
+UPDATE ORDERS SET amount = ABS(amount) WHERE amount < 0;
+
+
+## RANK orders By amount 
+SELECT *, RANK() OVER (ORDER By amount DESC) FROM orders
+
+## ROW number per customer 
+SELECT *, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date)
+
+# RUNNING TOTAL
+SELECT *, SUM(amount) OVER (ORDER BY order_date) FROM orders;
+
+# Previous order amount
+SELECT *, LAG(amount) OVER(ORDER BY order_date) FROM orders;
+
+# NEXT Order amount
+SELECT *,LEAD(amount) OVER(ORDER BY order_date) from orders;
+
+## view first 5 rows -- df.head()
+## view last 5 rows -- df.tail()
+## get shape --> df.shape()
+## get column_name --> df.columns
+## get data types --> df.dtypes
+# summary stats ---> df.describe()
+# info about dataframe --> df.info()
+# count unique values --> df['category'].unique()
+# value counts df['category'.value_counts()
+# check for nulls --> df.isnull().sum() 
+# fill NULLs with mean --> df['amount'].fillna(df['amount'].mean()
+## fill null values with median()
+## forwardfill/ recent observation replace
+  df['amount'].fillna(method='ffill')
+## drop rows with nulls --> df.dropna()
+## drop if specific column null --> df.dropna(subset=['customer_id'])
+## find duplicates --> df.duplicated().sum()
+## Remove Duplicates --> dr.drop_duplicates()
+## Dedupe by column --> df.drop_duplicates(subset=['customer_id'], keep='last')
+
+# uppercase --> df['category'] = df['category'].str.upper()
+# split columns --> df['first','last'] = df['name'].str.split(' ',expand=True)
+
+## filter --> df[df['amount'] > 1000]
+df[df['amount'] >500) & (df['status']="completed")]
+df[df['category'].isin('Electronics','Books'])]
+df.iloc[0:5, 0:3]
+df.loc[df['amount']>1000, ['customer_id','amount']]
+df[df['name'].str.contains('John')]
+df[df['amount'].notnull()]

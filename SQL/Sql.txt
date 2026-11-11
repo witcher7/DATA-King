@@ -1,0 +1,564 @@
+employees(emp_id INT, first_name VARCHAR, last_name VARCHAR, dept_id INT, salary DECIMAL, hire_date DATE)
+
+Write an SQL query that returns the top 3 highest-paid employees, showing their full name (first_name || ' ' || last_name) and salary. Order results from highest to lowest salary.
+
+SELECT CONCAT(first_name," ",last_name),salary FROM employees ORDER BY salary DESC LIMIT 3
+
+Write an SQL query to return all employees hired after 1st January 2020, sorted by hire_date in ascending order.
+
+SELECT * FROM employees where hire_date > '2020-01-01' ORDER BY hire_date
+
+
+Write an SQL query to count how many employees belong to each dept_id.
+Sort the results by dept_id in ascending order.
+
+
+SELECT dept_id, count(emp_id) FROM employees GROUP BY dept_id ORDER BY dept_id
+
+
+Write an SQL query to find employees whose salary is between 50,000 and 80,000 (inclusive).
+Return emp_id, first_name, and salary.
+
+
+select emp_id,first_name,salary from employees WHERE salary BETWEEN 50000 AND 80000
+
+
+Write an SQL query that returns all employees whose first name starts with the letter 'A'.
+Return emp_id, first_name, and last_name.
+Sort results by first_name.
+
+select emp_id, first_name, last_name FROM employees WHERE LOWER(first_name) LIKE LOWER("A%") ORDER BY first_name
+### FOR CASE INSENSITIVE
+
+
+Write a query to return the number of employees hired each year.
+
+Output columns should be:
+
+hire_year
+
+employee_count
+
+(You’ll need to extract the year from hire_date.)
+
+Take your shot. One clean query.
+
+SELECT EXTRACT(year FROM hire_date) AS hire_year, COUNT(emp_id) FROM employees GROUP BY hire_year
+
+
+## Write a query to find the average salary per department.
+Return:
+dept_id
+avg_salary
+
+Sort by avg_salary in descending order.
+
+
+SELECT dept_id, AVG(salary) AS avg_salary FROM employees GROUP BY dept_id ORDER BY avg_salary DESC
+
+
+## Write a query to return all distinct department IDs, sorted in ascending order.
+
+SELECT distinct dept_id as unique FROM employees ORDER BY unique
+
+
+Write a query to find all employees who don’t have a department assigned (i.e., where dept_id is NULL).
+Return emp_id, first_name, dept_id.
+
+
+SELECT emp_id,first_name,dept_id FROM employees WHERE dept_id IS NULL 
+SELECT emp_id,first_name,last_name FROM employees WHERE last_name LIKE "%son" 
+
+Return all employees who were hired in the month of March, any year.
+SELECT emp_id,first_name,EXTRACT(month FROM hire_Date) as month FROM employees WHERE 
+EXTRACT(month FROM hire_Date) =3
+
+
+# Write a query to return employees whose salary is NOT between 60,000 and 90,000.
+SELECT emp_id,salary FROM employees WHERE salary NOT BETWEEN 60000 AND 90000
+
+Write a query to return the minimum and maximum salary in the company.
+SELECT MAX(salary) as max_salary, MIN(salary) as min_salary FROM employees
+
+### MIN() and MAX() on an empty table return NULL, not 0.
+
+# Write a query to list employees whose first name contains the substring “an” anywhere in the name.
+
+select emp_id, first_name FROM employees WHERE lower(first_name) LIKE LOWER("%an%")
+
+## Write a query to return all employees hired before the year 2018.
+
+SELECT emp_id,first_name,hire_date FROM employees WHERE EXTRACT(year FROM hire_date) < 2018 
+
+## Write a query to show how many employees each department has, but only include departments with more than 5 employees.
+
+select dept_id, COUNT(emp_id) AS employee_count FROM employee GROUP BY dept_id HAVING COUNT(emp_id) >5 
+
+## Write a query to return employees whose first name is NULL or last name is NULL.
+select emp_id , first_name , last_name FROM employees WHERE first_name is NULL OR last_name is NULL 
+
+
+## Write a query to return the second highest salary in the company.
+SELECT salary as Second_highest_salary FROM employees ORDER BY salary DESC LIMIT 1 OFFSET 1 
+
+## Write a query to return employees who earn more than the average salary of the entire company.
+
+SELECT emp_id,first_name,salary FROM employees WHERE salary > (Select AVG(salary) FROM employees)
+
+## Write a query to find all employees ordered by last name, but if two people have the same last name, sort them by their first name.
+
+Sekect emp_id , first_name, last_name FROM employees ordered by last_name , first_name
+
+
+## Write a query to return the total salary expense per department (sum of salaries).
+
+SELECT dept_id , SUM(salary) as Total_salary FROM employees GROUP BY dept_id
+
+
+## Write a query to return employees whose first name is at least 5 characters long.
+
+SELECT emp_id , first_name FROM employees WHERE first_name LIKE "_____%"
+
+## Write a query to return employees who were hired in the last 90 days from today.
+
+SELECT emp_id , first_name , hire_date FROM employees WHERE hire_date >= (CURRENT_DATE - INTERVAL 90 DAY)
+
+
+## Write a query to return employees whose salary is equal to the department’s minimum salary.
+
+SELECT e.emp_id , e.dept_id, e.salary FROM employees e WHERE salary = (SELECT MIN(salary) FROM employees WHERE dept_id = e.dept_id)
+
+
+## Write an SQL query to give a 10% raise to all employees in department dept_id = 3.
+
+UPDATE employees SET salary = salary * 1.10 WHERE dept_id =3 
+
+
+## Write a query to list employees hired in 2021, sorted by hire_date
+
+SELECT emp_id, first_name,hire_date FROM employees WHERE EXTRACT(year FROM hire_date) = 2021 ORDER BY hire_date
+
+
+## Write a query to list all employees whose first name is the same as someone else's first name (i.e., duplicate first names).
+
+SELECT first_name,emp_id FROM employees WHERE first_name IN(
+SELECT first_name FROM employees GROUP BY first_name HAVING COUNT(first_name) > 1
+)
+
+
+
+### Write a query that returns the dept_id which has the highest average salary, and the avg_salary value. Return exactly one row (the department with the top average).
+
+SELECT dept_id, AVG(salary) as high_salary FROM employees GROUP BY dept_id ORDER BY AVG(salary) DESC LIMIT 1  
+
+###  Write a query to return employees whose salary is within the top 3 salaries in the entire company.
+If multiple employees share a salary that falls within the top 3 salary values, include all of them.
+
+
+SELECT emp_id, first_name , salary FROM employees where salary in (select DISTINCT salary FROM employees 
+ORDER BY salary DESC LIMIT 3)
+
+
+### Write a query to return the employee(s) hired earliest in the company.
+If multiple employees were hired on the same earliest date, return all of them.
+
+
+SELECT emp_id , first_name, hire_date FROM employees WHERE hire_date in (select MIN(hire_date) FROM employees)
+
+
+
+###############################################
+/// INTERMEDIATE
+Write a MySQL query to list all orders placed in 2023, returning:
+order_id
+customer_id
+order_date
+total_amount
+
+Sort by order_date newest first.
+
+SELECT c.customer_id,o.order_id, o.order_date, o.total_amount FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id WHERE EXTRACT(year FROM o.order_date) = 2023 ORDER BY o.order_date DESC
+
+
+
+
+
+Write a query to list all customers who placed at least 1 order in 2022.
+Return:
+customer_id
+first_name
+last_name
+total_orders (number of orders they placed in 2022)
+
+Sort by total_orders in descending order.
+
+SELECT c.customer_id, c.first_name, c.last_name, COUNT(o.order_id) as total_orders
+FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id WHERE EXTRACT(YEAR FROM o.order_date) = 2022 GROUP BY c.customer_id 
+HAVING COUNT(o.order_id) >= 1  ORDER BY total_orders DESC
+
+
+## Write a MySQL query that returns the top 5 products by total revenue.
+
+SELECT p.product_id, p.product_name , SUM(o.quantity * o.unit_price) as Total_revenue FROM products p INNER JOIN order_items o
+ON p.product_id = o.product_id GROUP by p.product_id ORDER BY SUM(o.quantity * o.unit_price) DESC LIMIT 5
+
+
+## Write a MySQL query to find the top 3 categories with the highest total revenue.
+Revenue = SUM(quantity * unit_price) across all products in that category.
+
+
+SELECT p.category SUM(o.quantity * o.unit_price) as Total_revenue FROM products p INNER JOIN order_items o
+ON p.product_id = o.product_id GROUP by p.category ORDER BY SUM(o.quantity * o.unit_price) DESC LIMIT 3
+
+
+
+
+
+#####
+Write a MySQL query to list customers who have never placed an order.
+
+Return:
+customer_id
+first_name
+email
+created_at
+
+# Sort by created_at ascending (oldest accounts first).
+
+SELECT c.customer_id, c.first_name, c.email , c.created_at FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id GROUP BY c.customer_id HAVING COUNT(o.order_id) < 1 ORDER BY c.created_at
+
+OR 
+
+SELECT 
+    c.customer_id,
+    c.first_name,
+    c.email,
+    c.created_at
+FROM customers c
+LEFT JOIN orders o 
+    ON c.customer_id = o.customer_id
+WHERE o.order_id IS NULL
+ORDER BY c.created_at ASC;
+
+###
+Write a MySQL query to return the total number of units sold per product.
+Output: 
+
+SELECT p.product_id, p.product_name, SUM(o.quantity) as Total_units_sold FROM products p INNER JOIN order_items o ON p.product_id = o.product_id GROUP BY p.product_id ORDER BY SUM(o.quantity) DESC
+
+### Write a MySQL query to find the top 5 customers by total spending.
+Total spending = SUM(order_items.quantity * order_items.unit_price) across all orders.
+
+SELECT c.customer_id, c.first_name, c.last_name , SUM(oi.quantity * oi.unit_price) as total FROM customers c INNER JOIN
+orders o ON c.customer_id = o.customer_id INNER JOIN order_items oi ON o.order_id = oi.order_id GROUP BY c.customer_id ORDER BY SUM(oi.quantity * oi.unit_price) DESC limit 5
+
+
+
+### Find the total revenue per day.
+
+Revenue per day =
+SUM(order_items.quantity * order_items.unit_price)
+across all orders that happened on that day.
+
+SELECT order_date,SUM(oi.quantity * oi.unit_price) as Daily_revenue FROM orders o INNER JOIN order_items oi ON o.order_id = oi.order_id GROUP BY order_date ORDER BY order_date
+
+
+#### Write a query to find the total number of orders and total revenue for each customer.
+
+SELECT c.first_name , c.customer_id, SUM(oi.quantity * oi.unit_price) as total_revenue, count(order_id) as Total_Orders FROM customers C INNER JOIN orders o ON c.customer_id = o.customer_id INNER JOIN order_items oi ON o.order_id = oi.order_id GROUP BY c.customer_id ORDER BY SUM(oi.quantity * oi.unit_price) DESC 
+
+
+####
+Write a MySQL query that returns, for each customer:
+customer_id
+first_name
+total_orders — number of orders they placed
+avg_order_value — average order value per order for that customer (use total revenue per customer ÷ number of orders)
+Only include customers who placed at least 1 order.
+
+WITH cust_metrics AS (
+  SELECT
+    c.customer_id,
+    c.first_name,
+    COUNT(DISTINCT o.order_id)     AS total_orders,
+    SUM(oi.quantity * oi.unit_price) AS total_revenue
+  FROM customers c
+  JOIN orders o ON c.customer_id = o.customer_id
+  JOIN order_items oi ON o.order_id = oi.order_id
+  GROUP BY c.customer_id, c.first_name
+)
+SELECT
+  customer_id,
+  first_name,
+  total_orders,
+  total_revenue,
+  total_revenue / total_orders AS avg_order_value
+FROM cust_metrics
+WHERE total_orders >= 1
+ORDER BY avg_order_value DESC;
+
+
+### Find the 10-day moving average of daily revenue.
+First compute daily revenue as SUM(quantity * unit_price) per order_date.
+Then compute a 10-day moving average of that daily revenue (including the current day and the previous 9 days).
+Return:
+order_date
+daily_revenue
+moving_avg_10d
+Sort by order_date ascending.
+
+
+WITH daily_revenue AS (
+SELECT
+    o.order_date,
+    SUM(oi.quantity * oi.unit_price) AS daily_revenue
+  FROM orders o INNER JOIN
+  JOIN order_items oi ON o.order_id = oi.order_id
+  GROUP BY o.order_date
+)
+SELECT order_date, daily_revenue , ROUND(AVG(daily_revenue) OVER( ORDER BY order_date ROWS BETWEEN 9 PRECEDING
+AND CURRENT ROW), 2 ) AS moving avg_10d FROM daily revenue order 
+
+
+###  Categorize each order as 'High Value' (amount > 1000), 'Medium Value' (amount between 200 and 1000), or 'Low Value' (amount < 200). Show order_id, amount, and new category. Order by amount DESC
+
+
+SELECT order_id , amount,
+  CASE
+  WHEN amount > 1000 THEN "High Value"
+  WHEN amount BETWEEN 200 and 1000 THEN 'Medium Value'
+  ELSE 'Low Value'
+  END as value_category
+FROM orders ORDER BY amount DESC;
+
+
+### Create a 'Status Priority' column using CASE: 'completed' = 'Priority 1', 'pending' = 'Priority 2', 'cancelled' = 'Priority 3'. Show customer_id, status, and priority. Order by customer_id, then priority DESC.
+
+SELECT customer_id , status,
+ CASE 
+  WHEN status = 'completed' THEN 'priority 1'
+  WHEN status = 'pending' THEN 'priority 2'
+  WHEN status = 'cancelled' THEN 'priority 3' 
+ END AS priority 
+FROM orders ORDER BY customer_id,priority DESC
+
+
+### Create 'Order Age' category: Orders before '2025-01-20' = 'Old', on/after '2025-01-20' = 'New'. Show order_id, order_date, and category. Order by order_date ASC.
+
+
+SELECT order_id, order_date,
+CASE
+  WHEN order_date < '2025-01-20' THEN 'Old'
+  WHEN order_date >= '2025-01-20' THEN 'New'
+END AS Category
+FROM orders ORDER BY order_date 
+
+
+### Create 'Customer Tier' based on total spend per customer: >2000 = 'VIP', 500-2000 = 'Gold', <500 = 'Silver'. Show customer_id, total_amount, and tier. Order by total_amount DESC.
+
+
+
+SELECT customer_id, SUM(amount) as Total_amt,
+CASE 
+  WHEN  SUM(amount) > 2000 THEN 'VIP'
+  WHEN  SUM(amount) BETWEEN 500 AND 2000 THEN 'Gold' 
+  WHEN  SUM(amount) <500 THEN 'Silver'
+END AS tier
+FROM orders GROUP BY customer_id ORDER BY total_amt DESC
+
+###  Flag 'Risky Customers': Customers with ANY cancelled order = 'Risky', ELSE 'Safe'. Show customer_id and flag. Order by customer_id.
+
+SELECT customer_id,
+       CASE 
+         WHEN SUM(CASE WHEN status = 'cancelled' THEN 1 ELSE 0 END) > 0 
+         THEN 'Risky' 
+         ELSE 'Safe' 
+       END AS risk_flag
+FROM orders 
+GROUP BY customer_id 
+ORDER BY customer_id;
+
+
+### Create 'Profitability' flag: 'Profitable' if Electronics orders > Clothing orders for customer, ELSE 'Non-Profitable'. Show customer_id and flag. Order by customer_id.
+
+SELECT customer_id,
+       CASE 
+         WHEN SUM(CASE WHEN product_category = 'Electronics' THEN 1 ELSE 0 END) > 
+              SUM(CASE WHEN product_category = 'Clothing' THEN 1 ELSE 0 END) 
+         THEN 'Profitable'
+         ELSE 'Non-Profitable'
+       END AS flag
+FROM orders 
+GROUP BY customer_id  -- Missing!
+ORDER BY customer_id;
+
+LAG(column) OVER (ORDER BY column)  -- Gets PREVIOUS row's value
+LEAD(column) OVER (ORDER BY column) -- Gets NEXT row's value
+
+
+# 'Fast Delivery' flag: 'Yes' if order_date to next day has order (use LAG?), ELSE 'No'. Show order_id, order_date, flag. Order by order_date.
+
+SELECT order_id, order_date,
+       CASE WHEN order_date = LAG(order_date) OVER (ORDER BY order_date) + INTERVAL '1 day' 
+            THEN 'Yes' ELSE 'No' END AS fast_delivery
+FROM orders 
+ORDER BY order_date;
+
+order_id | order_date  | fast_delivery
+---------|-------------|--------------
+1        | 2025-01-15  | No      -- First order
+2        | 2025-01-16  | Yes     -- 15+1day=16
+3        | 2025-01-17  | Yes     -- 16+1day=17
+
+
+###  'Weekend Order' flag: 'Yes' if order_date is Saturday/Sunday, 'No' otherwise. Show order_id, order_date, flag. Order by order_date.
+
+
+SELECT order_id, order_date,
+  CASE 
+  WHEN EXTRACT(DOW FROM order_date) IN (5,6) THEN 'Yes'
+  ELSE 'No'
+  END as flag
+FROM orders
+GROUP BY order_id
+ORDER BY order_date
+
+
+#### 
+#### 'Category Popularity' - Most popular category per customer gets 'Top', others 'Other'. Show customer_id, product_category, flag. Order by customer_id, category count DESC.
+
+SELECT customer_id , product_category ,
+  CASE 
+    WHEN RANK() OVER (PARTITION BY customer_id ORDER BY COUNT(*) DESC) = 1
+    THEN 'Top'
+    ELSE 'Other'
+ END AS popularity_flag
+FROM orders
+GROUP BY customer_id , Product_category
+ORDER BY customer_id , COUNT(*) DESC;
+
+
+
+
+## For completed orders only, categorize as 'High Ticket' (>1000), 'Mid Ticket' (200-1000), 'Low Ticket' (<200). Show order_id, amount, category. Order by amount DESC.
+
+SELECT order_id, amount 
+  CASE 
+   WHEN amount > 1000 THEN 'Hight Ticket'
+   WHEN amount BETWEEN 200 AND 1000 THEN 'Mid Ticket'
+   ELSE 'Low Ticket'
+  END AS category
+FROM orders
+WHERE status = 'completed'
+ORDER BY amount DESC
+
+
+##  Multi-condition 'Order Type': Electronics + completed = 'Premium Sale', Clothing + completed = 'Regular Sale', ANY cancelled = 'Lost Sale', ELSE 'Pending Review'. Show order_id, product_category, status, type. Order by customer_id, order_id.
+
+
+SELECT order_id , product_category, status,
+  CASE
+    WHEN product_category = 'Electronics' AND status = 'completed' THEN 'Premium Sales'
+    WHEN product category = 'Clothing' AND status = 'completed' THEN 'Regular Sales'
+    WHEN status = 'cancelled' THEN 'Lost Sale'
+    ELSE 'Pending Review'
+  END as type
+FROM orders
+ORDER BY customer_id, order_id
+
+
+### Flag 'Repeat Buyer' per order: 'Repeat' if customer has 2+ total orders, else 'New'. Show customer_id, order_id, flag. Order by customer_id, order_id.
+
+SELECT customer_id, order_id,
+  CASE
+    WHEN COUNT(*) OVER (PARTITION BY customer_id) > 2 THEN 'Repeat'
+    ELSE 'New'
+  END as flag
+FROM orders
+ORDER BY customer_id , order_id 
+
+
+## Nested CASE for Electronics only: If amount >1000 = 'High End Electronics', <=1000 = 'Budget Electronics'; Other categories = 'Non-Electronics'. Show order_id, product_category, amount, category_type. Order by amount DESC.
+
+
+SELECT order_id , product_category,amount,
+  CASE 
+   WHEN product_category = 'Electronics' THEN CASE WHEN amount > 1000 THEN 'High End Electronics' ELSE 'Budget Electronics' END
+   ELSE 'Non-Electronics'
+   END as category_type
+FROM orders
+ORDER BY amount DESC
+
+
+###  'Revenue Band' for total customer spend: Use CTE or subquery for SUM(amount) per customer, then CASE '>2000 Diamond', '1000-2000 Platinum', '500-999 Gold', '<500 Bronze'. Show customer_id, total_spend, band.
+
+WITH customer_totals AS (SELECT customer_id, SUM(amount) AS total_spend FROM orders GROUP BY customer_id )
+SELECT c.customer_id,c.total_spend, 
+CASE 
+ WHEN c.total_spend > 2000 THEN 'Diamond'
+ WHEN c.total_spend BETWEEN 1000 AND 2000 THEN 'Platinum' 
+ WHEN c.total_spend BETWEEN 500 AND 999 THEN 'Gold'
+ ELSE 'Bronze'
+END AS band
+FROM customer_totals c 
+
+
+
+
+SELECT customer_id, order_id, amount,
+       AVG(amount) OVER (PARTITION BY customer_id) AS customer_avg,
+       CASE 
+         WHEN amount > AVG(amount) OVER (PARTITION BY customer_id) THEN 'Above Avg'
+         ELSE 'Below Avg'
+       END AS flag
+FROM orders
+ORDER BY customer_id, amount DESC;
+
+
+### 'Trend Status': Compare current order amount to previous order amount (LAG): > prev = 'Increasing', < prev = 'Decreasing', same = 'Stable'. Show order_id, amount, prev_amount, trend. Order by customer_id, order_date
+
+SELECT order_id , amount , LAG(amount) OVER (PARTITION BY customer_id ORDER BY order_date) AS prev_amount,
+  CASE
+   WHEN amount > LAG(amount) OVER (PARTITION BY customer_id ORDER BY order_date) THEN 'Increasing'
+   WHEN amount < LAG(amount) OVER (PARTITION BY customer_id ORDER BY order_date) THEN 'Decreasing'
+   ELSE 'Stable'
+ END AS Trend
+FROM orders ORDER BY customer_id, order_date
+
+
+### Show product_category, category_revenue, pct_share (%), dominance_flag ('Dominant' if >30%, else 'Minor'). Order by category_revenue DESC 
+### SUM(amount) OVER () AS grand_total
+
+SELECT product_category,
+       SUM(amount) AS category_revenue,
+       ROUND(SUM(amount) * 100.0 / SUM(amount) OVER (), 2) AS pct_share,
+       CASE 
+         WHEN SUM(amount) * 100.0 / SUM(amount) OVER () > 30 THEN 'Dominant'
+         ELSE 'Minor'
+       END AS dominance_flag
+FROM orders
+GROUP BY product_category
+ORDER BY category_revenue DESC;
+
+
+### : 'Order Sequence': Number orders per customer sequentially (1st, 2nd, 3rd). Use CASE on ROW_NUMBER(): 1='First', 2='Second', >2='Subsequent'. Show customer_id, order_id, sequence_flag. Order by customer_id, order_date
+
+ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date) AS rn, CASE on rn.
+
+
+SELECT customer_id , order_id ,
+  CASE
+    WHEN ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date) =1 THEN 'FIRST'
+    WHEN ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date) =2 THEN 'SECOND'
+    ELSE 'Subsequent'
+  END as sequence_flag
+FROM orders
+ORDER BY customer_id, order_date
+
+
+
+###### WINDOW FUNCTIONS
+
+Rank all orders by amount DESC (1=highest). Show order_id, amount, rank. Order by rank.
+
+SELECT order_id, amount, RANK () OVER (ORDER BY amount DESC) as rank FROM orders ORDER BY rank 
