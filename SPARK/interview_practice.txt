@@ -14,6 +14,38 @@ display(df.distinct())
 display(df.dropDuplicates())
 
 
+> Tech mahindra
+WE have 2 table customer and order 
+> we have to find out customer who have not done any order / who have not order anything
+> we have to find out customer who have ordered 
+
+customer_date = [(1, "Alice"), (2, "Bob"), (3, "Charlie"),(4, "David"),(5, "Eve")]
+order_data = [(1, 1, 100), (2, 2, 200), (3, 3, 300), (4, 1, 150)]
+
+customer_schema = ["id", "name"]
+order_schema = ["OrderID", "customer_id", "amount"]
+
+customer_df = spark.createDataFrame(customer_date, customer_schema)
+order_df = spark.createDataFrame(order_data, order_schema)
+
+# Left join to find customers who have not done any order
+display(customer_df.join(order_df, customer_df.id == order_df.customer_id, "left").filter(order_df.id.isNull()))
+
+# If I want to see selective columns
+display(customer_df.join(order_df, customer_df.id == order_df.customer_id, "left").filter(order_df.id.isNull()).select("name"))
+
+
+# Inner join to find customers who have ordered
+display(customer_df.join(order_df, customer_df.id == order_df.customer_id, "inner"))
+
+## we can also make a view and then do the join operation
+customer_df.createOrReplaceTempView("customer")
+order_df.createOrReplaceTempView("order")
+
+display(spark.sql("select * from customer c left join order o on c.id = o.customer_id where o.id is null"))
+OR 
+%sql
+select * from customer c left join order o on c.id = o.customer_id where o.OrderID is null
 
 
 
