@@ -127,3 +127,123 @@ instead of max we will use min
 > we have to find the employee who is getting lowest salary based on each department name
 same logic as above but instead of max we will use min
 
+
+###
+### GROUP multiple rows into a single row
+data = [
+    ("Alice", "Math", 85),
+    ("Alice", "Science", 90),
+    ("Alice", "English", 88),
+    ("Bob", "Math", 78),
+    ("Bob", "Science", 82),
+    ("Bob", "English", 80)
+]
+
+columns = ["name", "subject", "score"]
+
+df = spark.createDataFrame(data, columns)
+
+# Group by name and collect subjects and scores as arrays
+result = df.groupBy("name").agg(
+    collect_list("subject").alias("subjects"),
+    collect_list("score").alias("scores")
+)
+
+result.show(truncate=False)
+
+# collect list is used to group multiple rows into a single row
+# collect set is used to group multiple rows into a single row but it removes duplicates
+
+#####
+#### to combine lists
+from pyspark.sql.functions import collect_list, collect_set
+
+data = [
+    ("Alice", "Math", 85),
+    ("Alice", "Science", 90),
+    ("Alice", "English", 88),
+    ("Bob", "Math", 78),
+    ("Bob", "Science", 82),
+    ("Bob", "English", 80)
+]
+
+columns = ["name", "subject", "score"]
+
+df = spark.createDataFrame(data, columns)
+
+# Group by name and collect subjects and scores as arrays
+result = df.groupBy("name").agg(
+    collect_list("subject").alias("subjects"),
+    collect_list("score").alias("scores")
+)
+
+result.show(truncate=False)
+
+
+####
+####
+We are getting data in the form of string JSON we need to convert it to JSON format
+> data  = [("1", '{"name":"John","age":30,"city":"New York"}')]
+> schema = ["id", "json_string"]
+> df = spark.createDataFrame(data, schema)
+> from pyspark.sql.functions import from_json
+> from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+> json_schema = StructType([
+    StructField("name", StringType(), True),
+    StructField("age", IntegerType(), True),
+    StructField("city", StringType(), True)
+])
+> df = df.withColumn("json_data", from_json("json_string", json_schema))
+> df.show(truncate=False)
+
+
+####
+####
+df.createOrReplaceTempView("temp_view")
+
+> now we can use SQL to query the data
+> spark.sql("SELECT * FROM temp_view").show()
+
+%sql 
+with cte as(
+    SELECT name, Address , FROM_JSON(Address, "string") as address_json
+    FROM temp_view
+)
+SELECT name, address_json.city, address_json.country
+FROM cte
+
+
+### 
+### After converting string JSON to JSON format, we need to extract specific fields from the JSON
+
+> df.select("name", "json_data.city", "json_data.country").show()
+
+
+
+
+#### 
+#### 
+Find out the cummulative sales or running total of sales
+
+> data = [("2023-01-01", 100), ("2023-01-02", 200), ("2023-01-03", 150)]
+> df = spark.createDataFrame(data, ["date", "sales"])
+> from pyspark.sql.window import Window
+> from pyspark.sql.functions import sum
+> window = Window.orderBy("date")
+> df.withColumn("cumulative_sales", sum("sales").over(window)).show()
+
+# previous sales
+> from pyspark.sql.functions import lag
+> window = Window.orderBy("date")
+> df.withColumn("previous_sales", lag("sales", 1).over(window)).show()
+
+
+
+#####
+##### Find out the missing number 
+data = [(1,),(2,),(4,),(7,),(10,),(12,),(15,)]
+df = spark.createDataFrame(data, ["number"])
+df.show()
+> list_new = range(1, 16)
+> list_new = [x for x in list_new if x not in df.select("number").collect()]
+> print(list_new)
