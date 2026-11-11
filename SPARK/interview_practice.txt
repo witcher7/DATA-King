@@ -74,6 +74,56 @@ this is more readable and maintainable
 
 
 > we have to find the employee who is getting highest salary based on each department name 
+
+first we will find the max salary for each department
+then we will join this max_salary_df with emp_df to get the employee who is getting highest salary
+
+we have used inner join why? because we want to see only the employees who are getting highest salary in their respective departments
+
+from pyspark.sql.functions import max
+
+emp_data = [
+    ("Manish","1",75000),
+    ("Neha","2",80000),
+    ("Suresh","1",90000),
+    ("Priya","3",85000),
+    ("Ravi","3",95000),
+    ("Sunita","1",88000),
+    ("Rahul","2",72000)
+]
+
+emp_schema = ["name","dept_id","salary"]
+
+dept_data = [
+    ("1","IT"),
+    ("2","HR"),
+    ("3","Finance")
+]
+
+dept_schema = ["dept_id","dept_name"]
+
+emp_df = spark.createDataFrame(emp_data, emp_schema)
+dept_df = spark.createDataFrame(dept_data, dept_schema)
+
+df = emp_df.join(dept_df, "dept_id", "left")
+
+max_salary_df = df.groupBy("dept_name").agg(
+    max("salary").alias("max_salary")
+)
+
+result = (
+    df.join(max_salary_df, "dept_name", "inner")
+      .filter(df.salary == max_salary_df.max_salary)
+      .select("name", df.dept_name.alias("dept_name"), "salary")
+)
+
+result.show()
+
+
+
 > we have to find the lowest salary based on each department name
+instead of max we will use min
+
 > we have to find the employee who is getting lowest salary based on each department name
+same logic as above but instead of max we will use min
 
