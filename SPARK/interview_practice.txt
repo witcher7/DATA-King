@@ -49,3 +49,31 @@ select * from customer c left join order o on c.id = o.customer_id where o.Order
 
 
 
+
+### We have 2 table employee and department
+emp_data = [("Manish","1",75000),("Neha","2",80000),("Suresh","1",90000),("Priya","2",70000),("Raj","3",85000),("Ravi","3",95000),("Sunita","1",88000),("Rahul","2",72000)]
+emp_schema = ["name","dept_id","salary"]
+dept_data = [("1","IT"),("2","HR"),("3","Finance")]
+dept_schema = ["dept_id","dept_name"]
+
+emp_df = spark.createDataFrame(emp_data, emp_schema)
+dept_df = spark.createDataFrame(dept_data, dept_schema)
+
+
+> we have to find the highest salary based on each department Name
+df = emp_df.join(dept_df, emp_df.dept_id == dept_df.dept_id, "left") # we will use left join to see all employees 
+df.groupBy("dept_name").agg({"salary": "max"}).show()
+
+agg({"salary": "max"}) basically means we are applying max function on salary column 
+> agg is used to apply aggregate functions on columns
+we can also do like this:
+df.groupBy("dept_name").agg(max("salary")).show()
+but in this case the column name will be max(salary) instead of salary and we can give alias
+df.groupBy("dept_name").agg(max("salary").alias("max_salary")).show()
+this is more readable and maintainable
+
+
+> we have to find the employee who is getting highest salary based on each department name 
+> we have to find the lowest salary based on each department name
+> we have to find the employee who is getting lowest salary based on each department name
+
