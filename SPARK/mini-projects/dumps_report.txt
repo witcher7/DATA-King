@@ -16,3 +16,24 @@ dbutils.widgets.dropdown("time_period", "daily", ["daily", "weekly", "monthly"])
 time_period = dbutils.widgets.get("time_period")
 print(f"Selected time period: {time_period}")
 # I am storing the selected value in a variable
+
+today = date.today()
+print(f"Today's date: {today}")
+# I am storing today's date in a variable
+
+if time_period == "weekly":
+      start_date = today - timedelta(days=today.weekday()),weeks=1)-timedelta(days=1)
+      end_date = start_date + timedelta(days=6)
+      print(f"Week start date: {start_date}")
+      print(f"Week end date: {end_date}")
+elif time_period == "monthly":
+      first = today.replace(day=1)
+      end_date = today.replace(day=28)
+      start_date = first - timedelta(days=1)
+      print(f"Month start date: {start_date}")
+      print(f"Month end date: {end_date}")
+else:
+      start_date= today-time_delta(days=1)
+      end_date = start_date
+
+display(spark.sql(f"select sum(sales) from sales WHERE date BETWEEN '{start_date}' AND '{end_date}'"))
