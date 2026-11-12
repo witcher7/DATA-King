@@ -8,5 +8,11 @@ AGENDA
 # MONTHLY --> IF SELECT MONTHLY FROM DROPDOWN AUTOMATIC query should run and generate report
 >
 
+from datetime import date, timedelta, datetime 
+
 dbutils.widgets.dropdown("time_period", "daily", ["daily", "weekly", "monthly"])
 # by default it will take daily as we have defined in the code
+
+time_period = dbutils.widgets.get("time_period")
+print(f"Selected time period: {time_period}")
+# I am storing the selected value in a variable
