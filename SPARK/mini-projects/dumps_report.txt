@@ -1,0 +1,12 @@
+CREATE REPORT OR DUMPS ON DAILY WEEKLY AND MONTHLY BASIS
+
+AGENDA 
+1. WE HAVE SALES DATA AVAILABLE IN CSV FILES 
+2. BUSINESS WANTS TO GENERATE REPORT ON DAILY, WEEKLY, MONTHLY BASIS
+3. CREATE NOTEBOOK USING DATABRICKS GIVE OPTION TO GENERATE REPORT ON DAILY, WEEKLY, MONTHLY BASIS
+# WEEKLY --> IF SELECT WEEKLY FROM DROPDOWN AUTOMATIC query should run and generate report
+# MONTHLY --> IF SELECT MONTHLY FROM DROPDOWN AUTOMATIC query should run and generate report
+>
+
+dbutils.widgets.dropdown("time_period", "daily", ["daily", "weekly", "monthly"])
+# by default it will take daily as we have defined in the code
