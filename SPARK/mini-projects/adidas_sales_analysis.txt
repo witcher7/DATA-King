@@ -1,0 +1,46 @@
+The objective of this project is to analyze Adidas sales data using Apache Spark to gain insights into sales performance, product trends, and regional distribution. The analysis will help identify key factors affecting sales and provide recommendations for improving sales strategies.
+Business Metrics Understanding
+> Total Sales,Total Profit,Average Price per unit and Total units sold
+> Total Sales by month
+> Total sales by state
+> Total sales by region
+> Total sales by product
+> Total sales by  retailer 
+> Units sold by Product Category and Gender Type
+> Top Performing Cities by Profit 
+
+
+# df = spark.read.csv("adidas_sales.csv", header=True, inferSchema=True)
+# df.createOrReplaceTempView("adidas_sales")
+%sql
+SELECT * FROM adidas_sales LIMIT 10
+
+SELECT SUM(Total_Sales) AS Total_Sales, SUM(Operating_Profit) AS Total_Profit, AVG(price_per_unit) AS Average_Price, SUM(Units_Sold) AS Total_Units_Sold FROM adidas_sales
+
+Total Sales by month
+SELECT Month, SUM(Total_Sales) AS Total_Sales,MONTH('Invoice_Date','MMM') AS Month_Number FROM adidas_sales GROUP BY Month ORDER BY Month_Number
+
+
+$$ Total sales by state $$
+SELECT State, SUM(Total_Sales) AS Total_Sales FROM adidas_sales GROUP BY State ORDER BY Total_Sales DESC
+
+
+$$ Total sales by region $$
+SELECT Region, SUM(Total_Sales) AS Total_Sales FROM adidas_sales GROUP BY Region ORDER BY Total_Sales DESC
+
+
+$$ Total sales by product $$
+SELECT Product, SUM(Total_Sales) AS Total_Sales FROM adidas_sales GROUP BY Product ORDER BY Total_Sales DESC
+
+
+$$ Total sales by retailer $$
+SELECT Retailer, SUM(Total_Sales) AS Total_Sales FROM adidas_sales GROUP BY Retailer ORDER BY Total_Sales DESC
+
+
+$$ Units sold by Product Category and Gender Type $$
+SELECT Product_Category, Gender_Type, SUM(Units_Sold) AS Total_Units_Sold FROM adidas_sales GROUP BY Product_Category, Gender_Type ORDER BY Total_Units_Sold DESC
+
+
+$$ Top Performing Cities by Profit $$
+SELECT City, SUM(Operating_Profit) AS Total_Profit FROM adidas_sales GROUP BY City ORDER BY Total_Profit DESC LIMIT 10
+
