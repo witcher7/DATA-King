@@ -24,4 +24,7 @@ CREATE TABLE customers(
 
 SERIAL --> WHOLE NUMBER that also auto increment
   SmallSERIAL --> 1 to 32,767
- 
+  Serial --> 1 to 2,147,483,647
+
+TIMESTAMP --> Timestamp is a data type that stores both date and time information as well zone.
+  It is used to record the exact moment an event occurs, making it useful for tracking changes and maintaining historical records in a database. In PostgreSQL, the TIMESTAMP data type can be used with or without time zone information, allowing for flexibility in how date and time data is stored and retrieved.
