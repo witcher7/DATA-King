@@ -65,4 +65,79 @@ JOIN purchases p ON c.id = p.customer_id
 GROUP BY c.id, c.first_name, c.last_name;
 
 
+CREATE OR REPLACE FUNCTION calculate_discount(total_amount NUMERIC) RETURNS NUMERIC AS $$
+BEGIN
 
+    IF total_amount > 1000 THEN
+        RETURN total_amount * 0.1; -- 10% discount for purchases over $1000
+    ELSE
+        RETURN 0; -- No discount for purchases $1000 or less
+    END IF;
+END;
+
+SELECT calculate_discount(1500); -- Returns 150.0
+
+
+CREATE OR REPLACE FUNCTION calculate_average_purchase(customer_id INT) RETURNS NUMERIC AS $$
+DECLARE
+    total_amount NUMERIC;
+    purchase_count INT;
+BEGIN
+
+    SELECT SUM(amount), COUNT(*) INTO total_amount, purchase_count
+    FROM purchases
+    WHERE customer_id = customer_id;
+
+    IF purchase_count > 0 THEN
+        RETURN total_amount / purchase_count; -- Calculate average purchase amount
+    ELSE
+        RETURN 0; -- No purchases for this customer
+    END IF;
+END;
+
+SELECT calculate_average_purchase(1); -- Returns the average purchase amount for customer with ID 1
+
+CREATE OR REPLACE FUNCTION fn_update_customer_email(p_customer_id INT, p_new_email VARCHAR) RETURNS VOID AS $$
+BEGIN
+    UPDATE customers
+    SET email = p_new_email
+    WHERE id = p_customer_id;
+END;
+
+SELECT fn_update_customer_email(1, 'newemail@example.com');
+
+
+
+CREATE OR REPLACE FUNCTION fn_check_month_orders(the_month INT, the_year INT) RETURNS VARCHAR AS $$
+DECLARE
+    order_count INT;
+BEGIN
+    SELECT COUNT(*) INTO order_count
+    FROM orders
+    WHERE EXTRACT(MONTH FROM order_date) = the_month
+    AND EXTRACT(YEAR FROM order_date) = the_year;
+
+    IF order_count > 0 THEN
+        RETURN 'Orders found for the specified month and year.';
+    ELSE
+        RETURN 'No orders found for the specified month and year.';
+    END IF;
+END;
+
+SELECT fn_check_month_orders(5, 2023); -- Checks for orders in May 2023`
+
+
+
+### STORED PROCEDURES
+They are similar to functions but are used to perform a series of operations in the database.
+They can be called to execute complex logic, manipulate data, and return results.
+Stored procedures can accept parameters and can be used to encapsulate business logic within the database.
+
+CREATE OR REPLACE PROCEDURE sp_update_customer_email(p_customer_id INT, p_new_email VARCHAR) AS $$
+BEGIN
+    UPDATE customers
+    SET email = p_new_email
+    WHERE id = p_customer_id;
+END;
+
+SELECT sp_update_customer_email(1, 'newemail@example.com');
