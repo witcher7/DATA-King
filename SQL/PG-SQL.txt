@@ -63,3 +63,6 @@ SELECT CONCAT(c.first_name, ' ', c.last_name) AS customer_name, SUM(p.amount) AS
 FROM customers c
 JOIN purchases p ON c.id = p.customer_id
 GROUP BY c.id, c.first_name, c.last_name;
+
+
+
