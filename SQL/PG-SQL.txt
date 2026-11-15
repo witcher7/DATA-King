@@ -27,4 +27,14 @@ SERIAL --> WHOLE NUMBER that also auto increment
   Serial --> 1 to 2,147,483,647
 
 TIMESTAMP --> Timestamp is a data type that stores both date and time information as well zone.
-  It is used to record the exact moment an event occurs, making it useful for tracking changes and maintaining historical records in a database. In PostgreSQL, the TIMESTAMP data type can be used with or without time zone information, allowing for flexibility in how date and time data is stored and retrieved.
+It is used to record the exact moment an event occurs, making it useful for tracking changes and maintaining historical records in a database. In PostgreSQL, the TIMESTAMP data type can be used with or without time zone information, allowing for flexibility in how date and time data is stored and retrieved.
+
+SELECT first_name,last_name, street, city, zip, birth_date 
+FROM customers
+WHERE EXTRACT(YEAR FROM birth_date) BETWEEN 1990 AND 2000
+# Extract is used to retrive specific parts of a date or timestamp, such as the year, month, day, hour, minute, or second. 
+In this case, it is used to filter customers whose birth dates fall within the years 1990 to 2000.
+IN MY SQL SERVER I WOULD USE YEAR(birth_date) BETWEEN 1990 AND 2000
+FOR MONTH MONTH, DAY DAY, HOUR HOUR, MINUTE MINUTE, SECOND SECOND
+
+MS SQL SERVER _-> WHERE YEAR(birth_date) BETWEEN 1990 AND 2000, WHERE MONTH(birth_date) = 5, WHERE DAY(birth_date) = 15, WHERE HOUR(birth_date) = 10, WHERE MINUTE(birth_date) = 30, WHERE SECOND(birth_date) = 45
