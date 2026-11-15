@@ -56,3 +56,10 @@ means
 starts with any letter or number, followed by zero or more letters, numbers, dots, underscores, percent signs, plus signs, or hyphens, 
 followed by an @ symbol, followed by any letter or number, followed by zero or more letters, numbers, dots, or hyphens, followed by a dot, followed by two or more letters. 
 This pattern matches valid email addresses.
+
+
+CREATE VIEW purchase_summary AS
+SELECT CONCAT(c.first_name, ' ', c.last_name) AS customer_name, SUM(p.amount) AS total_purchase
+FROM customers c
+JOIN purchases p ON c.id = p.customer_id
+GROUP BY c.id, c.first_name, c.last_name;
