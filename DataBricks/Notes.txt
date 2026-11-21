@@ -33,10 +33,27 @@ In this case, data is stored in the Unity Catalog itself
 
 ### IN Databricks , Tables can be created in two ways
 Managed Tables - Data is stored in the Unity Catalog itself [ metadata + data stored in Unity Catalog ]
-? 
 
+CREATE TABLE catalog.schema.table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+);
+CREATE TABLE newcat.table_check.test(
+    id INT,
+    name VARCHAR(25),
+    age INT
+)
+using DELTA  # Delta is the default format for tables in Databricks
+
+> INSERT INTO catalog.schema.table_name VALUES (value1, value2, ...);
 
 External Tables - Data is stored in an external data source [ metadata stored in Unity Catalog + data stored in external source ]
 > If you want to keep data even if the table is dropped, you should use external tables
-
+CREATE TABLE newcat.table_check.test(
+    id INT,
+    name VARCHAR(25),
+    age INT
+)
+LOCATION 's3://your-bucket/path/to/data'
 
