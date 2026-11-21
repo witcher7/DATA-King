@@ -29,3 +29,14 @@ Foreign data is stored in the external data source MYSQL, Postgres, etc.
 
 3. Unity Catalog - This is a catalog that is created from a Unity Catalog
 In this case, data is stored in the Unity Catalog itself
+
+
+### IN Databricks , Tables can be created in two ways
+Managed Tables - Data is stored in the Unity Catalog itself [ metadata + data stored in Unity Catalog ]
+? 
+
+
+External Tables - Data is stored in an external data source [ metadata stored in Unity Catalog + data stored in external source ]
+> If you want to keep data even if the table is dropped, you should use external tables
+
+
